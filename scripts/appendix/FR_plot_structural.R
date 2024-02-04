@@ -4,6 +4,7 @@ library(here)
 library(filesstrings)
 library(glue)
 library(semptools)
+library(semPlot)
 source(here("scripts","data_cleaning.r"))
 
 variable_to_model_mplus <- c(
@@ -196,6 +197,7 @@ measurament_results <- mplusModeler(measurament,
 files <- data.frame(names = list.files(path = here(), full.names = FALSE))
 f_rad <- files %>% dplyr::filter(., grepl(gsub(".inp","",model_out), names))
 for (i in 1:length(f_rad)) { file.move(glue(here("{f_rad[,i]}")), here("scripts", "appendix", "mplus_out"),overwrite = TRUE) }
+
 
 pm_no_covs <- semptools::drop_nodes(
   object = semPlotModel(here("scripts", "appendix", "mplus_out","plot_structural.out")),
