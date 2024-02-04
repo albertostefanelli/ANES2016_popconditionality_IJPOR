@@ -1,0 +1,51 @@
+TITLE:
+BASE 3;
+DATA:
+FILE = "invariance_politics.dat";
+ 
+VARIABLE:
+NAMES = PID_2_DEM V162256 V162257 V162215 V162216 V162217 V162218 V160201 V160102; 
+ MISSING=.;
+ USEVARIABLES = PID_2_DEM
+V162256 V162257 V162215
+V162216 V162217 V162218
+V160201 V160102 ;
+CLUSTER = V160201; 
+
+    GROUPING = PID_2_DEM (1=rep 2=dem);
+    WEIGHT=V160102;
+    
+ANALYSIS:
+TYPE = COMPLEX;
+             ESTIMATOR IS MLR;
+             MODEL = CONFIGURAL METRIC SCALAR;
+       
+MODEL:
+
+
+  ! political interest
+  pol_int BY V162256;
+  pol_int BY V162257;
+
+  ! external efficacy
+  EFFE BY V162215;
+  EFFE BY V162216;
+
+  ! internal  efficacy
+
+  EFFI BY V162217;
+  EFFI BY V162218;
+  ! allow residual covariance
+  V162217  WITH V162216;
+  ! same variance to avoid convergence issues
+  V162215 (v1);
+  V162216 (v1);
+
+
+OUTPUT:
+STANDARDIZED;FSCOEFFICIENT;MODINDICES;
+SAVEDATA:
+
+  FILE IS measurement_fscores.dat;
+  SAVE IS fscores;
+  FORMAT IS free;

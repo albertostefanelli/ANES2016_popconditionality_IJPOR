@@ -1,0 +1,1516 @@
+Mplus VERSION 8.4 (Mac)
+MUTHEN & MUTHEN
+02/03/2024  11:43 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  BASE 3;
+  DATA:
+  FILE = "invariance_ext.dat";
+
+  VARIABLE:
+  NAMES = PID_2_DEM spending_extr defence_extr medical_extr garant_inc_extr
+       blacks_extr envir_extr affirm_extr V160201 V160102;
+   MISSING=.;
+   USEVARIABLES = PID_2_DEM
+  spending_extr defence_extr
+  medical_extr garant_inc_extr
+  blacks_extr envir_extr
+  affirm_extr V160201 V160102 ;
+  CLUSTER = V160201;
+
+      GROUPING = PID_2_DEM (1=rep 2=dem);
+      WEIGHT=V160102;
+
+  ANALYSIS:
+  TYPE = COMPLEX;
+               !INTEGRATION=2
+               ESTIMATOR IS MLR;
+               MODEL = CONFIGURAL METRIC SCALAR;
+               !ESTIMATOR = BAYES;
+               PROCESSORS = 2;
+               !BITERATIONS = 300000;
+               !ALGORITHM=INTEGRATION;
+               !FBITERATIONS = 300000;
+               !THIN = 2;
+               !ITERATIONS = (100000)
+
+  MODEL:
+
+    EXT BY spending_extr;
+    EXT BY defence_extr;
+    EXT BY medical_extr;
+    EXT BY garant_inc_extr;
+    EXT BY blacks_extr;
+    EXT BY envir_extr;
+    EXT BY affirm_extr;
+
+
+  OUTPUT:
+  STANDARDIZED;FSCOEFFICIENT;MODINDICES;
+  SAVEDATA:
+
+    FILE IS measurement_fscores.dat;
+    SAVE IS fscores;
+    FORMAT IS free;
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+*** WARNING in OUTPUT command
+  MODINDICES option is not available when performing measurement invariance
+  testing with multiple models with the MODEL option of the ANALYSIS command.
+  Request for MODINDICES is ignored.
+*** WARNING in SAVEDATA command
+  Factor scores cannot be computed when performing measurement invariance testing
+  of multiple models using the MODEL option of the ANALYSIS command.
+  Request to save FSCORES is ignored.
+*** WARNING in OUTPUT command
+  STANDARDIZED (STD, STDY, STDYX) options are not available when performing measurement
+  invariance testing with multiple models with the MODEL option of the ANALYSIS command.
+  Request for STANDARDIZED (STD, STDY, STDYX) is ignored.
+*** WARNING in OUTPUT command
+  FSCOEFFICIENT option is not available when performing measurement invariance
+  testing with multiple models with the MODEL option of the ANALYSIS command.
+  Request for FSCOEFFICIENT is ignored.
+*** WARNING
+  Data set contains unknown or missing values for GROUPING,
+  PATTERN, COHORT, CLUSTER and/or STRATIFICATION variables.
+  Number of cases with unknown or missing values:  602
+   6 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+BASE 3;
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 2
+Number of observations
+   Group REP                                                  1729
+   Group DEM                                                  1939
+   Total sample size                                          3668
+
+Number of dependent variables                                    7
+Number of independent variables                                  0
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Continuous
+   SPENDING_E  DEFENCE_EX  MEDICAL_EX  GARANT_INC  BLACKS_EXT  ENVIR_EXTR
+   AFFIRM_EXT
+
+Continuous latent variables
+   EXT
+
+Variables with special functions
+
+  Grouping variable     PID_2_DE
+  Cluster variable      V160201
+  Weight variable       V160102
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  invariance_ext.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+   Group REP
+     Number of missing data patterns            66
+     Number of clusters                        132
+
+
+   Group DEM
+     Number of missing data patterns            77
+     Number of clusters                        132
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR REP
+
+
+           Covariance Coverage
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING       0.885
+ DEFENCE_       0.842         0.907
+ MEDICAL_       0.841         0.858         0.920
+ GARANT_I       0.841         0.853         0.862         0.912
+ BLACKS_E       0.831         0.847         0.861         0.856         0.913
+ ENVIR_EX       0.791         0.805         0.816         0.811         0.810
+ AFFIRM_E       0.877         0.899         0.912         0.903         0.905
+
+
+           Covariance Coverage
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX       0.852
+ AFFIRM_E       0.844         0.990
+
+
+     PROPORTION OF DATA PRESENT FOR DEM
+
+
+           Covariance Coverage
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING       0.854
+ DEFENCE_       0.780         0.858
+ MEDICAL_       0.785         0.794         0.879
+ GARANT_I       0.794         0.799         0.817         0.888
+ BLACKS_E       0.785         0.788         0.805         0.816         0.876
+ ENVIR_EX       0.762         0.775         0.787         0.793         0.783
+ AFFIRM_E       0.848         0.853         0.874         0.881         0.871
+
+
+           Covariance Coverage
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX       0.847
+ AFFIRM_E       0.843         0.992
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS FOR REP
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     SPENDING_EXTR         1.524       0.019       0.000   21.88%       0.000      1.000      1.000
+            1531.000       1.149      -1.253       3.000   22.14%       2.000      3.000
+     DEFENCE_EXTR          1.479       0.050       0.000   21.16%       0.000      1.000      1.000
+            1569.000       1.062      -1.142       3.000   20.08%       2.000      3.000
+     MEDICAL_EXTR          1.806      -0.347       0.000   16.42%       1.000      2.000      2.000
+            1590.000       1.183      -1.212       3.000   35.97%       2.000      3.000
+     GARANT_INC_EXTR       1.760      -0.276       0.000   14.90%       1.000      1.000      2.000
+            1577.000       1.050      -1.086       3.000   28.66%       2.000      3.000
+     BLACKS_EXTR           1.788      -0.380       0.000   17.93%       1.000      2.000      2.000
+            1578.000       1.198      -1.182       3.000   34.41%       2.000      3.000
+     ENVIR_EXTR            1.385       0.163       0.000   24.37%       0.000      1.000      1.000
+            1473.000       1.163      -1.241       3.000   19.69%       2.000      2.000
+     AFFIRM_EXTR           1.837      -0.538       0.000   29.26%       0.000      2.000      2.000
+            1712.000       1.555      -1.370       3.000   43.52%       3.000      3.000
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS FOR DEM
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     SPENDING_EXTR         1.247       0.394       0.000   27.05%       0.000      1.000      1.000
+            1656.000       1.059      -0.977       3.000   15.34%       1.000      2.000
+     DEFENCE_EXTR          1.180       0.434       0.000   32.39%       0.000      1.000      1.000
+            1664.000       1.089      -1.003       3.000   14.36%       1.000      2.000
+     MEDICAL_EXTR          1.686      -0.197       0.000   21.54%       0.000      1.000      2.000
+            1704.000       1.326      -1.415       3.000   32.16%       2.000      3.000
+     GARANT_INC_EXTR       1.308       0.319       0.000   27.43%       0.000      1.000      1.000
+            1721.000       1.123      -1.113       3.000   17.78%       1.000      2.000
+     BLACKS_EXTR           1.526      -0.012       0.000   26.56%       0.000      1.000      1.000
+            1698.000       1.328      -1.438       3.000   24.50%       2.000      3.000
+     ENVIR_EXTR            1.952      -0.536       0.000   13.15%       1.000      2.000      2.000
+            1643.000       1.142      -1.049       3.000   40.11%       3.000      3.000
+     AFFIRM_EXTR           1.400       0.054       0.000   40.61%       0.000      0.000      2.000
+            1923.000       1.632      -1.690       3.000   27.93%       2.000      3.000
+
+MODEL FIT INFORMATION
+
+Invariance Testing
+
+                   Number of                   Degrees of
+     Model        Parameters      Chi-Square    Freedom     P-Value
+
+     Configural        42             57.966        28       0.0007
+     Metric            36             68.619        34       0.0004
+     Scalar            30            329.182        40       0.0000
+
+                                               Degrees of
+     Models Compared              Chi-Square    Freedom     P-Value
+
+     Metric against Configural        10.527         6       0.1041
+     Scalar against Configural       289.618        12       0.0000
+     Scalar against Metric           284.104         6       0.0000
+
+
+MODEL FIT INFORMATION FOR THE CONFIGURAL MODEL
+
+Number of Free Parameters                       42
+
+Loglikelihood
+
+          H0 Value                      -33525.258
+          H0 Scaling Correction Factor      1.4753
+            for MLR
+          H1 Value                      -33470.216
+          H1 Scaling Correction Factor      1.6448
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   67134.517
+          Bayesian (BIC)                 67395.228
+          Sample-Size Adjusted BIC       67261.772
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                             57.966*
+          Degrees of Freedom                    28
+          P-Value                           0.0007
+          Scaling Correction Factor         1.8991
+            for MLR
+
+Chi-Square Contribution and P-Value From Each Group (degrees of freedom = 14)
+
+          REP                               24.002     0.046
+          DEM                               33.964     0.002
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.024
+          90 Percent C.I.                    0.015  0.033
+          Probability RMSEA <= .05           1.000
+
+CFI/TLI
+
+          CFI                                0.975
+          TLI                                0.962
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1236.970
+          Degrees of Freedom                    42
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.026
+
+
+MODEL FIT INFORMATION FOR THE METRIC MODEL
+
+Number of Free Parameters                       36
+
+Loglikelihood
+
+          H0 Value                      -33534.457
+          H0 Scaling Correction Factor      1.4299
+            for MLR
+          H1 Value                      -33470.216
+          H1 Scaling Correction Factor      1.6448
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   67140.913
+          Bayesian (BIC)                 67364.380
+          Sample-Size Adjusted BIC       67249.990
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                             68.619*
+          Degrees of Freedom                    34
+          P-Value                           0.0004
+          Scaling Correction Factor         1.8724
+            for MLR
+
+Chi-Square Contribution From Each Group
+
+          REP                               29.712
+          DEM                               38.908
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.024
+          90 Percent C.I.                    0.015  0.032
+          Probability RMSEA <= .05           1.000
+
+CFI/TLI
+
+          CFI                                0.971
+          TLI                                0.964
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1236.970
+          Degrees of Freedom                    42
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.031
+
+
+MODEL FIT INFORMATION FOR THE SCALAR MODEL
+
+Number of Free Parameters                       30
+
+Loglikelihood
+
+          H0 Value                      -33773.756
+          H0 Scaling Correction Factor      1.3789
+            for MLR
+          H1 Value                      -33470.216
+          H1 Scaling Correction Factor      1.6448
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   67607.512
+          Bayesian (BIC)                 67793.734
+          Sample-Size Adjusted BIC       67698.409
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                            329.182*
+          Degrees of Freedom                    40
+          P-Value                           0.0000
+          Scaling Correction Factor         1.8442
+            for MLR
+
+Chi-Square Contribution From Each Group
+
+          REP                              158.638
+          DEM                              170.544
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.063
+          90 Percent C.I.                    0.057  0.069
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.758
+          TLI                                0.746
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1236.970
+          Degrees of Freedom                    42
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.071
+
+
+
+MODEL RESULTS FOR THE CONFIGURAL MODEL
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ EXT      BY
+    SPENDING_E         1.000      0.000    999.000    999.000
+    DEFENCE_EX         0.507      0.068      7.491      0.000
+    MEDICAL_EX         0.918      0.076     12.035      0.000
+    GARANT_INC         1.092      0.089     12.323      0.000
+    BLACKS_EXT         0.971      0.100      9.709      0.000
+    ENVIR_EXTR         0.551      0.085      6.449      0.000
+    AFFIRM_EXT         0.593      0.087      6.834      0.000
+
+ Means
+    EXT                0.000      0.000    999.000    999.000
+
+ Intercepts
+    SPENDING_E         1.518      0.039     38.931      0.000
+    DEFENCE_EX         1.476      0.036     40.966      0.000
+    MEDICAL_EX         1.794      0.038     46.981      0.000
+    GARANT_INC         1.756      0.030     59.470      0.000
+    BLACKS_EXT         1.786      0.036     49.296      0.000
+    ENVIR_EXTR         1.379      0.037     36.979      0.000
+    AFFIRM_EXT         1.836      0.034     54.658      0.000
+
+ Variances
+    EXT                0.374      0.045      8.345      0.000
+
+ Residual Variances
+    SPENDING_E         0.772      0.051     15.109      0.000
+    DEFENCE_EX         0.966      0.034     28.434      0.000
+    MEDICAL_EX         0.868      0.052     16.581      0.000
+    GARANT_INC         0.605      0.039     15.528      0.000
+    BLACKS_EXT         0.844      0.054     15.635      0.000
+    ENVIR_EXTR         1.050      0.043     24.659      0.000
+    AFFIRM_EXT         1.424      0.048     29.795      0.000
+
+Group DEM
+
+ EXT      BY
+    SPENDING_E         1.000      0.000    999.000    999.000
+    DEFENCE_EX         0.719      0.087      8.256      0.000
+    MEDICAL_EX         1.031      0.096     10.792      0.000
+    GARANT_INC         1.035      0.098     10.606      0.000
+    BLACKS_EXT         1.086      0.104     10.408      0.000
+    ENVIR_EXTR         0.808      0.087      9.282      0.000
+    AFFIRM_EXT         0.590      0.093      6.349      0.000
+
+ Means
+    EXT                0.000      0.000    999.000    999.000
+
+ Intercepts
+    SPENDING_E         1.248      0.039     32.388      0.000
+    DEFENCE_EX         1.180      0.033     35.719      0.000
+    MEDICAL_EX         1.690      0.041     40.748      0.000
+    GARANT_INC         1.300      0.034     38.001      0.000
+    BLACKS_EXT         1.517      0.035     43.969      0.000
+    ENVIR_EXTR         1.940      0.034     57.197      0.000
+    AFFIRM_EXT         1.399      0.041     33.900      0.000
+
+ Variances
+    EXT                0.358      0.056      6.384      0.000
+
+ Residual Variances
+    SPENDING_E         0.715      0.048     14.999      0.000
+    DEFENCE_EX         0.907      0.038     23.895      0.000
+    MEDICAL_EX         0.946      0.048     19.908      0.000
+    GARANT_INC         0.742      0.042     17.596      0.000
+    BLACKS_EXT         0.913      0.050     18.346      0.000
+    ENVIR_EXTR         0.909      0.048     19.108      0.000
+    AFFIRM_EXT         1.508      0.039     38.919      0.000
+
+
+MODEL RESULTS FOR THE METRIC MODEL
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ EXT      BY
+    SPENDING_E         1.000      0.000    999.000    999.000
+    DEFENCE_EX         0.616      0.053     11.681      0.000
+    MEDICAL_EX         0.965      0.058     16.593      0.000
+    GARANT_INC         1.058      0.066     16.026      0.000
+    BLACKS_EXT         1.023      0.071     14.453      0.000
+    ENVIR_EXTR         0.686      0.057     11.941      0.000
+    AFFIRM_EXT         0.582      0.064      9.129      0.000
+
+ Means
+    EXT                0.000      0.000    999.000    999.000
+
+ Intercepts
+    SPENDING_E         1.519      0.039     38.977      0.000
+    DEFENCE_EX         1.476      0.036     40.858      0.000
+    MEDICAL_EX         1.795      0.038     46.919      0.000
+    GARANT_INC         1.758      0.030     59.440      0.000
+    BLACKS_EXT         1.787      0.036     49.307      0.000
+    ENVIR_EXTR         1.378      0.037     37.030      0.000
+    AFFIRM_EXT         1.836      0.034     54.657      0.000
+
+ Variances
+    EXT                0.349      0.039      8.960      0.000
+
+ Residual Variances
+    SPENDING_E         0.780      0.044     17.611      0.000
+    DEFENCE_EX         0.953      0.033     28.880      0.000
+    MEDICAL_EX         0.866      0.047     18.325      0.000
+    GARANT_INC         0.635      0.035     18.009      0.000
+    BLACKS_EXT         0.838      0.047     17.861      0.000
+    ENVIR_EXTR         1.033      0.040     25.556      0.000
+    AFFIRM_EXT         1.429      0.043     33.391      0.000
+
+Group DEM
+
+ EXT      BY
+    SPENDING_E         1.000      0.000    999.000    999.000
+    DEFENCE_EX         0.616      0.053     11.681      0.000
+    MEDICAL_EX         0.965      0.058     16.593      0.000
+    GARANT_INC         1.058      0.066     16.026      0.000
+    BLACKS_EXT         1.023      0.071     14.453      0.000
+    ENVIR_EXTR         0.686      0.057     11.941      0.000
+    AFFIRM_EXT         0.582      0.064      9.129      0.000
+
+ Means
+    EXT                0.000      0.000    999.000    999.000
+
+ Intercepts
+    SPENDING_E         1.248      0.038     32.461      0.000
+    DEFENCE_EX         1.180      0.033     35.660      0.000
+    MEDICAL_EX         1.690      0.042     40.727      0.000
+    GARANT_INC         1.300      0.034     38.017      0.000
+    BLACKS_EXT         1.518      0.034     44.073      0.000
+    ENVIR_EXTR         1.941      0.034     57.451      0.000
+    AFFIRM_EXT         1.400      0.041     33.899      0.000
+
+ Variances
+    EXT                0.390      0.042      9.308      0.000
+
+ Residual Variances
+    SPENDING_E         0.699      0.043     16.142      0.000
+    DEFENCE_EX         0.923      0.034     26.770      0.000
+    MEDICAL_EX         0.955      0.042     22.908      0.000
+    GARANT_INC         0.717      0.037     19.356      0.000
+    BLACKS_EXT         0.920      0.044     20.981      0.000
+    ENVIR_EXTR         0.931      0.045     20.796      0.000
+    AFFIRM_EXT         1.507      0.036     42.122      0.000
+
+
+MODEL RESULTS FOR THE SCALAR MODEL
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ EXT      BY
+    SPENDING_E         1.000      0.000    999.000    999.000
+    DEFENCE_EX         0.646      0.052     12.480      0.000
+    MEDICAL_EX         0.906      0.055     16.339      0.000
+    GARANT_INC         1.112      0.067     16.633      0.000
+    BLACKS_EXT         1.028      0.067     15.402      0.000
+    ENVIR_EXTR         0.467      0.056      8.378      0.000
+    AFFIRM_EXT         0.666      0.064     10.444      0.000
+
+ Means
+    EXT                0.000      0.000    999.000    999.000
+
+ Intercepts
+    SPENDING_E         1.524      0.034     44.271      0.000
+    DEFENCE_EX         1.416      0.031     45.189      0.000
+    MEDICAL_EX         1.868      0.030     62.623      0.000
+    GARANT_INC         1.685      0.032     51.978      0.000
+    BLACKS_EXT         1.795      0.033     54.225      0.000
+    ENVIR_EXTR         1.762      0.036     49.548      0.000
+    AFFIRM_EXT         1.707      0.034     50.109      0.000
+
+ Variances
+    EXT                0.348      0.037      9.321      0.000
+
+ Residual Variances
+    SPENDING_E         0.783      0.044     17.866      0.000
+    DEFENCE_EX         0.957      0.033     28.563      0.000
+    MEDICAL_EX         0.887      0.048     18.315      0.000
+    GARANT_INC         0.621      0.036     17.102      0.000
+    BLACKS_EXT         0.834      0.046     17.954      0.000
+    ENVIR_EXTR         1.215      0.047     26.132      0.000
+    AFFIRM_EXT         1.429      0.045     31.936      0.000
+
+Group DEM
+
+ EXT      BY
+    SPENDING_E         1.000      0.000    999.000    999.000
+    DEFENCE_EX         0.646      0.052     12.480      0.000
+    MEDICAL_EX         0.906      0.055     16.339      0.000
+    GARANT_INC         1.112      0.067     16.633      0.000
+    BLACKS_EXT         1.028      0.067     15.402      0.000
+    ENVIR_EXTR         0.467      0.056      8.378      0.000
+    AFFIRM_EXT         0.666      0.064     10.444      0.000
+
+ Means
+    EXT               -0.281      0.039     -7.145      0.000
+
+ Intercepts
+    SPENDING_E         1.524      0.034     44.271      0.000
+    DEFENCE_EX         1.416      0.031     45.189      0.000
+    MEDICAL_EX         1.868      0.030     62.623      0.000
+    GARANT_INC         1.685      0.032     51.978      0.000
+    BLACKS_EXT         1.795      0.033     54.225      0.000
+    ENVIR_EXTR         1.762      0.036     49.548      0.000
+    AFFIRM_EXT         1.707      0.034     50.109      0.000
+
+ Variances
+    EXT                0.386      0.041      9.358      0.000
+
+ Residual Variances
+    SPENDING_E         0.696      0.042     16.412      0.000
+    DEFENCE_EX         0.921      0.035     26.460      0.000
+    MEDICAL_EX         0.990      0.041     23.888      0.000
+    GARANT_INC         0.707      0.040     17.658      0.000
+    BLACKS_EXT         0.916      0.044     20.682      0.000
+    ENVIR_EXTR         1.090      0.044     24.743      0.000
+    AFFIRM_EXT         1.510      0.039     38.937      0.000
+
+
+QUALITY OF NUMERICAL RESULTS FOR THE CONFIGURAL MODEL
+
+     Condition Number for the Information Matrix              0.179E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+QUALITY OF NUMERICAL RESULTS FOR THE METRIC MODEL
+
+     Condition Number for the Information Matrix              0.349E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+QUALITY OF NUMERICAL RESULTS FOR THE SCALAR MODEL
+
+     Condition Number for the Information Matrix              0.286E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT FOR THE CONFIGURAL MODEL
+
+
+     PARAMETER SPECIFICATION FOR REP
+
+
+           NU
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+                  1             2             3             4             5
+
+
+           NU
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+                  6             7
+
+
+           LAMBDA
+              EXT
+              ________
+ SPENDING           0
+ DEFENCE_           8
+ MEDICAL_           9
+ GARANT_I          10
+ BLACKS_E          11
+ ENVIR_EX          12
+ AFFIRM_E          13
+
+
+           THETA
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING          14
+ DEFENCE_           0            15
+ MEDICAL_           0             0            16
+ GARANT_I           0             0             0            17
+ BLACKS_E           0             0             0             0            18
+ ENVIR_EX           0             0             0             0             0
+ AFFIRM_E           0             0             0             0             0
+
+
+           THETA
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX          19
+ AFFIRM_E           0            20
+
+
+           ALPHA
+              EXT
+              ________
+                  0
+
+
+           BETA
+              EXT
+              ________
+ EXT                0
+
+
+           PSI
+              EXT
+              ________
+ EXT               21
+
+
+     PARAMETER SPECIFICATION FOR DEM
+
+
+           NU
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+                 22            23            24            25            26
+
+
+           NU
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+                 27            28
+
+
+           LAMBDA
+              EXT
+              ________
+ SPENDING           0
+ DEFENCE_          29
+ MEDICAL_          30
+ GARANT_I          31
+ BLACKS_E          32
+ ENVIR_EX          33
+ AFFIRM_E          34
+
+
+           THETA
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING          35
+ DEFENCE_           0            36
+ MEDICAL_           0             0            37
+ GARANT_I           0             0             0            38
+ BLACKS_E           0             0             0             0            39
+ ENVIR_EX           0             0             0             0             0
+ AFFIRM_E           0             0             0             0             0
+
+
+           THETA
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX          40
+ AFFIRM_E           0            41
+
+
+           ALPHA
+              EXT
+              ________
+                  0
+
+
+           BETA
+              EXT
+              ________
+ EXT                0
+
+
+           PSI
+              EXT
+              ________
+ EXT               42
+
+
+     STARTING VALUES FOR REP
+
+
+           NU
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+                1.524         1.479         1.806         1.760         1.788
+
+
+           NU
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+                1.385         1.837
+
+
+           LAMBDA
+              EXT
+              ________
+ SPENDING       1.000
+ DEFENCE_       0.494
+ MEDICAL_       0.896
+ GARANT_I       1.043
+ BLACKS_E       0.939
+ ENVIR_EX       0.526
+ AFFIRM_E       0.562
+
+
+           THETA
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING       0.574
+ DEFENCE_       0.000         0.531
+ MEDICAL_       0.000         0.000         0.592
+ GARANT_I       0.000         0.000         0.000         0.525
+ BLACKS_E       0.000         0.000         0.000         0.000         0.599
+ ENVIR_EX       0.000         0.000         0.000         0.000         0.000
+ AFFIRM_E       0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX       0.582
+ AFFIRM_E       0.000         0.778
+
+
+           ALPHA
+              EXT
+              ________
+                0.000
+
+
+           BETA
+              EXT
+              ________
+ EXT            0.000
+
+
+           PSI
+              EXT
+              ________
+ EXT            0.050
+
+
+     STARTING VALUES FOR DEM
+
+
+           NU
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+                1.524         1.479         1.806         1.760         1.788
+
+
+           NU
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+                1.385         1.837
+
+
+           LAMBDA
+              EXT
+              ________
+ SPENDING       1.000
+ DEFENCE_       0.675
+ MEDICAL_       1.003
+ GARANT_I       1.027
+ BLACKS_E       1.058
+ ENVIR_EX       0.813
+ AFFIRM_E       0.579
+
+
+           THETA
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING       0.574
+ DEFENCE_       0.000         0.531
+ MEDICAL_       0.000         0.000         0.592
+ GARANT_I       0.000         0.000         0.000         0.525
+ BLACKS_E       0.000         0.000         0.000         0.000         0.599
+ ENVIR_EX       0.000         0.000         0.000         0.000         0.000
+ AFFIRM_E       0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX       0.582
+ AFFIRM_E       0.000         0.778
+
+
+           ALPHA
+              EXT
+              ________
+                0.000
+
+
+           BETA
+              EXT
+              ________
+ EXT            0.000
+
+
+           PSI
+              EXT
+              ________
+ EXT            0.050
+
+
+TECHNICAL 1 OUTPUT FOR THE METRIC MODEL
+
+
+     PARAMETER SPECIFICATION FOR REP
+
+
+           NU
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+                  1             2             3             4             5
+
+
+           NU
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+                  6             7
+
+
+           LAMBDA
+              EXT
+              ________
+ SPENDING           0
+ DEFENCE_           8
+ MEDICAL_           9
+ GARANT_I          10
+ BLACKS_E          11
+ ENVIR_EX          12
+ AFFIRM_E          13
+
+
+           THETA
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING          14
+ DEFENCE_           0            15
+ MEDICAL_           0             0            16
+ GARANT_I           0             0             0            17
+ BLACKS_E           0             0             0             0            18
+ ENVIR_EX           0             0             0             0             0
+ AFFIRM_E           0             0             0             0             0
+
+
+           THETA
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX          19
+ AFFIRM_E           0            20
+
+
+           ALPHA
+              EXT
+              ________
+                  0
+
+
+           BETA
+              EXT
+              ________
+ EXT                0
+
+
+           PSI
+              EXT
+              ________
+ EXT               21
+
+
+     PARAMETER SPECIFICATION FOR DEM
+
+
+           NU
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+                 22            23            24            25            26
+
+
+           NU
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+                 27            28
+
+
+           LAMBDA
+              EXT
+              ________
+ SPENDING           0
+ DEFENCE_           8
+ MEDICAL_           9
+ GARANT_I          10
+ BLACKS_E          11
+ ENVIR_EX          12
+ AFFIRM_E          13
+
+
+           THETA
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING          29
+ DEFENCE_           0            30
+ MEDICAL_           0             0            31
+ GARANT_I           0             0             0            32
+ BLACKS_E           0             0             0             0            33
+ ENVIR_EX           0             0             0             0             0
+ AFFIRM_E           0             0             0             0             0
+
+
+           THETA
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX          34
+ AFFIRM_E           0            35
+
+
+           ALPHA
+              EXT
+              ________
+                  0
+
+
+           BETA
+              EXT
+              ________
+ EXT                0
+
+
+           PSI
+              EXT
+              ________
+ EXT               36
+
+
+     STARTING VALUES FOR REP
+
+
+           NU
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+                1.524         1.479         1.806         1.760         1.788
+
+
+           NU
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+                1.385         1.837
+
+
+           LAMBDA
+              EXT
+              ________
+ SPENDING       1.000
+ DEFENCE_       0.494
+ MEDICAL_       0.896
+ GARANT_I       1.043
+ BLACKS_E       0.939
+ ENVIR_EX       0.526
+ AFFIRM_E       0.562
+
+
+           THETA
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING       0.574
+ DEFENCE_       0.000         0.531
+ MEDICAL_       0.000         0.000         0.592
+ GARANT_I       0.000         0.000         0.000         0.525
+ BLACKS_E       0.000         0.000         0.000         0.000         0.599
+ ENVIR_EX       0.000         0.000         0.000         0.000         0.000
+ AFFIRM_E       0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX       0.582
+ AFFIRM_E       0.000         0.778
+
+
+           ALPHA
+              EXT
+              ________
+                0.000
+
+
+           BETA
+              EXT
+              ________
+ EXT            0.000
+
+
+           PSI
+              EXT
+              ________
+ EXT            0.050
+
+
+     STARTING VALUES FOR DEM
+
+
+           NU
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+                1.524         1.479         1.806         1.760         1.788
+
+
+           NU
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+                1.385         1.837
+
+
+           LAMBDA
+              EXT
+              ________
+ SPENDING       1.000
+ DEFENCE_       0.675
+ MEDICAL_       1.003
+ GARANT_I       1.027
+ BLACKS_E       1.058
+ ENVIR_EX       0.813
+ AFFIRM_E       0.579
+
+
+           THETA
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING       0.574
+ DEFENCE_       0.000         0.531
+ MEDICAL_       0.000         0.000         0.592
+ GARANT_I       0.000         0.000         0.000         0.525
+ BLACKS_E       0.000         0.000         0.000         0.000         0.599
+ ENVIR_EX       0.000         0.000         0.000         0.000         0.000
+ AFFIRM_E       0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX       0.582
+ AFFIRM_E       0.000         0.778
+
+
+           ALPHA
+              EXT
+              ________
+                0.000
+
+
+           BETA
+              EXT
+              ________
+ EXT            0.000
+
+
+           PSI
+              EXT
+              ________
+ EXT            0.050
+
+
+TECHNICAL 1 OUTPUT FOR THE SCALAR MODEL
+
+
+     PARAMETER SPECIFICATION FOR REP
+
+
+           NU
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+                  1             2             3             4             5
+
+
+           NU
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+                  6             7
+
+
+           LAMBDA
+              EXT
+              ________
+ SPENDING           0
+ DEFENCE_           8
+ MEDICAL_           9
+ GARANT_I          10
+ BLACKS_E          11
+ ENVIR_EX          12
+ AFFIRM_E          13
+
+
+           THETA
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING          14
+ DEFENCE_           0            15
+ MEDICAL_           0             0            16
+ GARANT_I           0             0             0            17
+ BLACKS_E           0             0             0             0            18
+ ENVIR_EX           0             0             0             0             0
+ AFFIRM_E           0             0             0             0             0
+
+
+           THETA
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX          19
+ AFFIRM_E           0            20
+
+
+           ALPHA
+              EXT
+              ________
+                  0
+
+
+           BETA
+              EXT
+              ________
+ EXT                0
+
+
+           PSI
+              EXT
+              ________
+ EXT               21
+
+
+     PARAMETER SPECIFICATION FOR DEM
+
+
+           NU
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+                  1             2             3             4             5
+
+
+           NU
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+                  6             7
+
+
+           LAMBDA
+              EXT
+              ________
+ SPENDING           0
+ DEFENCE_           8
+ MEDICAL_           9
+ GARANT_I          10
+ BLACKS_E          11
+ ENVIR_EX          12
+ AFFIRM_E          13
+
+
+           THETA
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING          22
+ DEFENCE_           0            23
+ MEDICAL_           0             0            24
+ GARANT_I           0             0             0            25
+ BLACKS_E           0             0             0             0            26
+ ENVIR_EX           0             0             0             0             0
+ AFFIRM_E           0             0             0             0             0
+
+
+           THETA
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX          27
+ AFFIRM_E           0            28
+
+
+           ALPHA
+              EXT
+              ________
+                 29
+
+
+           BETA
+              EXT
+              ________
+ EXT                0
+
+
+           PSI
+              EXT
+              ________
+ EXT               30
+
+
+     STARTING VALUES FOR REP
+
+
+           NU
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+                1.524         1.479         1.806         1.760         1.788
+
+
+           NU
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+                1.385         1.837
+
+
+           LAMBDA
+              EXT
+              ________
+ SPENDING       1.000
+ DEFENCE_       0.494
+ MEDICAL_       0.896
+ GARANT_I       1.043
+ BLACKS_E       0.939
+ ENVIR_EX       0.526
+ AFFIRM_E       0.562
+
+
+           THETA
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING       0.574
+ DEFENCE_       0.000         0.531
+ MEDICAL_       0.000         0.000         0.592
+ GARANT_I       0.000         0.000         0.000         0.525
+ BLACKS_E       0.000         0.000         0.000         0.000         0.599
+ ENVIR_EX       0.000         0.000         0.000         0.000         0.000
+ AFFIRM_E       0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX       0.582
+ AFFIRM_E       0.000         0.778
+
+
+           ALPHA
+              EXT
+              ________
+                0.000
+
+
+           BETA
+              EXT
+              ________
+ EXT            0.000
+
+
+           PSI
+              EXT
+              ________
+ EXT            0.050
+
+
+     STARTING VALUES FOR DEM
+
+
+           NU
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+                1.524         1.479         1.806         1.760         1.788
+
+
+           NU
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+                1.385         1.837
+
+
+           LAMBDA
+              EXT
+              ________
+ SPENDING       1.000
+ DEFENCE_       0.675
+ MEDICAL_       1.003
+ GARANT_I       1.027
+ BLACKS_E       1.058
+ ENVIR_EX       0.813
+ AFFIRM_E       0.579
+
+
+           THETA
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING       0.574
+ DEFENCE_       0.000         0.531
+ MEDICAL_       0.000         0.000         0.592
+ GARANT_I       0.000         0.000         0.000         0.525
+ BLACKS_E       0.000         0.000         0.000         0.000         0.599
+ ENVIR_EX       0.000         0.000         0.000         0.000         0.000
+ AFFIRM_E       0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX       0.582
+ AFFIRM_E       0.000         0.778
+
+
+           ALPHA
+              EXT
+              ________
+                0.000
+
+
+           BETA
+              EXT
+              ________
+ EXT            0.000
+
+
+           PSI
+              EXT
+              ________
+ EXT            0.050
+
+
+TECHNICAL 9 OUTPUT
+
+Error messages for the Configural Model:
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+Error messages for the Metric Model:
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+Error messages for the Scalar Model:
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    measurement_fscores.dat
+
+  Order of variables
+
+    SPENDING
+    DEFENCE_
+    MEDICAL_
+    GARANT_I
+    BLACKS_E
+    ENVIR_EX
+    AFFIRM_E
+    V160102
+    PID_2_DEM
+    V160201
+
+  Save file format           Free
+
+  Save file record length    10000
+
+
+     Beginning Time:  23:43:38
+        Ending Time:  23:43:38
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

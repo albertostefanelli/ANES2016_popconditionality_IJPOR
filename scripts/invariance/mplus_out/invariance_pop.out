@@ -1,0 +1,1466 @@
+Mplus VERSION 8.4 (Mac)
+MUTHEN & MUTHEN
+02/03/2024  11:48 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  BASE 3;
+  DATA:
+  FILE = "invariance_pop.dat";
+
+  VARIABLE:
+  NAMES = PID_2_DEM V162259 V162260 V162262 V162264 V162265 V162267 V160201 V160102;
+   MISSING=.;
+   USEVARIABLES = PID_2_DEM
+  V162259 V162260 V162262
+  V162264 V162265 V162267
+  V160201 V160102 ;
+  CLUSTER = V160201;
+
+      GROUPING = PID_2_DEM (1=rep 2=dem);
+
+      WEIGHT=V160102;
+
+  ANALYSIS:
+  TYPE = COMPLEX;
+               ESTIMATOR IS MLR;
+               MODEL = CONFIGURAL METRIC SCALAR;
+
+  MODEL:
+
+    pop BY V162259*;
+    pop BY V162260;
+    pop BY V162262;
+    pop BY V162264;
+    pop BY V162265;
+    pop BY V162267;
+
+    pop@1;
+    V162259 WITH V162267;
+    V162260 WITH V162264;
+    V162262 WITH V162265;
+
+
+  OUTPUT:
+  STANDARDIZED;FSCOEFFICIENT;MODINDICES;
+
+
+
+*** WARNING in OUTPUT command
+  MODINDICES option is not available when performing measurement invariance
+  testing with multiple models with the MODEL option of the ANALYSIS command.
+  Request for MODINDICES is ignored.
+*** WARNING in OUTPUT command
+  STANDARDIZED (STD, STDY, STDYX) options are not available when performing measurement
+  invariance testing with multiple models with the MODEL option of the ANALYSIS command.
+  Request for STANDARDIZED (STD, STDY, STDYX) is ignored.
+*** WARNING in OUTPUT command
+  FSCOEFFICIENT option is not available when performing measurement invariance
+  testing with multiple models with the MODEL option of the ANALYSIS command.
+  Request for FSCOEFFICIENT is ignored.
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  517
+   4 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+BASE 3;
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 2
+Number of observations
+   Group REP                                                  1477
+   Group DEM                                                  1674
+   Total sample size                                          3151
+
+Number of dependent variables                                    6
+Number of independent variables                                  0
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Continuous
+   V162259     V162260     V162262     V162264     V162265     V162267
+
+Continuous latent variables
+   POP
+
+Variables with special functions
+
+  Grouping variable     PID_2_DE
+  Cluster variable      V160201
+  Weight variable       V160102
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  invariance_pop.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+   Group REP
+     Number of missing data patterns            10
+     Number of clusters                        132
+
+
+   Group DEM
+     Number of missing data patterns            14
+     Number of clusters                        132
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR REP
+
+
+           Covariance Coverage
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259        0.997
+ V162260        0.997         0.999
+ V162262        0.997         0.998         0.999
+ V162264        0.995         0.995         0.995         0.996
+ V162265        0.996         0.997         0.997         0.995         0.998
+ V162267        0.993         0.995         0.995         0.993         0.995
+
+
+           Covariance Coverage
+              V162267
+              ________
+ V162267        0.995
+
+
+     PROPORTION OF DATA PRESENT FOR DEM
+
+
+           Covariance Coverage
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259        0.993
+ V162260        0.992         0.998
+ V162262        0.992         0.997         0.998
+ V162264        0.992         0.995         0.995         0.997
+ V162265        0.993         0.997         0.997         0.996         0.999
+ V162267        0.989         0.992         0.992         0.992         0.993
+
+
+           Covariance Coverage
+              V162267
+              ________
+ V162267        0.993
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS FOR REP
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     V162259               2.177      -0.253       0.000    7.60%       1.000      2.000      2.000
+            1473.000       1.129      -0.660       4.000    8.15%       3.000      3.000
+     V162260               2.286      -0.266       0.000    4.95%       1.000      2.000      2.000
+            1475.000       1.177      -0.905       4.000   10.44%       3.000      3.000
+     V162262               2.263      -0.287       0.000    5.89%       1.000      2.000      2.000
+            1476.000       1.125      -0.581       4.000   10.16%       3.000      3.000
+     V162264               2.480      -0.438       0.000    5.17%       1.000      2.000      3.000
+            1471.000       1.322      -0.689       4.000   20.26%       3.000      4.000
+     V162265               2.399      -0.425       0.000    4.75%       1.000      2.000      3.000
+            1474.000       1.162      -0.695       4.000   11.94%       3.000      3.000
+     V162267               1.883       0.044       0.000   13.54%       1.000      2.000      2.000
+            1470.000       1.404      -0.889       4.000   10.00%       2.000      3.000
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS FOR DEM
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     V162259               1.767      -0.031       0.000   19.72%       1.000      1.000      2.000
+            1663.000       1.279      -0.888       4.000    4.57%       2.000      3.000
+     V162260               2.270      -0.202       0.000    6.10%       1.000      2.000      2.000
+            1671.000       1.262      -0.928       4.000   11.61%       3.000      3.000
+     V162262               2.175      -0.173       0.000    8.26%       1.000      2.000      2.000
+            1670.000       1.202      -0.673       4.000    9.82%       2.000      3.000
+     V162264               2.454      -0.438       0.000    6.29%       1.000      2.000      3.000
+            1669.000       1.287      -0.671       4.000   18.09%       3.000      3.000
+     V162265               2.719      -0.703       0.000    3.23%       2.000      3.000      3.000
+            1672.000       1.011      -0.038       4.000   19.50%       3.000      3.000
+     V162267               1.384       0.410       0.000   32.23%       0.000      1.000      1.000
+            1663.000       1.400      -0.841       4.000    4.33%       2.000      2.000
+
+MODEL FIT INFORMATION
+
+Invariance Testing
+
+                   Number of                   Degrees of
+     Model        Parameters      Chi-Square    Freedom     P-Value
+
+     Configural        42             35.065        12       0.0005
+     Metric            37             43.139        17       0.0005
+     Scalar            32            280.790        22       0.0000
+
+                                               Degrees of
+     Models Compared              Chi-Square    Freedom     P-Value
+
+     Metric against Configural         7.119         5       0.2120
+     Scalar against Configural       268.423        10       0.0000
+     Scalar against Metric           258.190         5       0.0000
+
+
+MODEL FIT INFORMATION FOR THE CONFIGURAL MODEL
+
+Number of Free Parameters                       42
+
+Loglikelihood
+
+          H0 Value                      -27274.865
+          H0 Scaling Correction Factor      1.4272
+            for MLR
+          H1 Value                      -27245.979
+          H1 Scaling Correction Factor      1.4762
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   54633.730
+          Bayesian (BIC)                 54888.060
+          Sample-Size Adjusted BIC       54754.608
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                             35.065*
+          Degrees of Freedom                    12
+          P-Value                           0.0005
+          Scaling Correction Factor         1.6476
+            for MLR
+
+Chi-Square Contribution and P-Value From Each Group (degrees of freedom = 6)
+
+          REP                                5.762     0.450
+          DEM                               29.303     0.000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.035
+          90 Percent C.I.                    0.022  0.049
+          Probability RMSEA <= .05           0.965
+
+CFI/TLI
+
+          CFI                                0.986
+          TLI                                0.965
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1691.178
+          Degrees of Freedom                    30
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.020
+
+
+MODEL FIT INFORMATION FOR THE METRIC MODEL
+
+Number of Free Parameters                       37
+
+Loglikelihood
+
+          H0 Value                      -27279.723
+          H0 Scaling Correction Factor      1.4357
+            for MLR
+          H1 Value                      -27245.979
+          H1 Scaling Correction Factor      1.4762
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   54633.445
+          Bayesian (BIC)                 54857.498
+          Sample-Size Adjusted BIC       54739.934
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                             43.139*
+          Degrees of Freedom                    17
+          P-Value                           0.0005
+          Scaling Correction Factor         1.5644
+            for MLR
+
+Chi-Square Contribution From Each Group
+
+          REP                                9.816
+          DEM                               33.323
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.031
+          90 Percent C.I.                    0.020  0.043
+          Probability RMSEA <= .05           0.997
+
+CFI/TLI
+
+          CFI                                0.984
+          TLI                                0.972
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1691.178
+          Degrees of Freedom                    30
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.025
+
+
+MODEL FIT INFORMATION FOR THE SCALAR MODEL
+
+Number of Free Parameters                       32
+
+Loglikelihood
+
+          H0 Value                      -27460.338
+          H0 Scaling Correction Factor      1.4414
+            for MLR
+          H1 Value                      -27245.979
+          H1 Scaling Correction Factor      1.4762
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   54984.676
+          Bayesian (BIC)                 55178.451
+          Sample-Size Adjusted BIC       55076.774
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                            280.790*
+          Degrees of Freedom                    22
+          P-Value                           0.0000
+          Scaling Correction Factor         1.5268
+            for MLR
+
+Chi-Square Contribution From Each Group
+
+          REP                              138.245
+          DEM                              142.545
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.086
+          90 Percent C.I.                    0.078  0.096
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                0.844
+          TLI                                0.788
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1691.178
+          Degrees of Freedom                    30
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.072
+
+
+
+MODEL RESULTS FOR THE CONFIGURAL MODEL
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ POP      BY
+    V162259            0.395      0.040      9.983      0.000
+    V162260            0.826      0.044     18.663      0.000
+    V162262            0.571      0.045     12.747      0.000
+    V162264            0.448      0.055      8.128      0.000
+    V162265            0.708      0.043     16.510      0.000
+    V162267            0.245      0.040      6.184      0.000
+
+ V162259  WITH
+    V162267            0.138      0.036      3.841      0.000
+
+ V162260  WITH
+    V162264           -0.118      0.045     -2.598      0.009
+
+ V162262  WITH
+    V162265            0.054      0.050      1.065      0.287
+
+ Means
+    POP                0.000      0.000    999.000    999.000
+
+ Intercepts
+    V162259            2.178      0.036     60.871      0.000
+    V162260            2.286      0.032     71.499      0.000
+    V162262            2.263      0.035     64.225      0.000
+    V162264            2.480      0.038     65.832      0.000
+    V162265            2.400      0.035     69.480      0.000
+    V162267            1.883      0.039     48.641      0.000
+
+ Variances
+    POP                1.000      0.000    999.000    999.000
+
+ Residual Variances
+    V162259            0.973      0.044     21.919      0.000
+    V162260            0.494      0.068      7.244      0.000
+    V162262            0.799      0.055     14.543      0.000
+    V162264            1.122      0.064     17.505      0.000
+    V162265            0.661      0.062     10.624      0.000
+    V162267            1.344      0.047     28.359      0.000
+
+Group DEM
+
+ POP      BY
+    V162259            0.454      0.034     13.225      0.000
+    V162260            0.916      0.049     18.624      0.000
+    V162262            0.611      0.050     12.187      0.000
+    V162264            0.551      0.046     11.871      0.000
+    V162265            0.638      0.034     19.034      0.000
+    V162267            0.253      0.037      6.896      0.000
+
+ V162259  WITH
+    V162267            0.251      0.042      5.964      0.000
+
+ V162260  WITH
+    V162264           -0.188      0.052     -3.631      0.000
+
+ V162262  WITH
+    V162265            0.087      0.045      1.954      0.051
+
+ Means
+    POP                0.000      0.000    999.000    999.000
+
+ Intercepts
+    V162259            1.765      0.036     48.394      0.000
+    V162260            2.270      0.034     66.027      0.000
+    V162262            2.176      0.036     60.178      0.000
+    V162264            2.453      0.030     81.132      0.000
+    V162265            2.719      0.026    103.462      0.000
+    V162267            1.384      0.039     35.482      0.000
+
+ Variances
+    POP                1.000      0.000    999.000    999.000
+
+ Residual Variances
+    V162259            1.074      0.043     24.784      0.000
+    V162260            0.421      0.076      5.512      0.000
+    V162262            0.829      0.054     15.411      0.000
+    V162264            0.984      0.055     17.753      0.000
+    V162265            0.604      0.042     14.349      0.000
+    V162267            1.336      0.046     29.255      0.000
+
+
+MODEL RESULTS FOR THE METRIC MODEL
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ POP      BY
+    V162259            0.413      0.025     16.418      0.000
+    V162260            0.851      0.036     23.407      0.000
+    V162262            0.574      0.037     15.715      0.000
+    V162264            0.493      0.039     12.489      0.000
+    V162265            0.642      0.033     19.208      0.000
+    V162267            0.241      0.027      8.961      0.000
+
+ V162259  WITH
+    V162267            0.138      0.035      3.907      0.000
+
+ V162260  WITH
+    V162264           -0.155      0.042     -3.677      0.000
+
+ V162262  WITH
+    V162265            0.082      0.041      2.001      0.045
+
+ Means
+    POP                0.000      0.000    999.000    999.000
+
+ Intercepts
+    V162259            2.178      0.036     60.880      0.000
+    V162260            2.286      0.032     71.488      0.000
+    V162262            2.263      0.035     64.224      0.000
+    V162264            2.480      0.038     65.833      0.000
+    V162265            2.400      0.035     69.457      0.000
+    V162267            1.883      0.039     48.646      0.000
+
+ Variances
+    POP                1.000      0.000    999.000    999.000
+
+ Residual Variances
+    V162259            0.973      0.043     22.804      0.000
+    V162260            0.451      0.061      7.418      0.000
+    V162262            0.814      0.048     17.028      0.000
+    V162264            1.094      0.060     18.314      0.000
+    V162265            0.711      0.049     14.471      0.000
+    V162267            1.344      0.046     29.043      0.000
+
+Group DEM
+
+ POP      BY
+    V162259            0.413      0.025     16.418      0.000
+    V162260            0.851      0.036     23.407      0.000
+    V162262            0.574      0.037     15.715      0.000
+    V162264            0.493      0.039     12.489      0.000
+    V162265            0.642      0.033     19.208      0.000
+    V162267            0.241      0.027      8.961      0.000
+
+ V162259  WITH
+    V162267            0.251      0.042      6.030      0.000
+
+ V162260  WITH
+    V162264           -0.161      0.040     -4.051      0.000
+
+ V162262  WITH
+    V162265            0.067      0.037      1.811      0.070
+
+ Means
+    POP                0.000      0.000    999.000    999.000
+
+ Intercepts
+    V162259            1.765      0.036     48.376      0.000
+    V162260            2.270      0.034     66.024      0.000
+    V162262            2.176      0.036     60.176      0.000
+    V162264            2.453      0.030     81.127      0.000
+    V162265            2.719      0.026    103.460      0.000
+    V162267            1.384      0.039     35.466      0.000
+
+ Variances
+    POP                1.117      0.090     12.386      0.000
+
+ Residual Variances
+    V162259            1.076      0.041     26.085      0.000
+    V162260            0.456      0.055      8.340      0.000
+    V162262            0.816      0.043     18.784      0.000
+    V162264            1.005      0.046     21.786      0.000
+    V162265            0.579      0.039     14.999      0.000
+    V162267            1.336      0.045     29.418      0.000
+
+
+MODEL RESULTS FOR THE SCALAR MODEL
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ POP      BY
+    V162259            0.401      0.026     15.169      0.000
+    V162260            0.879      0.041     21.545      0.000
+    V162262            0.556      0.038     14.568      0.000
+    V162264            0.508      0.043     11.842      0.000
+    V162265            0.616      0.033     18.514      0.000
+    V162267            0.233      0.027      8.679      0.000
+
+ V162259  WITH
+    V162267            0.197      0.039      5.066      0.000
+
+ V162260  WITH
+    V162264           -0.184      0.047     -3.914      0.000
+
+ V162262  WITH
+    V162265            0.100      0.045      2.202      0.028
+
+ Means
+    POP                0.000      0.000    999.000    999.000
+
+ Intercepts
+    V162259            1.978      0.030     66.262      0.000
+    V162260            2.285      0.032     72.349      0.000
+    V162262            2.224      0.027     81.824      0.000
+    V162264            2.470      0.029     85.869      0.000
+    V162265            2.593      0.027     94.776      0.000
+    V162267            1.627      0.033     49.008      0.000
+
+ Variances
+    POP                1.000      0.000    999.000    999.000
+
+ Residual Variances
+    V162259            1.024      0.046     22.445      0.000
+    V162260            0.399      0.070      5.678      0.000
+    V162262            0.835      0.049     17.055      0.000
+    V162264            1.078      0.063     17.143      0.000
+    V162265            0.781      0.053     14.739      0.000
+    V162267            1.415      0.048     29.192      0.000
+
+Group DEM
+
+ POP      BY
+    V162259            0.401      0.026     15.169      0.000
+    V162260            0.879      0.041     21.545      0.000
+    V162262            0.556      0.038     14.568      0.000
+    V162264            0.508      0.043     11.842      0.000
+    V162265            0.616      0.033     18.514      0.000
+    V162267            0.233      0.027      8.679      0.000
+
+ V162259  WITH
+    V162267            0.307      0.043      7.144      0.000
+
+ V162260  WITH
+    V162264           -0.193      0.045     -4.275      0.000
+
+ V162262  WITH
+    V162265            0.089      0.040      2.218      0.027
+
+ Means
+    POP               -0.016      0.054     -0.304      0.761
+
+ Intercepts
+    V162259            1.978      0.030     66.262      0.000
+    V162260            2.285      0.032     72.349      0.000
+    V162262            2.224      0.027     81.824      0.000
+    V162264            2.470      0.029     85.869      0.000
+    V162265            2.593      0.027     94.776      0.000
+    V162267            1.627      0.033     49.008      0.000
+
+ Variances
+    POP                1.123      0.091     12.377      0.000
+
+ Residual Variances
+    V162259            1.128      0.045     25.001      0.000
+    V162260            0.397      0.063      6.324      0.000
+    V162262            0.842      0.045     18.809      0.000
+    V162264            0.987      0.048     20.528      0.000
+    V162265            0.627      0.040     15.784      0.000
+    V162267            1.398      0.046     30.631      0.000
+
+
+QUALITY OF NUMERICAL RESULTS FOR THE CONFIGURAL MODEL
+
+     Condition Number for the Information Matrix              0.201E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+QUALITY OF NUMERICAL RESULTS FOR THE METRIC MODEL
+
+     Condition Number for the Information Matrix              0.226E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+QUALITY OF NUMERICAL RESULTS FOR THE SCALAR MODEL
+
+     Condition Number for the Information Matrix              0.118E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT FOR THE CONFIGURAL MODEL
+
+
+     PARAMETER SPECIFICATION FOR REP
+
+
+           NU
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+                  1             2             3             4             5
+
+
+           NU
+              V162267
+              ________
+                  6
+
+
+           LAMBDA
+              POP
+              ________
+ V162259            7
+ V162260            8
+ V162262            9
+ V162264           10
+ V162265           11
+ V162267           12
+
+
+           THETA
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259           13
+ V162260            0            14
+ V162262            0             0            15
+ V162264            0            16             0            17
+ V162265            0             0            18             0            19
+ V162267           20             0             0             0             0
+
+
+           THETA
+              V162267
+              ________
+ V162267           21
+
+
+           ALPHA
+              POP
+              ________
+                  0
+
+
+           BETA
+              POP
+              ________
+ POP                0
+
+
+           PSI
+              POP
+              ________
+ POP                0
+
+
+     PARAMETER SPECIFICATION FOR DEM
+
+
+           NU
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+                 22            23            24            25            26
+
+
+           NU
+              V162267
+              ________
+                 27
+
+
+           LAMBDA
+              POP
+              ________
+ V162259           28
+ V162260           29
+ V162262           30
+ V162264           31
+ V162265           32
+ V162267           33
+
+
+           THETA
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259           34
+ V162260            0            35
+ V162262            0             0            36
+ V162264            0            37             0            38
+ V162265            0             0            39             0            40
+ V162267           41             0             0             0             0
+
+
+           THETA
+              V162267
+              ________
+ V162267           42
+
+
+           ALPHA
+              POP
+              ________
+                  0
+
+
+           BETA
+              POP
+              ________
+ POP                0
+
+
+           PSI
+              POP
+              ________
+ POP                0
+
+
+     STARTING VALUES FOR REP
+
+
+           NU
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+                2.177         2.286         2.263         2.480         2.399
+
+
+           NU
+              V162267
+              ________
+                1.883
+
+
+           LAMBDA
+              POP
+              ________
+ V162259        1.000
+ V162260        1.000
+ V162262        1.000
+ V162264        1.000
+ V162265        1.000
+ V162267        1.000
+
+
+           THETA
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259        0.564
+ V162260        0.000         0.589
+ V162262        0.000         0.000         0.563
+ V162264        0.000         0.000         0.000         0.661
+ V162265        0.000         0.000         0.000         0.000         0.581
+ V162267        0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              V162267
+              ________
+ V162267        0.702
+
+
+           ALPHA
+              POP
+              ________
+                0.000
+
+
+           BETA
+              POP
+              ________
+ POP            0.000
+
+
+           PSI
+              POP
+              ________
+ POP            1.000
+
+
+     STARTING VALUES FOR DEM
+
+
+           NU
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+                2.177         2.286         2.263         2.480         2.399
+
+
+           NU
+              V162267
+              ________
+                1.883
+
+
+           LAMBDA
+              POP
+              ________
+ V162259        1.000
+ V162260        1.000
+ V162262        1.000
+ V162264        1.000
+ V162265        1.000
+ V162267        1.000
+
+
+           THETA
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259        0.564
+ V162260        0.000         0.589
+ V162262        0.000         0.000         0.563
+ V162264        0.000         0.000         0.000         0.661
+ V162265        0.000         0.000         0.000         0.000         0.581
+ V162267        0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              V162267
+              ________
+ V162267        0.702
+
+
+           ALPHA
+              POP
+              ________
+                0.000
+
+
+           BETA
+              POP
+              ________
+ POP            0.000
+
+
+           PSI
+              POP
+              ________
+ POP            1.000
+
+
+TECHNICAL 1 OUTPUT FOR THE METRIC MODEL
+
+
+     PARAMETER SPECIFICATION FOR REP
+
+
+           NU
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+                  1             2             3             4             5
+
+
+           NU
+              V162267
+              ________
+                  6
+
+
+           LAMBDA
+              POP
+              ________
+ V162259            7
+ V162260            8
+ V162262            9
+ V162264           10
+ V162265           11
+ V162267           12
+
+
+           THETA
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259           13
+ V162260            0            14
+ V162262            0             0            15
+ V162264            0            16             0            17
+ V162265            0             0            18             0            19
+ V162267           20             0             0             0             0
+
+
+           THETA
+              V162267
+              ________
+ V162267           21
+
+
+           ALPHA
+              POP
+              ________
+                  0
+
+
+           BETA
+              POP
+              ________
+ POP                0
+
+
+           PSI
+              POP
+              ________
+ POP                0
+
+
+     PARAMETER SPECIFICATION FOR DEM
+
+
+           NU
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+                 22            23            24            25            26
+
+
+           NU
+              V162267
+              ________
+                 27
+
+
+           LAMBDA
+              POP
+              ________
+ V162259            7
+ V162260            8
+ V162262            9
+ V162264           10
+ V162265           11
+ V162267           12
+
+
+           THETA
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259           28
+ V162260            0            29
+ V162262            0             0            30
+ V162264            0            31             0            32
+ V162265            0             0            33             0            34
+ V162267           35             0             0             0             0
+
+
+           THETA
+              V162267
+              ________
+ V162267           36
+
+
+           ALPHA
+              POP
+              ________
+                  0
+
+
+           BETA
+              POP
+              ________
+ POP                0
+
+
+           PSI
+              POP
+              ________
+ POP               37
+
+
+     STARTING VALUES FOR REP
+
+
+           NU
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+                2.177         2.286         2.263         2.480         2.399
+
+
+           NU
+              V162267
+              ________
+                1.883
+
+
+           LAMBDA
+              POP
+              ________
+ V162259        1.000
+ V162260        1.000
+ V162262        1.000
+ V162264        1.000
+ V162265        1.000
+ V162267        1.000
+
+
+           THETA
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259        0.564
+ V162260        0.000         0.589
+ V162262        0.000         0.000         0.563
+ V162264        0.000         0.000         0.000         0.661
+ V162265        0.000         0.000         0.000         0.000         0.581
+ V162267        0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              V162267
+              ________
+ V162267        0.702
+
+
+           ALPHA
+              POP
+              ________
+                0.000
+
+
+           BETA
+              POP
+              ________
+ POP            0.000
+
+
+           PSI
+              POP
+              ________
+ POP            1.000
+
+
+     STARTING VALUES FOR DEM
+
+
+           NU
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+                2.177         2.286         2.263         2.480         2.399
+
+
+           NU
+              V162267
+              ________
+                1.883
+
+
+           LAMBDA
+              POP
+              ________
+ V162259        0.610
+ V162260        0.746
+ V162262        0.668
+ V162264        0.444
+ V162265        0.650
+ V162267        0.367
+
+
+           THETA
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259        0.564
+ V162260        0.000         0.589
+ V162262        0.000         0.000         0.563
+ V162264        0.000         0.000         0.000         0.661
+ V162265        0.000         0.000         0.000         0.000         0.581
+ V162267        0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              V162267
+              ________
+ V162267        0.702
+
+
+           ALPHA
+              POP
+              ________
+                0.000
+
+
+           BETA
+              POP
+              ________
+ POP            0.000
+
+
+           PSI
+              POP
+              ________
+ POP            1.000
+
+
+TECHNICAL 1 OUTPUT FOR THE SCALAR MODEL
+
+
+     PARAMETER SPECIFICATION FOR REP
+
+
+           NU
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+                  1             2             3             4             5
+
+
+           NU
+              V162267
+              ________
+                  6
+
+
+           LAMBDA
+              POP
+              ________
+ V162259            7
+ V162260            8
+ V162262            9
+ V162264           10
+ V162265           11
+ V162267           12
+
+
+           THETA
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259           13
+ V162260            0            14
+ V162262            0             0            15
+ V162264            0            16             0            17
+ V162265            0             0            18             0            19
+ V162267           20             0             0             0             0
+
+
+           THETA
+              V162267
+              ________
+ V162267           21
+
+
+           ALPHA
+              POP
+              ________
+                  0
+
+
+           BETA
+              POP
+              ________
+ POP                0
+
+
+           PSI
+              POP
+              ________
+ POP                0
+
+
+     PARAMETER SPECIFICATION FOR DEM
+
+
+           NU
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+                  1             2             3             4             5
+
+
+           NU
+              V162267
+              ________
+                  6
+
+
+           LAMBDA
+              POP
+              ________
+ V162259            7
+ V162260            8
+ V162262            9
+ V162264           10
+ V162265           11
+ V162267           12
+
+
+           THETA
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259           22
+ V162260            0            23
+ V162262            0             0            24
+ V162264            0            25             0            26
+ V162265            0             0            27             0            28
+ V162267           29             0             0             0             0
+
+
+           THETA
+              V162267
+              ________
+ V162267           30
+
+
+           ALPHA
+              POP
+              ________
+                 31
+
+
+           BETA
+              POP
+              ________
+ POP                0
+
+
+           PSI
+              POP
+              ________
+ POP               32
+
+
+     STARTING VALUES FOR REP
+
+
+           NU
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+                2.177         2.286         2.263         2.480         2.399
+
+
+           NU
+              V162267
+              ________
+                1.883
+
+
+           LAMBDA
+              POP
+              ________
+ V162259        1.000
+ V162260        1.000
+ V162262        1.000
+ V162264        1.000
+ V162265        1.000
+ V162267        1.000
+
+
+           THETA
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259        0.564
+ V162260        0.000         0.589
+ V162262        0.000         0.000         0.563
+ V162264        0.000         0.000         0.000         0.661
+ V162265        0.000         0.000         0.000         0.000         0.581
+ V162267        0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              V162267
+              ________
+ V162267        0.702
+
+
+           ALPHA
+              POP
+              ________
+                0.000
+
+
+           BETA
+              POP
+              ________
+ POP            0.000
+
+
+           PSI
+              POP
+              ________
+ POP            1.000
+
+
+     STARTING VALUES FOR DEM
+
+
+           NU
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+                2.177         2.286         2.263         2.480         2.399
+
+
+           NU
+              V162267
+              ________
+                1.883
+
+
+           LAMBDA
+              POP
+              ________
+ V162259        0.610
+ V162260        0.746
+ V162262        0.668
+ V162264        0.444
+ V162265        0.650
+ V162267        0.367
+
+
+           THETA
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259        0.564
+ V162260        0.000         0.589
+ V162262        0.000         0.000         0.563
+ V162264        0.000         0.000         0.000         0.661
+ V162265        0.000         0.000         0.000         0.000         0.581
+ V162267        0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              V162267
+              ________
+ V162267        0.702
+
+
+           ALPHA
+              POP
+              ________
+                0.000
+
+
+           BETA
+              POP
+              ________
+ POP            0.000
+
+
+           PSI
+              POP
+              ________
+ POP            1.000
+
+
+TECHNICAL 9 OUTPUT
+
+Error messages for the Configural Model:
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+Error messages for the Metric Model:
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+Error messages for the Scalar Model:
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+     Beginning Time:  23:48:12
+        Ending Time:  23:48:12
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

@@ -1,0 +1,74 @@
+TITLE:
+metric_invariance_ext
+DATA:
+FILE = "metric_invariance_ext.dat";
+ 
+VARIABLE:
+NAMES = pid_3 spending_extr defence_extr medical_extr garant_inc_extr blacks_extr
+     envir_extr affirm_extr V160201 V160102; 
+ MISSING=.;
+ USEVARIABLES = pid_3
+spending_extr defence_extr
+medical_extr garant_inc_extr
+blacks_extr envir_extr
+affirm_extr V160201 V160102 ;
+CLUSTER = V160201;
+GROUPING = PID_3 (1=rep 2=dem);
+WEIGHT=V160102;
+ANALYSIS:
+TYPE = COMPLEX;
+             ESTIMATOR IS MLR;
+             PROCESSORS = 2;
+
+       
+MODEL:
+
+  MODEL:
+  EXT BY spending_extr;
+  EXT BY defence_extr;
+  EXT BY medical_extr;
+  EXT BY garant_inc_extr;
+  EXT BY blacks_extr;
+  EXT BY envir_extr;
+  EXT BY affirm_extr;
+
+  MODEL REP:
+  [spending_extr] (i1rep);
+  [defence_extr] (i2rep);
+  [medical_extr] (i3rep);
+  [garant_inc_extr@0];
+  [blacks_extr] (i5rep);
+  [envir_extr] (i6rep);
+  [affirm_extr] (i7rep);
+  [EXT](meanrep);
+  EXT (varrep);
+
+  MODEL DEM:
+  [spending_extr] (i1dem);
+  [defence_extr] (i2dem);
+  [medical_extr] (i3dem);
+  [garant_inc_extr@0];
+  [blacks_extr] (i5dem);
+  [envir_extr] (i6dem);
+  [affirm_extr] (i7dem);
+  [EXT](meandem);
+  EXT (vardem);
+
+MODEL CONSTRAINT:
+
+  NEW(meandiff vardiff spe def med bla env aff);
+  meandiff = meandem - meanrep;
+  vardiff = vardem - varrep;
+  spe = i1dem - i1rep;
+  def = i2dem - i2rep;
+  med = i3dem - i3rep;
+  bla = i5dem - i5rep;
+  env = i6dem - i6rep;
+  aff=  i7dem - i7rep;
+  
+OUTPUT:
+STANDARDIZED;FSCOEFFICIENT;
+SAVEDATA:
+FILE IS metric_invariance_ext_fs.dat;
+  SAVE IS fscores;
+  FORMAT IS free;

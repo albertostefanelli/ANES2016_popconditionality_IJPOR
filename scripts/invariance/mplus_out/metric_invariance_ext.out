@@ -1,0 +1,2971 @@
+Mplus VERSION 8.4 (Mac)
+MUTHEN & MUTHEN
+02/03/2024  11:47 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  metric_invariance_ext
+  DATA:
+  FILE = "metric_invariance_ext.dat";
+
+  VARIABLE:
+  NAMES = pid_3 spending_extr defence_extr medical_extr garant_inc_extr blacks_extr
+       envir_extr affirm_extr V160201 V160102;
+   MISSING=.;
+   USEVARIABLES = pid_3
+  spending_extr defence_extr
+  medical_extr garant_inc_extr
+  blacks_extr envir_extr
+  affirm_extr V160201 V160102 ;
+  CLUSTER = V160201;
+  GROUPING = PID_3 (1=rep 2=dem);
+  WEIGHT=V160102;
+  ANALYSIS:
+  TYPE = COMPLEX;
+               ESTIMATOR IS MLR;
+               PROCESSORS = 2;
+
+
+  MODEL:
+
+    MODEL:
+    EXT BY spending_extr;
+    EXT BY defence_extr;
+    EXT BY medical_extr;
+    EXT BY garant_inc_extr;
+    EXT BY blacks_extr;
+    EXT BY envir_extr;
+    EXT BY affirm_extr;
+
+    MODEL REP:
+    [spending_extr] (i1rep);
+    [defence_extr] (i2rep);
+    [medical_extr] (i3rep);
+    [garant_inc_extr@0];
+    [blacks_extr] (i5rep);
+    [envir_extr] (i6rep);
+    [affirm_extr] (i7rep);
+    [EXT](meanrep);
+    EXT (varrep);
+
+    MODEL DEM:
+    [spending_extr] (i1dem);
+    [defence_extr] (i2dem);
+    [medical_extr] (i3dem);
+    [garant_inc_extr@0];
+    [blacks_extr] (i5dem);
+    [envir_extr] (i6dem);
+    [affirm_extr] (i7dem);
+    [EXT](meandem);
+    EXT (vardem);
+
+  MODEL CONSTRAINT:
+
+    NEW(meandiff vardiff spe def med bla env aff);
+    meandiff = meandem - meanrep;
+    vardiff = vardem - varrep;
+    spe = i1dem - i1rep;
+    def = i2dem - i2rep;
+    med = i3dem - i3rep;
+    bla = i5dem - i5rep;
+    env = i6dem - i6rep;
+    aff=  i7dem - i7rep;
+
+  OUTPUT:
+  STANDARDIZED;FSCOEFFICIENT;
+  SAVEDATA:
+  FILE IS metric_invariance_ext_fs.dat;
+    SAVE IS fscores;
+    FORMAT IS free;
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+metric_invariance_ext
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 2
+Number of observations
+   Group REP                                                  1939
+   Group DEM                                                  1729
+   Total sample size                                          3668
+
+Number of dependent variables                                    7
+Number of independent variables                                  0
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Continuous
+   SPENDING_E  DEFENCE_EX  MEDICAL_EX  GARANT_INC  BLACKS_EXT  ENVIR_EXTR
+   AFFIRM_EXT
+
+Continuous latent variables
+   EXT
+
+Variables with special functions
+
+  Grouping variable     PID_3
+  Cluster variable      V160201
+  Weight variable       V160102
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  metric_invariance_ext.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+   Group REP
+     Number of missing data patterns            77
+     Number of clusters                        132
+
+
+   Group DEM
+     Number of missing data patterns            66
+     Number of clusters                        132
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR REP
+
+
+           Covariance Coverage
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING       0.854
+ DEFENCE_       0.780         0.858
+ MEDICAL_       0.785         0.794         0.879
+ GARANT_I       0.794         0.799         0.817         0.888
+ BLACKS_E       0.785         0.788         0.805         0.816         0.876
+ ENVIR_EX       0.762         0.775         0.787         0.793         0.783
+ AFFIRM_E       0.848         0.853         0.874         0.881         0.871
+
+
+           Covariance Coverage
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX       0.847
+ AFFIRM_E       0.843         0.992
+
+
+     PROPORTION OF DATA PRESENT FOR DEM
+
+
+           Covariance Coverage
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING       0.885
+ DEFENCE_       0.842         0.907
+ MEDICAL_       0.841         0.858         0.920
+ GARANT_I       0.841         0.853         0.862         0.912
+ BLACKS_E       0.831         0.847         0.861         0.856         0.913
+ ENVIR_EX       0.791         0.805         0.816         0.811         0.810
+ AFFIRM_E       0.877         0.899         0.912         0.903         0.905
+
+
+           Covariance Coverage
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ ENVIR_EX       0.852
+ AFFIRM_E       0.844         0.990
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS FOR REP
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     SPENDING_EXTR         1.247       0.394       0.000   27.05%       0.000      1.000      1.000
+            1656.000       1.059      -0.977       3.000   15.34%       1.000      2.000
+     DEFENCE_EXTR          1.180       0.434       0.000   32.39%       0.000      1.000      1.000
+            1664.000       1.089      -1.003       3.000   14.36%       1.000      2.000
+     MEDICAL_EXTR          1.686      -0.197       0.000   21.54%       0.000      1.000      2.000
+            1704.000       1.326      -1.415       3.000   32.16%       2.000      3.000
+     GARANT_INC_EXTR       1.308       0.319       0.000   27.43%       0.000      1.000      1.000
+            1721.000       1.123      -1.113       3.000   17.78%       1.000      2.000
+     BLACKS_EXTR           1.526      -0.012       0.000   26.56%       0.000      1.000      1.000
+            1698.000       1.328      -1.438       3.000   24.50%       2.000      3.000
+     ENVIR_EXTR            1.952      -0.536       0.000   13.15%       1.000      2.000      2.000
+            1643.000       1.142      -1.049       3.000   40.11%       3.000      3.000
+     AFFIRM_EXTR           1.400       0.054       0.000   40.61%       0.000      0.000      2.000
+            1923.000       1.632      -1.690       3.000   27.93%       2.000      3.000
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS FOR DEM
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     SPENDING_EXTR         1.524       0.019       0.000   21.88%       0.000      1.000      1.000
+            1531.000       1.149      -1.253       3.000   22.14%       2.000      3.000
+     DEFENCE_EXTR          1.479       0.050       0.000   21.16%       0.000      1.000      1.000
+            1569.000       1.062      -1.142       3.000   20.08%       2.000      3.000
+     MEDICAL_EXTR          1.806      -0.347       0.000   16.42%       1.000      2.000      2.000
+            1590.000       1.183      -1.212       3.000   35.97%       2.000      3.000
+     GARANT_INC_EXTR       1.760      -0.276       0.000   14.90%       1.000      1.000      2.000
+            1577.000       1.050      -1.086       3.000   28.66%       2.000      3.000
+     BLACKS_EXTR           1.788      -0.380       0.000   17.93%       1.000      2.000      2.000
+            1578.000       1.198      -1.182       3.000   34.41%       2.000      3.000
+     ENVIR_EXTR            1.385       0.163       0.000   24.37%       0.000      1.000      1.000
+            1473.000       1.163      -1.241       3.000   19.69%       2.000      2.000
+     AFFIRM_EXTR           1.837      -0.538       0.000   29.26%       0.000      2.000      2.000
+            1712.000       1.555      -1.370       3.000   43.52%       3.000      3.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       36
+
+Loglikelihood
+
+          H0 Value                      -33534.457
+          H0 Scaling Correction Factor      1.4299
+            for MLR
+          H1 Value                      -33470.216
+          H1 Scaling Correction Factor      1.6448
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   67140.913
+          Bayesian (BIC)                 67364.380
+          Sample-Size Adjusted BIC       67249.990
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                             68.619*
+          Degrees of Freedom                    34
+          P-Value                           0.0004
+          Scaling Correction Factor         1.8724
+            for MLR
+
+Chi-Square Contribution From Each Group
+
+          REP                               38.909
+          DEM                               29.710
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.024
+          90 Percent C.I.                    0.015  0.032
+          Probability RMSEA <= .05           1.000
+
+CFI/TLI
+
+          CFI                                0.971
+          TLI                                0.964
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           1236.970
+          Degrees of Freedom                    42
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.031
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ EXT      BY
+    SPENDING_E         1.000      0.000    999.000    999.000
+    DEFENCE_EX         0.616      0.053     11.681      0.000
+    MEDICAL_EX         0.965      0.058     16.598      0.000
+    GARANT_INC         1.058      0.066     16.032      0.000
+    BLACKS_EXT         1.023      0.071     14.456      0.000
+    ENVIR_EXTR         0.686      0.057     11.941      0.000
+    AFFIRM_EXT         0.582      0.064      9.129      0.000
+
+ Means
+    EXT                1.229      0.081     15.155      0.000
+
+ Intercepts
+    SPENDING_E         0.019      0.077      0.253      0.800
+    DEFENCE_EX         0.424      0.066      6.375      0.000
+    MEDICAL_EX         0.505      0.077      6.599      0.000
+    GARANT_INC         0.000      0.000    999.000    999.000
+    BLACKS_EXT         0.260      0.079      3.301      0.001
+    ENVIR_EXTR         1.098      0.079     13.847      0.000
+    AFFIRM_EXT         0.685      0.080      8.531      0.000
+
+ Variances
+    EXT                0.390      0.042      9.310      0.000
+
+ Residual Variances
+    SPENDING_E         0.699      0.043     16.143      0.000
+    DEFENCE_EX         0.923      0.034     26.770      0.000
+    MEDICAL_EX         0.955      0.042     22.908      0.000
+    GARANT_INC         0.717      0.037     19.357      0.000
+    BLACKS_EXT         0.920      0.044     20.981      0.000
+    ENVIR_EXTR         0.931      0.045     20.796      0.000
+    AFFIRM_EXT         1.507      0.036     42.124      0.000
+
+Group DEM
+
+ EXT      BY
+    SPENDING_E         1.000      0.000    999.000    999.000
+    DEFENCE_EX         0.616      0.053     11.681      0.000
+    MEDICAL_EX         0.965      0.058     16.598      0.000
+    GARANT_INC         1.058      0.066     16.032      0.000
+    BLACKS_EXT         1.023      0.071     14.456      0.000
+    ENVIR_EXTR         0.686      0.057     11.941      0.000
+    AFFIRM_EXT         0.582      0.064      9.129      0.000
+
+ Means
+    EXT                1.661      0.109     15.306      0.000
+
+ Intercepts
+    SPENDING_E        -0.142      0.106     -1.345      0.179
+    DEFENCE_EX         0.453      0.093      4.895      0.000
+    MEDICAL_EX         0.192      0.096      2.000      0.045
+    GARANT_INC         0.000      0.000    999.000    999.000
+    BLACKS_EXT         0.087      0.114      0.762      0.446
+    ENVIR_EXTR         0.238      0.108      2.200      0.028
+    AFFIRM_EXT         0.869      0.107      8.116      0.000
+
+ Variances
+    EXT                0.349      0.039      8.963      0.000
+
+ Residual Variances
+    SPENDING_E         0.780      0.044     17.612      0.000
+    DEFENCE_EX         0.953      0.033     28.880      0.000
+    MEDICAL_EX         0.866      0.047     18.325      0.000
+    GARANT_INC         0.635      0.035     18.009      0.000
+    BLACKS_EXT         0.838      0.047     17.861      0.000
+    ENVIR_EXTR         1.033      0.040     25.556      0.000
+    AFFIRM_EXT         1.429      0.043     33.393      0.000
+
+New/Additional Parameters
+    MEANDIFF           0.433      0.052      8.341      0.000
+    VARDIFF           -0.042      0.032     -1.315      0.188
+    SPE               -0.161      0.060     -2.692      0.007
+    DEF                0.030      0.054      0.548      0.584
+    MED               -0.313      0.065     -4.824      0.000
+    BLA               -0.173      0.065     -2.661      0.008
+    ENV               -0.860      0.062    -13.855      0.000
+    AFF                0.185      0.063      2.935      0.003
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ EXT      BY
+    SPENDING_E         0.599      0.030     20.164      0.000
+    DEFENCE_EX         0.372      0.027     13.539      0.000
+    MEDICAL_EX         0.525      0.025     21.263      0.000
+    GARANT_INC         0.615      0.024     26.112      0.000
+    BLACKS_EXT         0.554      0.027     20.437      0.000
+    ENVIR_EXTR         0.406      0.032     12.850      0.000
+    AFFIRM_EXT         0.284      0.028     10.284      0.000
+
+ Means
+    EXT                1.967      0.086     22.871      0.000
+
+ Intercepts
+    SPENDING_E         0.019      0.074      0.253      0.800
+    DEFENCE_EX         0.409      0.065      6.304      0.000
+    MEDICAL_EX         0.440      0.068      6.451      0.000
+    GARANT_INC         0.000      0.000    999.000    999.000
+    BLACKS_EXT         0.226      0.069      3.271      0.001
+    ENVIR_EXTR         1.040      0.080     12.925      0.000
+    AFFIRM_EXT         0.535      0.063      8.535      0.000
+
+ Variances
+    EXT                1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SPENDING_E         0.642      0.036     18.052      0.000
+    DEFENCE_EX         0.862      0.020     42.204      0.000
+    MEDICAL_EX         0.724      0.026     27.957      0.000
+    GARANT_INC         0.621      0.029     21.433      0.000
+    BLACKS_EXT         0.693      0.030     23.018      0.000
+    ENVIR_EXTR         0.835      0.026     32.568      0.000
+    AFFIRM_EXT         0.919      0.016     58.707      0.000
+
+Group DEM
+
+ EXT      BY
+    SPENDING_E         0.556      0.030     18.702      0.000
+    DEFENCE_EX         0.349      0.026     13.366      0.000
+    MEDICAL_EX         0.522      0.028     18.892      0.000
+    GARANT_INC         0.617      0.026     23.308      0.000
+    BLACKS_EXT         0.551      0.028     19.551      0.000
+    ENVIR_EXTR         0.370      0.027     13.540      0.000
+    AFFIRM_EXT         0.276      0.026     10.641      0.000
+
+ Means
+    EXT                2.813      0.139     20.273      0.000
+
+ Intercepts
+    SPENDING_E        -0.134      0.099     -1.348      0.177
+    DEFENCE_EX         0.435      0.090      4.815      0.000
+    MEDICAL_EX         0.176      0.088      1.993      0.046
+    GARANT_INC         0.000      0.000    999.000    999.000
+    BLACKS_EXT         0.079      0.104      0.760      0.447
+    ENVIR_EXTR         0.218      0.099      2.194      0.028
+    AFFIRM_EXT         0.699      0.089      7.868      0.000
+
+ Variances
+    EXT                1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SPENDING_E         0.691      0.033     20.909      0.000
+    DEFENCE_EX         0.878      0.018     48.183      0.000
+    MEDICAL_EX         0.727      0.029     25.206      0.000
+    GARANT_INC         0.619      0.033     18.965      0.000
+    BLACKS_EXT         0.696      0.031     22.432      0.000
+    ENVIR_EXTR         0.863      0.020     42.600      0.000
+    AFFIRM_EXT         0.924      0.014     64.465      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ EXT      BY
+    SPENDING_E         0.599      0.030     20.164      0.000
+    DEFENCE_EX         0.372      0.027     13.539      0.000
+    MEDICAL_EX         0.525      0.025     21.263      0.000
+    GARANT_INC         0.615      0.024     26.112      0.000
+    BLACKS_EXT         0.554      0.027     20.437      0.000
+    ENVIR_EXTR         0.406      0.032     12.850      0.000
+    AFFIRM_EXT         0.284      0.028     10.284      0.000
+
+ Means
+    EXT                1.967      0.086     22.871      0.000
+
+ Intercepts
+    SPENDING_E         0.019      0.074      0.253      0.800
+    DEFENCE_EX         0.409      0.065      6.304      0.000
+    MEDICAL_EX         0.440      0.068      6.451      0.000
+    GARANT_INC         0.000      0.000    999.000    999.000
+    BLACKS_EXT         0.226      0.069      3.271      0.001
+    ENVIR_EXTR         1.040      0.080     12.925      0.000
+    AFFIRM_EXT         0.535      0.063      8.535      0.000
+
+ Variances
+    EXT                1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SPENDING_E         0.642      0.036     18.052      0.000
+    DEFENCE_EX         0.862      0.020     42.204      0.000
+    MEDICAL_EX         0.724      0.026     27.957      0.000
+    GARANT_INC         0.621      0.029     21.433      0.000
+    BLACKS_EXT         0.693      0.030     23.018      0.000
+    ENVIR_EXTR         0.835      0.026     32.568      0.000
+    AFFIRM_EXT         0.919      0.016     58.707      0.000
+
+Group DEM
+
+ EXT      BY
+    SPENDING_E         0.556      0.030     18.702      0.000
+    DEFENCE_EX         0.349      0.026     13.366      0.000
+    MEDICAL_EX         0.522      0.028     18.892      0.000
+    GARANT_INC         0.617      0.026     23.308      0.000
+    BLACKS_EXT         0.551      0.028     19.551      0.000
+    ENVIR_EXTR         0.370      0.027     13.540      0.000
+    AFFIRM_EXT         0.276      0.026     10.641      0.000
+
+ Means
+    EXT                2.813      0.139     20.273      0.000
+
+ Intercepts
+    SPENDING_E        -0.134      0.099     -1.348      0.177
+    DEFENCE_EX         0.435      0.090      4.815      0.000
+    MEDICAL_EX         0.176      0.088      1.993      0.046
+    GARANT_INC         0.000      0.000    999.000    999.000
+    BLACKS_EXT         0.079      0.104      0.760      0.447
+    ENVIR_EXTR         0.218      0.099      2.194      0.028
+    AFFIRM_EXT         0.699      0.089      7.868      0.000
+
+ Variances
+    EXT                1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SPENDING_E         0.691      0.033     20.909      0.000
+    DEFENCE_EX         0.878      0.018     48.183      0.000
+    MEDICAL_EX         0.727      0.029     25.206      0.000
+    GARANT_INC         0.619      0.033     18.965      0.000
+    BLACKS_EXT         0.696      0.031     22.432      0.000
+    ENVIR_EXTR         0.863      0.020     42.600      0.000
+    AFFIRM_EXT         0.924      0.014     64.465      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ EXT      BY
+    SPENDING_E         0.625      0.034     18.621      0.000
+    DEFENCE_EX         0.385      0.030     12.864      0.000
+    MEDICAL_EX         0.603      0.030     20.146      0.000
+    GARANT_INC         0.661      0.029     23.132      0.000
+    BLACKS_EXT         0.639      0.034     18.792      0.000
+    ENVIR_EXTR         0.429      0.033     12.937      0.000
+    AFFIRM_EXT         0.363      0.036     10.219      0.000
+
+ Means
+    EXT                1.967      0.086     22.871      0.000
+
+ Intercepts
+    SPENDING_E         0.019      0.077      0.253      0.800
+    DEFENCE_EX         0.424      0.066      6.375      0.000
+    MEDICAL_EX         0.505      0.077      6.599      0.000
+    GARANT_INC         0.000      0.000    999.000    999.000
+    BLACKS_EXT         0.260      0.079      3.301      0.001
+    ENVIR_EXTR         1.098      0.079     13.847      0.000
+    AFFIRM_EXT         0.685      0.080      8.531      0.000
+
+ Variances
+    EXT                1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SPENDING_E         0.699      0.043     16.143      0.000
+    DEFENCE_EX         0.923      0.034     26.770      0.000
+    MEDICAL_EX         0.955      0.042     22.908      0.000
+    GARANT_INC         0.717      0.037     19.357      0.000
+    BLACKS_EXT         0.920      0.044     20.981      0.000
+    ENVIR_EXTR         0.931      0.045     20.796      0.000
+    AFFIRM_EXT         1.507      0.036     42.124      0.000
+
+Group DEM
+
+ EXT      BY
+    SPENDING_E         0.590      0.033     17.925      0.000
+    DEFENCE_EX         0.364      0.028     12.940      0.000
+    MEDICAL_EX         0.570      0.030     19.167      0.000
+    GARANT_INC         0.625      0.030     20.993      0.000
+    BLACKS_EXT         0.604      0.031     19.335      0.000
+    ENVIR_EXTR         0.405      0.031     13.150      0.000
+    AFFIRM_EXT         0.343      0.032     10.593      0.000
+
+ Means
+    EXT                2.813      0.139     20.273      0.000
+
+ Intercepts
+    SPENDING_E        -0.142      0.106     -1.345      0.179
+    DEFENCE_EX         0.453      0.093      4.895      0.000
+    MEDICAL_EX         0.192      0.096      2.000      0.045
+    GARANT_INC         0.000      0.000    999.000    999.000
+    BLACKS_EXT         0.087      0.114      0.762      0.446
+    ENVIR_EXTR         0.238      0.108      2.200      0.028
+    AFFIRM_EXT         0.869      0.107      8.116      0.000
+
+ Variances
+    EXT                1.000      0.000    999.000    999.000
+
+ Residual Variances
+    SPENDING_E         0.780      0.044     17.612      0.000
+    DEFENCE_EX         0.953      0.033     28.880      0.000
+    MEDICAL_EX         0.866      0.047     18.325      0.000
+    GARANT_INC         0.635      0.035     18.009      0.000
+    BLACKS_EXT         0.838      0.047     17.861      0.000
+    ENVIR_EXTR         1.033      0.040     25.556      0.000
+    AFFIRM_EXT         1.429      0.043     33.393      0.000
+
+
+R-SQUARE
+
+Group REP
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    SPENDING           0.358      0.036     10.082      0.000
+    DEFENCE_           0.138      0.020      6.770      0.000
+    MEDICAL_           0.276      0.026     10.631      0.000
+    GARANT_I           0.379      0.029     13.056      0.000
+    BLACKS_E           0.307      0.030     10.218      0.000
+    ENVIR_EX           0.165      0.026      6.425      0.000
+    AFFIRM_E           0.081      0.016      5.142      0.000
+
+Group DEM
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    SPENDING           0.309      0.033      9.351      0.000
+    DEFENCE_           0.122      0.018      6.683      0.000
+    MEDICAL_           0.273      0.029      9.446      0.000
+    GARANT_I           0.381      0.033     11.654      0.000
+    BLACKS_E           0.304      0.031      9.776      0.000
+    ENVIR_EX           0.137      0.020      6.770      0.000
+    AFFIRM_E           0.076      0.014      5.320      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.897E-04
+       (ratio of smallest to largest eigenvalue)
+
+
+SUMMARY OF FACTOR SCORES
+
+
+     FACTOR SCORE INFORMATION (COMPLETE-DATA PATTERN) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ EXT            0.162         0.076         0.115         0.168         0.126
+
+
+           FACTOR SCORE COEFFICIENTS
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ EXT            0.084         0.044
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.114
+
+
+     FACTOR SCORE INFORMATION (PATTERN 2) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ EXT            0.167         0.078         0.118         0.172         0.130
+
+
+           FACTOR SCORE COEFFICIENTS
+              ENVIR_EX
+              ________
+ EXT            0.086
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.117
+
+
+     FACTOR SCORE INFORMATION (PATTERN 3) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ EXT            0.172         0.080         0.122         0.178         0.134
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________
+ EXT            0.046
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.120
+
+
+     FACTOR SCORE INFORMATION (PATTERN 4) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ EXT            0.177         0.083         0.125         0.183         0.138
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.124
+
+
+     FACTOR SCORE INFORMATION (PATTERN 5) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      ENVIR_EX
+              ________      ________      ________      ________      ________
+ EXT            0.187         0.087         0.132         0.192         0.096
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________
+ EXT            0.050
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.130
+
+
+     FACTOR SCORE INFORMATION (PATTERN 6) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      ENVIR_EX
+              ________      ________      ________      ________      ________
+ EXT            0.192         0.090         0.136         0.198         0.099
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.134
+
+
+     FACTOR SCORE INFORMATION (PATTERN 7) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.200         0.093         0.141         0.206         0.054
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.140
+
+
+     FACTOR SCORE INFORMATION (PATTERN 8) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I
+              ________      ________      ________      ________
+ EXT            0.206         0.096         0.146         0.213
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.144
+
+
+     FACTOR SCORE INFORMATION (PATTERN 9) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      MEDICAL_      BLACKS_E      ENVIR_EX
+              ________      ________      ________      ________      ________
+ EXT            0.197         0.092         0.139         0.153         0.102
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________
+ EXT            0.053
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.138
+
+
+     FACTOR SCORE INFORMATION (PATTERN 10) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      MEDICAL_      BLACKS_E      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.212         0.099         0.150         0.165         0.057
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.148
+
+
+     FACTOR SCORE INFORMATION (PATTERN 11) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      MEDICAL_      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.234         0.109         0.165         0.121         0.063
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.164
+
+
+     FACTOR SCORE INFORMATION (PATTERN 12) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      MEDICAL_      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.255         0.119         0.180         0.069
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.178
+
+
+     FACTOR SCORE INFORMATION (PATTERN 13) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      GARANT_I      BLACKS_E      ENVIR_EX
+              ________      ________      ________      ________      ________
+ EXT            0.183         0.085         0.188         0.142         0.094
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________
+ EXT            0.049
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.128
+
+
+     FACTOR SCORE INFORMATION (PATTERN 14) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      GARANT_I      BLACKS_E      ENVIR_EX
+              ________      ________      ________      ________      ________
+ EXT            0.188         0.088         0.194         0.146         0.097
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.131
+
+
+     FACTOR SCORE INFORMATION (PATTERN 15) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      GARANT_I      BLACKS_E      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.195         0.091         0.201         0.152         0.053
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.136
+
+
+     FACTOR SCORE INFORMATION (PATTERN 16) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      GARANT_I      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.214         0.100         0.220         0.110         0.058
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.149
+
+
+     FACTOR SCORE INFORMATION (PATTERN 17) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      GARANT_I      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.231         0.108         0.238         0.062
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.162
+
+
+     FACTOR SCORE INFORMATION (PATTERN 18) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      BLACKS_E      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.228         0.106         0.177         0.117         0.062
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.159
+
+
+     FACTOR SCORE INFORMATION (PATTERN 19) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      BLACKS_E      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.248         0.116         0.193         0.067
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.173
+
+
+     FACTOR SCORE INFORMATION (PATTERN 20) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.279         0.130         0.144         0.075
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.195
+
+
+     FACTOR SCORE INFORMATION (PATTERN 21) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_      AFFIRM_E
+              ________      ________      ________
+ EXT            0.309         0.144         0.083
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.216
+
+
+     FACTOR SCORE INFORMATION (PATTERN 22) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      DEFENCE_
+              ________      ________
+ EXT            0.325         0.152
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.227
+
+
+     FACTOR SCORE INFORMATION (PATTERN 23) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      MEDICAL_      GARANT_I      BLACKS_E      ENVIR_EX
+              ________      ________      ________      ________      ________
+ EXT            0.170         0.120         0.176         0.132         0.088
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________
+ EXT            0.046
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.119
+
+
+     FACTOR SCORE INFORMATION (PATTERN 24) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      MEDICAL_      GARANT_I      BLACKS_E      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.181         0.128         0.187         0.141         0.049
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.127
+
+
+     FACTOR SCORE INFORMATION (PATTERN 25) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      MEDICAL_      GARANT_I      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.197         0.139         0.203         0.102         0.053
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.138
+
+
+     FACTOR SCORE INFORMATION (PATTERN 26) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      MEDICAL_      GARANT_I      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.212         0.150         0.218         0.057
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.148
+
+
+     FACTOR SCORE INFORMATION (PATTERN 27) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      MEDICAL_      BLACKS_E      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.209         0.148         0.163         0.108         0.056
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.146
+
+
+     FACTOR SCORE INFORMATION (PATTERN 28) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      MEDICAL_      BLACKS_E      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.226         0.160         0.176         0.061
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.158
+
+
+     FACTOR SCORE INFORMATION (PATTERN 29) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      MEDICAL_      BLACKS_E
+              ________      ________      ________
+ EXT            0.234         0.165         0.182
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.164
+
+
+     FACTOR SCORE INFORMATION (PATTERN 30) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      MEDICAL_      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.251         0.177         0.129         0.068
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.175
+
+
+     FACTOR SCORE INFORMATION (PATTERN 31) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      MEDICAL_      AFFIRM_E
+              ________      ________      ________
+ EXT            0.276         0.195         0.074
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.193
+
+
+     FACTOR SCORE INFORMATION (PATTERN 32) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      GARANT_I      BLACKS_E      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.193         0.199         0.150         0.099         0.052
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.135
+
+
+     FACTOR SCORE INFORMATION (PATTERN 33) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      GARANT_I      BLACKS_E      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.207         0.213         0.161         0.056
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.145
+
+
+     FACTOR SCORE INFORMATION (PATTERN 34) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      GARANT_I      BLACKS_E
+              ________      ________      ________
+ EXT            0.214         0.220         0.166
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.149
+
+
+     FACTOR SCORE INFORMATION (PATTERN 35) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      GARANT_I      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.228         0.235         0.117         0.061
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.159
+
+
+     FACTOR SCORE INFORMATION (PATTERN 36) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      GARANT_I      AFFIRM_E
+              ________      ________      ________
+ EXT            0.248         0.255         0.067
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.173
+
+
+     FACTOR SCORE INFORMATION (PATTERN 37) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      BLACKS_E      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.244         0.190         0.126         0.066
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.171
+
+
+     FACTOR SCORE INFORMATION (PATTERN 38) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      BLACKS_E      AFFIRM_E
+              ________      ________      ________
+ EXT            0.267         0.208         0.072
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.187
+
+
+     FACTOR SCORE INFORMATION (PATTERN 39) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      ENVIR_EX      AFFIRM_E
+              ________      ________      ________
+ EXT            0.303         0.156         0.082
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.212
+
+
+     FACTOR SCORE INFORMATION (PATTERN 40) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              SPENDING      AFFIRM_E
+              ________      ________
+ EXT            0.339         0.091
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.237
+
+
+     FACTOR SCORE INFORMATION (PATTERN 41) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E      ENVIR_EX
+              ________      ________      ________      ________      ________
+ EXT            0.090         0.137         0.200         0.151         0.100
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________
+ EXT            0.052
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.136
+
+
+     FACTOR SCORE INFORMATION (PATTERN 42) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.097         0.147         0.215         0.162         0.056
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.146
+
+
+     FACTOR SCORE INFORMATION (PATTERN 43) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      MEDICAL_      GARANT_I      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.107         0.162         0.236         0.118         0.062
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.160
+
+
+     FACTOR SCORE INFORMATION (PATTERN 44) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      MEDICAL_      GARANT_I      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.116         0.176         0.257         0.067
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.174
+
+
+     FACTOR SCORE INFORMATION (PATTERN 45) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      MEDICAL_      BLACKS_E      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.115         0.174         0.191         0.127         0.066
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.172
+
+
+     FACTOR SCORE INFORMATION (PATTERN 46) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      MEDICAL_      BLACKS_E      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.126         0.190         0.209         0.073
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.188
+
+
+     FACTOR SCORE INFORMATION (PATTERN 47) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      MEDICAL_      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.143         0.216         0.158         0.082
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.214
+
+
+     FACTOR SCORE INFORMATION (PATTERN 48) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      MEDICAL_      AFFIRM_E
+              ________      ________      ________
+ EXT            0.160         0.242         0.092
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.240
+
+
+     FACTOR SCORE INFORMATION (PATTERN 49) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      GARANT_I      BLACKS_E      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.104         0.230         0.174         0.115         0.060
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.156
+
+
+     FACTOR SCORE INFORMATION (PATTERN 50) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      GARANT_I      BLACKS_E      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.113         0.250         0.189         0.065
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.170
+
+
+     FACTOR SCORE INFORMATION (PATTERN 51) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      GARANT_I      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.127         0.280         0.140         0.073
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.190
+
+
+     FACTOR SCORE INFORMATION (PATTERN 52) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      GARANT_I      ENVIR_EX
+              ________      ________      ________
+ EXT            0.132         0.293         0.146
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.198
+
+
+     FACTOR SCORE INFORMATION (PATTERN 53) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      GARANT_I      AFFIRM_E
+              ________      ________      ________
+ EXT            0.140         0.310         0.081
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.210
+
+
+     FACTOR SCORE INFORMATION (PATTERN 54) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      BLACKS_E      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.138         0.230         0.152         0.080
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.207
+
+
+     FACTOR SCORE INFORMATION (PATTERN 55) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      BLACKS_E      AFFIRM_E
+              ________      ________      ________
+ EXT            0.154         0.256         0.089
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.231
+
+
+     FACTOR SCORE INFORMATION (PATTERN 56) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      ENVIR_EX      AFFIRM_E
+              ________      ________      ________
+ EXT            0.180         0.199         0.104
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.270
+
+
+     FACTOR SCORE INFORMATION (PATTERN 57) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              DEFENCE_      AFFIRM_E
+              ________      ________
+ EXT            0.209         0.121
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.313
+
+
+     FACTOR SCORE INFORMATION (PATTERN 58) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              MEDICAL_      GARANT_I      BLACKS_E      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.145         0.212         0.160         0.106         0.055
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.144
+
+
+     FACTOR SCORE INFORMATION (PATTERN 59) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              MEDICAL_      GARANT_I      BLACKS_E      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.156         0.228         0.172         0.060
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.155
+
+
+     FACTOR SCORE INFORMATION (PATTERN 60) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________
+ EXT            0.162         0.237         0.178
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.160
+
+
+     FACTOR SCORE INFORMATION (PATTERN 61) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              MEDICAL_      GARANT_I      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.173         0.253         0.126         0.066
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.172
+
+
+     FACTOR SCORE INFORMATION (PATTERN 62) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              MEDICAL_      GARANT_I      AFFIRM_E
+              ________      ________      ________
+ EXT            0.190         0.277         0.072
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.188
+
+
+     FACTOR SCORE INFORMATION (PATTERN 63) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              MEDICAL_      BLACKS_E      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.187         0.206         0.136         0.071
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.185
+
+
+     FACTOR SCORE INFORMATION (PATTERN 64) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              MEDICAL_      BLACKS_E      AFFIRM_E
+              ________      ________      ________
+ EXT            0.206         0.227         0.079
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.204
+
+
+     FACTOR SCORE INFORMATION (PATTERN 65) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              MEDICAL_      ENVIR_EX      AFFIRM_E
+              ________      ________      ________
+ EXT            0.237         0.173         0.090
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.234
+
+
+     FACTOR SCORE INFORMATION (PATTERN 66) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              MEDICAL_      AFFIRM_E
+              ________      ________
+ EXT            0.269         0.103
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.266
+
+
+     FACTOR SCORE INFORMATION (PATTERN 67) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              MEDICAL_
+              ________
+ EXT            0.286
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.283
+
+
+     FACTOR SCORE INFORMATION (PATTERN 68) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              GARANT_I      BLACKS_E      ENVIR_EX      AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.246         0.186         0.123         0.064
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.167
+
+
+     FACTOR SCORE INFORMATION (PATTERN 69) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              GARANT_I      BLACKS_E      AFFIRM_E
+              ________      ________      ________
+ EXT            0.269         0.203         0.070
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.182
+
+
+     FACTOR SCORE INFORMATION (PATTERN 70) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              GARANT_I      ENVIR_EX      AFFIRM_E
+              ________      ________      ________
+ EXT            0.304         0.152         0.080
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.206
+
+
+     FACTOR SCORE INFORMATION (PATTERN 71) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              GARANT_I      ENVIR_EX
+              ________      ________
+ EXT            0.319         0.159
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.216
+
+
+     FACTOR SCORE INFORMATION (PATTERN 72) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              GARANT_I      AFFIRM_E
+              ________      ________
+ EXT            0.339         0.089
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.230
+
+
+     FACTOR SCORE INFORMATION (PATTERN 73) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              GARANT_I
+              ________
+ EXT            0.358
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.243
+
+
+     FACTOR SCORE INFORMATION (PATTERN 74) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              BLACKS_E      ENVIR_EX      AFFIRM_E
+              ________      ________      ________
+ EXT            0.251         0.166         0.087
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.226
+
+
+     FACTOR SCORE INFORMATION (PATTERN 75) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              BLACKS_E      AFFIRM_E
+              ________      ________
+ EXT            0.283         0.098
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.255
+
+
+     FACTOR SCORE INFORMATION (PATTERN 76) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              ENVIR_EX      AFFIRM_E
+              ________      ________
+ EXT            0.224         0.117
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.304
+
+
+     FACTOR SCORE INFORMATION (PATTERN 77) FOR REP
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________
+ EXT            0.138
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.359
+
+
+     FACTOR SCORE INFORMATION (COMPLETE-DATA PATTERN) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.138         0.069         0.119         0.179         0.131
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________
+ EXT            0.071         0.044
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.107
+
+
+     FACTOR SCORE INFORMATION (PATTERN 2) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.141         0.071         0.123         0.183         0.134
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________
+ EXT            0.073
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.110
+
+
+     FACTOR SCORE INFORMATION (PATTERN 3) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.145         0.073         0.126         0.188         0.138
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________
+ EXT            0.046
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.113
+
+
+     FACTOR SCORE INFORMATION (PATTERN 4) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.149         0.075         0.129         0.193         0.141
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.116
+
+
+     FACTOR SCORE INFORMATION (PATTERN 5) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.159         0.080         0.138         0.206         0.082
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________
+ EXT            0.050
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.124
+
+
+     FACTOR SCORE INFORMATION (PATTERN 6) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.164         0.082         0.142         0.212         0.085
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.128
+
+
+     FACTOR SCORE INFORMATION (PATTERN 7) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.168         0.085         0.146         0.219         0.053
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.131
+
+
+     FACTOR SCORE INFORMATION (PATTERN 8) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.174         0.087         0.151         0.226
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.135
+
+
+     FACTOR SCORE INFORMATION (PATTERN 9) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.170         0.085         0.147         0.161         0.088
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________
+ EXT            0.054
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.132
+
+
+     FACTOR SCORE INFORMATION (PATTERN 10) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.180         0.091         0.157         0.172         0.057
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.141
+
+
+     FACTOR SCORE INFORMATION (PATTERN 11) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.203         0.102         0.176         0.105         0.064
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.158
+
+
+     FACTOR SCORE INFORMATION (PATTERN 12) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.219         0.110         0.190         0.069
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.171
+
+
+     FACTOR SCORE INFORMATION (PATTERN 13) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.155         0.078         0.202         0.148         0.080
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________
+ EXT            0.049
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.121
+
+
+     FACTOR SCORE INFORMATION (PATTERN 14) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.160         0.081         0.208         0.152         0.083
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.125
+
+
+     FACTOR SCORE INFORMATION (PATTERN 15) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.164         0.083         0.214         0.157         0.052
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.128
+
+
+     FACTOR SCORE INFORMATION (PATTERN 16) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.183         0.092         0.238         0.095         0.058
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.143
+
+
+     FACTOR SCORE INFORMATION (PATTERN 17) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.190         0.095         0.246         0.098
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.148
+
+
+     FACTOR SCORE INFORMATION (PATTERN 18) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.196         0.099         0.254         0.062
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.153
+
+
+     FACTOR SCORE INFORMATION (PATTERN 19) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.198         0.100         0.188         0.102         0.063
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.154
+
+
+     FACTOR SCORE INFORMATION (PATTERN 20) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.213         0.107         0.202         0.067
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.166
+
+
+     FACTOR SCORE INFORMATION (PATTERN 21) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.245         0.123         0.127         0.078
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.191
+
+
+     FACTOR SCORE INFORMATION (PATTERN 22) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________
+ EXT            0.268         0.135         0.085
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.209
+
+
+     FACTOR SCORE INFORMATION (PATTERN 23) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.144         0.125         0.187         0.137         0.074
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________
+ EXT            0.046
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.112
+
+
+     FACTOR SCORE INFORMATION (PATTERN 24) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.151         0.131         0.197         0.144         0.048
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.118
+
+
+     FACTOR SCORE INFORMATION (PATTERN 25) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.156         0.135         0.202         0.148
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.121
+
+
+     FACTOR SCORE INFORMATION (PATTERN 26) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.167         0.145         0.217         0.087         0.053
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.130
+
+
+     FACTOR SCORE INFORMATION (PATTERN 27) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.178         0.154         0.231         0.056
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.138
+
+
+     FACTOR SCORE INFORMATION (PATTERN 28) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.179         0.155         0.170         0.093         0.057
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.140
+
+
+     FACTOR SCORE INFORMATION (PATTERN 29) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.191         0.166         0.182         0.061
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.149
+
+
+     FACTOR SCORE INFORMATION (PATTERN 30) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________      ________
+ EXT            0.163         0.212         0.156         0.085         0.052
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.127
+
+
+     FACTOR SCORE INFORMATION (PATTERN 31) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.173         0.225         0.165         0.055
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.135
+
+
+     FACTOR SCORE INFORMATION (PATTERN 32) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________
+ EXT            0.209         0.271         0.066
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.163
+
+
+     FACTOR SCORE INFORMATION (PATTERN 33) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________      ________      ________
+ EXT            0.211         0.200         0.109         0.067
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.164
+
+
+     FACTOR SCORE INFORMATION (PATTERN 34) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+              AFFIRM_E
+              ________      ________
+ EXT            0.292         0.093
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.228
+
+
+     FACTOR SCORE INFORMATION (PATTERN 35) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________      ________
+ EXT            0.080         0.138         0.207         0.152         0.083
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________
+ EXT            0.051
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.124
+
+
+     FACTOR SCORE INFORMATION (PATTERN 36) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________      ________
+ EXT            0.085         0.147         0.219         0.161         0.054
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.132
+
+
+     FACTOR SCORE INFORMATION (PATTERN 37) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________      ________
+ EXT            0.095         0.164         0.245         0.098         0.060
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.147
+
+
+     FACTOR SCORE INFORMATION (PATTERN 38) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________
+ EXT            0.102         0.176         0.263         0.064
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.158
+
+
+     FACTOR SCORE INFORMATION (PATTERN 39) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________      ________
+ EXT            0.103         0.177         0.194         0.106         0.065
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.159
+
+
+     FACTOR SCORE INFORMATION (PATTERN 40) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________
+ EXT            0.111         0.191         0.210         0.070
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.172
+
+
+     FACTOR SCORE INFORMATION (PATTERN 41) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________
+ EXT            0.128         0.221         0.132         0.081
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.199
+
+
+     FACTOR SCORE INFORMATION (PATTERN 42) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________
+ EXT            0.141         0.243         0.089
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.218
+
+
+     FACTOR SCORE INFORMATION (PATTERN 43) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________      ________
+ EXT            0.093         0.239         0.175         0.095         0.058
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.143
+
+
+     FACTOR SCORE INFORMATION (PATTERN 44) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________
+ EXT            0.099         0.256         0.188         0.062
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.153
+
+
+     FACTOR SCORE INFORMATION (PATTERN 45) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________
+ EXT            0.113         0.291         0.116         0.071
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.175
+
+
+     FACTOR SCORE INFORMATION (PATTERN 46) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________
+ EXT            0.123         0.316         0.077
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.190
+
+
+     FACTOR SCORE INFORMATION (PATTERN 47) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________
+ EXT            0.124         0.235         0.128         0.078
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.192
+
+
+     FACTOR SCORE INFORMATION (PATTERN 48) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________
+ EXT            0.136         0.257         0.086
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.210
+
+
+     FACTOR SCORE INFORMATION (PATTERN 49) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________
+ EXT            0.163         0.168         0.103
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.253
+
+
+     FACTOR SCORE INFORMATION (PATTERN 50) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________
+ EXT            0.184         0.116
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.286
+
+
+     FACTOR SCORE INFORMATION (PATTERN 51) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________
+ EXT            0.198
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.306
+
+
+     FACTOR SCORE INFORMATION (PATTERN 52) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________      ________
+ EXT            0.146         0.218         0.160         0.087         0.053
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.131
+
+
+     FACTOR SCORE INFORMATION (PATTERN 53) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________
+ EXT            0.155         0.232         0.170         0.057
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.139
+
+
+     FACTOR SCORE INFORMATION (PATTERN 54) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________
+ EXT            0.174         0.260         0.104         0.064
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.156
+
+
+     FACTOR SCORE INFORMATION (PATTERN 55) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________
+ EXT            0.187         0.280         0.068
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.168
+
+
+     FACTOR SCORE INFORMATION (PATTERN 56) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________
+ EXT            0.189         0.208         0.113         0.069
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.170
+
+
+     FACTOR SCORE INFORMATION (PATTERN 57) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________
+ EXT            0.205         0.225         0.075
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.184
+
+
+     FACTOR SCORE INFORMATION (PATTERN 58) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________
+ EXT            0.240         0.143         0.088
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.216
+
+
+     FACTOR SCORE INFORMATION (PATTERN 59) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________
+ EXT            0.267         0.097
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.239
+
+
+     FACTOR SCORE INFORMATION (PATTERN 60) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________      ________
+ EXT            0.253         0.186         0.101         0.062
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.152
+
+
+     FACTOR SCORE INFORMATION (PATTERN 61) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________
+ EXT            0.263         0.193         0.105
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.158
+
+
+     FACTOR SCORE INFORMATION (PATTERN 62) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________
+ EXT            0.272         0.200         0.067
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.163
+
+
+     FACTOR SCORE INFORMATION (PATTERN 63) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________
+ EXT            0.342         0.084
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.205
+
+
+     FACTOR SCORE INFORMATION (PATTERN 64) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________      ________
+ EXT            0.254         0.138         0.085
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.208
+
+
+     FACTOR SCORE INFORMATION (PATTERN 65) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________      ________
+ EXT            0.281         0.093
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.230
+
+
+     FACTOR SCORE INFORMATION (PATTERN 66) FOR DEM
+
+
+           FACTOR SCORE COEFFICIENTS
+
+              ________
+ EXT            0.131
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              EXT
+              ________
+ EXT            0.322
+
+
+SAMPLE STATISTICS FOR ESTIMATED FACTOR SCORES
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              EXT           EXT_SE
+              ________      ________
+                1.415         0.351
+
+
+           Covariances
+              EXT           EXT_SE
+              ________      ________
+ EXT            0.289
+ EXT_SE        -0.003         0.002
+
+
+           Correlations
+              EXT           EXT_SE
+              ________      ________
+ EXT            1.000
+ EXT_SE        -0.113         1.000
+
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    metric_invariance_ext_fs.dat
+
+  Order of variables
+
+    SPENDING
+    DEFENCE_
+    MEDICAL_
+    GARANT_I
+    BLACKS_E
+    ENVIR_EX
+    AFFIRM_E
+    EXT
+    EXT_SE
+    V160102
+    PID_3
+    V160201
+
+  Save file format           Free
+
+  Save file record length    10000
+
+
+     Beginning Time:  23:47:07
+        Ending Time:  23:47:07
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

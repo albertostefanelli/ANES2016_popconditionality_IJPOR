@@ -1,0 +1,50 @@
+TITLE:
+BASE 3;
+DATA:
+FILE = "invariance_ext.dat";
+ 
+VARIABLE:
+NAMES = PID_2_DEM spending_extr defence_extr medical_extr garant_inc_extr
+     blacks_extr envir_extr affirm_extr V160201 V160102; 
+ MISSING=.;
+ USEVARIABLES = PID_2_DEM
+spending_extr defence_extr
+medical_extr garant_inc_extr
+blacks_extr envir_extr
+affirm_extr V160201 V160102 ;
+CLUSTER = V160201; 
+
+    GROUPING = PID_2_DEM (1=rep 2=dem);
+    WEIGHT=V160102;
+    
+ANALYSIS:
+TYPE = COMPLEX;
+             !INTEGRATION=2
+             ESTIMATOR IS MLR;
+             MODEL = CONFIGURAL METRIC SCALAR;
+             !ESTIMATOR = BAYES;
+             PROCESSORS = 2;
+             !BITERATIONS = 300000;
+             !ALGORITHM=INTEGRATION;
+             !FBITERATIONS = 300000;
+             !THIN = 2;
+             !ITERATIONS = (100000)
+       
+MODEL:
+
+  EXT BY spending_extr;
+  EXT BY defence_extr;
+  EXT BY medical_extr;
+  EXT BY garant_inc_extr;
+  EXT BY blacks_extr;
+  EXT BY envir_extr;
+  EXT BY affirm_extr;
+
+
+OUTPUT:
+STANDARDIZED;FSCOEFFICIENT;MODINDICES;
+SAVEDATA:
+
+  FILE IS measurement_fscores.dat;
+  SAVE IS fscores;
+  FORMAT IS free;

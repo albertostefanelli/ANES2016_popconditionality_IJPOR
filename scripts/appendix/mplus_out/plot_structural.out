@@ -1,0 +1,650 @@
+Mplus VERSION 8.4 (Mac)
+MUTHEN & MUTHEN
+02/04/2024  11:59 AM
+
+INPUT INSTRUCTIONS
+
+  DATA:
+  FILE = "plot_structural.dat";
+
+  VARIABLE:
+  NAMES = spending_extr defence_extr medical_extr garant_inc_extr blacks_extr
+       envir_extr affirm_extr wagner_aff V161513 V161514 V161515 V161516 V162259
+       V162260 V162262 V162264 V162265 V162267 V161270 V161361x V161267 V161241 FEM
+       BLACK ASIAN HISP OTHERR bernie perc_pol id_iden7 WEAK STRONG V162256 V162257
+       V162215 V162216 V162217 V162218 V160102 V160201;
+   MISSING=.;
+   USEVARIABLES = spending_extr
+  defence_extr medical_extr
+  garant_inc_extr blacks_extr
+  envir_extr affirm_extr
+  wagner_aff V161513 V161514
+  V161515 V161516 V162259
+  V162260 V162262 V162264
+  V162265 V162267 V161270
+  V161361x V161267 V161241 FEM
+  BLACK ASIAN HISP OTHERR
+  bernie perc_pol id_iden7 WEAK
+  STRONG V162256 V162257
+  V162215 V162216 V162217
+  V162218 V160102 V160201 ;
+  CATEGORICAL = V161513 V161514 V161515 V161516;
+  CLUSTER = V160201;
+  WEIGHT=V160102;
+  ANALYSIS:
+  TYPE = COMPLEX;
+               PARAMETERIZATION=THETA;
+               PROCESSORS = 2;
+  MODEL:
+
+
+    KN BY V161513;
+    KN BY V161514;
+    KN BY V161515;
+    KN BY V161516;
+
+    V161513@1;
+    V161514@1;
+    V161515@1;
+    V161516@1;
+
+    EFFE BY V162215;
+    EFFE BY V162216;
+
+    EFFI BY V162217;
+    EFFI BY V162218;
+
+    pol_int BY V162256;
+    pol_int BY V162257;
+
+    pop BY V162259;
+    pop BY V162260;
+    pop BY V162262;
+    pop BY V162264;
+    pop BY V162265;
+    pop BY V162267;
+
+    V162259 WITH V162267;
+    V162260 WITH V162264;
+    V162262 WITH V162265;
+
+    EXT BY spending_extr;
+    EXT BY defence_extr;
+    EXT BY medical_extr;
+    EXT BY garant_inc_extr;
+    EXT BY blacks_extr;
+    EXT BY envir_extr;
+    EXT BY affirm_extr;
+
+    EXT ON POP
+    WEAK
+    STRONG
+    EFFI
+    EFFE
+    V161241
+    pol_int
+    KN
+    perc_pol
+    id_iden7
+    bernie
+    V161270
+    V161361x
+    V161267
+    FEM
+    !!!! RACE !!!!
+    BLACK
+    ASIAN
+    HISP
+    OTHERR;
+
+    wagner_aff ON POP
+    WEAK
+    STRONG
+    EFFI
+    EFFE
+    V161241
+    pol_int
+    KN
+    perc_pol
+    id_iden7
+    bernie
+    V161270
+    V161361x
+    V161267
+    FEM
+    !!!! RACE !!!!
+    BLACK
+    ASIAN
+    HISP
+    OTHERR;
+
+
+  PLOT:
+  TYPE = PLOT2;
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+*** WARNING in PLOT command
+  Note that only the first 8 characters of variable names are used in plots.
+  If variable names are not unique within the first 8 characters, problems
+  may occur.
+*** WARNING
+  Data set contains cases with missing on x-variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on x-variables:  1439
+   3 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        2831
+
+Number of dependent variables                                   24
+Number of independent variables                                 14
+Number of continuous latent variables                            6
+
+Observed dependent variables
+
+  Continuous
+   SPENDING_E  DEFENCE_EX  MEDICAL_EX  GARANT_INC  BLACKS_EXT  ENVIR_EXTR
+   AFFIRM_EXT  WAGNER_AFF  V162259     V162260     V162262     V162264
+   V162265     V162267     V162256     V162257     V162215     V162216
+   V162217     V162218
+
+  Binary and ordered categorical (ordinal)
+   V161513     V161514     V161515     V161516
+
+Observed independent variables
+   V161270     V161361X    V161267     V161241     FEM         BLACK
+   ASIAN       HISP        OTHERR      BERNIE      PERC_POL    ID_IDEN7
+   WEAK        STRONG
+
+Continuous latent variables
+   KN          EFFE        EFFI        POL_INT     POP         EXT
+
+Variables with special functions
+
+  Cluster variable      V160201
+  Weight variable       V160102
+
+Estimator                                                    WLSMV
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Parameterization                                             THETA
+Link                                                        PROBIT
+
+Input data file(s)
+  plot_structural.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns           148
+     Number of clusters                        132
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              SPENDING      DEFENCE_      MEDICAL_      GARANT_I      BLACKS_E
+              ________      ________      ________      ________      ________
+ SPENDING       0.881
+ DEFENCE_       0.821         0.889
+ MEDICAL_       0.827         0.836         0.909
+ GARANT_I       0.832         0.835         0.856         0.910
+ BLACKS_E       0.824         0.830         0.850         0.853         0.906
+ ENVIR_EX       0.789         0.800         0.812         0.816         0.811
+ AFFIRM_E       0.876         0.883         0.904         0.904         0.901
+ WAGNER_A       0.879         0.886         0.907         0.907         0.904
+ V161513        0.863         0.869         0.888         0.890         0.886
+ V161514        0.871         0.879         0.898         0.898         0.895
+ V161515        0.866         0.874         0.894         0.894         0.890
+ V161516        0.866         0.872         0.893         0.893         0.889
+ V162259        0.879         0.887         0.907         0.908         0.904
+ V162260        0.881         0.888         0.909         0.909         0.905
+ V162262        0.881         0.888         0.909         0.909         0.905
+ V162264        0.880         0.887         0.908         0.909         0.905
+ V162265        0.881         0.889         0.909         0.909         0.906
+ V162267        0.880         0.887         0.907         0.907         0.904
+ V162256        0.881         0.889         0.909         0.910         0.906
+ V162257        0.881         0.888         0.909         0.909         0.906
+ V162215        0.880         0.888         0.909         0.909         0.905
+ V162216        0.880         0.888         0.909         0.909         0.906
+ V162217        0.881         0.888         0.909         0.909         0.906
+ V162218        0.881         0.888         0.909         0.910         0.906
+
+
+           Covariance Coverage
+              ENVIR_EX      AFFIRM_E      WAGNER_A      V161513       V161514
+              ________      ________      ________      ________      ________
+ ENVIR_EX       0.859
+ AFFIRM_E       0.856         0.994
+ WAGNER_A       0.857         0.991         0.996
+ V161513        0.841         0.970         0.973         0.976
+ V161514        0.850         0.982         0.984         0.970         0.987
+ V161515        0.846         0.975         0.978         0.970         0.976
+ V161516        0.845         0.975         0.977         0.970         0.976
+ V162259        0.857         0.992         0.994         0.974         0.985
+ V162260        0.859         0.993         0.996         0.975         0.987
+ V162262        0.859         0.993         0.996         0.975         0.987
+ V162264        0.858         0.992         0.995         0.975         0.986
+ V162265        0.859         0.994         0.996         0.976         0.987
+ V162267        0.858         0.992         0.994         0.974         0.985
+ V162256        0.859         0.994         0.996         0.976         0.987
+ V162257        0.859         0.994         0.996         0.976         0.987
+ V162215        0.859         0.993         0.995         0.975         0.987
+ V162216        0.859         0.993         0.996         0.975         0.987
+ V162217        0.859         0.994         0.996         0.976         0.987
+ V162218        0.859         0.994         0.996         0.976         0.987
+
+
+           Covariance Coverage
+              V161515       V161516       V162259       V162260       V162262
+              ________      ________      ________      ________      ________
+ V161515        0.981
+ V161516        0.979         0.981
+ V162259        0.979         0.978         0.998
+ V162260        0.981         0.980         0.997         0.999
+ V162262        0.981         0.980         0.997         0.999         0.999
+ V162264        0.980         0.979         0.996         0.998         0.998
+ V162265        0.981         0.981         0.998         0.999         0.999
+ V162267        0.979         0.978         0.995         0.996         0.996
+ V162256        0.981         0.981         0.998         0.999         0.999
+ V162257        0.981         0.980         0.998         0.999         0.999
+ V162215        0.981         0.980         0.997         0.998         0.998
+ V162216        0.981         0.980         0.997         0.999         0.999
+ V162217        0.981         0.980         0.998         0.999         0.999
+ V162218        0.981         0.980         0.998         0.999         0.999
+
+
+           Covariance Coverage
+              V162264       V162265       V162267       V162256       V162257
+              ________      ________      ________      ________      ________
+ V162264        0.998
+ V162265        0.998         1.000
+ V162267        0.996         0.997         0.997
+ V162256        0.998         1.000         0.997         1.000
+ V162257        0.998         0.999         0.997         1.000         1.000
+ V162215        0.998         0.999         0.997         0.999         0.999
+ V162216        0.998         0.999         0.997         0.999         0.999
+ V162217        0.998         0.999         0.997         1.000         0.999
+ V162218        0.998         0.999         0.997         1.000         0.999
+
+
+           Covariance Coverage
+              V162215       V162216       V162217       V162218
+              ________      ________      ________      ________
+ V162215        0.999
+ V162216        0.999         0.999
+ V162217        0.999         0.999         1.000
+ V162218        0.999         0.999         0.999         1.000
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+    V161513
+      Category 1    0.565         1565.241
+      Category 2    0.435         1204.347
+    V161514
+      Category 1    0.715         1999.633
+      Category 2    0.285          797.804
+    V161515
+      Category 1    0.271          754.622
+      Category 2    0.729         2032.618
+    V161516
+      Category 1    0.317          882.451
+      Category 2    0.683         1903.293
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     SPENDING_EXTR         1.367       0.226       0.000   24.22%       0.000      1.000      1.000
+            2494.000       1.118      -1.161       3.000   18.24%       2.000      2.000
+     DEFENCE_EXTR          1.320       0.247       0.000   27.15%       0.000      1.000      1.000
+            2516.000       1.089      -1.119       3.000   16.57%       2.000      2.000
+     MEDICAL_EXTR          1.751      -0.281       0.000   18.57%       1.000      1.000      2.000
+            2574.000       1.262      -1.324       3.000   34.62%       2.000      3.000
+     GARANT_INC_EXTR       1.522       0.035       0.000   21.40%       0.000      1.000      1.000
+            2575.000       1.131      -1.234       3.000   22.72%       2.000      3.000
+     BLACKS_EXTR           1.646      -0.183       0.000   22.22%       0.000      1.000      2.000
+            2565.000       1.274      -1.357       3.000   28.42%       2.000      3.000
+     ENVIR_EXTR            1.679      -0.191       0.000   18.45%       1.000      1.000      2.000
+            2433.000       1.235      -1.325       3.000   30.29%       2.000      3.000
+     AFFIRM_EXTR           1.590      -0.194       0.000   34.58%       0.000      1.000      2.000
+            2814.000       1.638      -1.651       3.000   34.61%       2.000      3.000
+     WAGNER_AFF           29.061      -0.317       0.000    0.39%      14.941     26.886     29.801
+            2821.000     182.852      -0.902      49.651    0.04%      34.102     41.370
+     V162259               1.947      -0.141       0.000   14.30%       1.000      2.000      2.000
+            2825.000       1.263      -0.826       4.000    6.19%       2.000      3.000
+     V162260               2.271      -0.226       0.000    5.37%       1.000      2.000      2.000
+            2829.000       1.208      -0.930       4.000   10.71%       3.000      3.000
+     V162262               2.210      -0.213       0.000    7.21%       1.000      2.000      2.000
+            2829.000       1.173      -0.652       4.000   10.04%       3.000      3.000
+     V162264               2.462      -0.439       0.000    5.87%       1.000      2.000      3.000
+            2826.000       1.309      -0.691       4.000   19.04%       3.000      3.000
+     V162265               2.567      -0.569       0.000    3.82%       1.000      3.000      3.000
+            2830.000       1.107      -0.426       4.000   15.80%       3.000      3.000
+     V162267               1.590       0.249       0.000   23.80%       0.000      1.000      1.000
+            2823.000       1.456      -0.925       4.000    6.70%       2.000      3.000
+     V162256               1.886      -0.488       0.000    6.04%       1.000      2.000      2.000
+            2831.000       0.677      -0.175       3.000   24.09%       2.000      3.000
+     V162257               1.840      -0.207       0.000    4.24%       1.000      2.000      2.000
+            2830.000       0.613      -0.457       3.000   20.42%       2.000      3.000
+     V162215               2.435       0.512       1.000   19.59%       2.000      2.000      2.000
+            2828.000       1.175      -0.481       5.000    3.64%       3.000      3.000
+     V162216               2.763       0.199       1.000   15.55%       2.000      2.000      3.000
+            2829.000       1.520      -1.104       5.000    8.48%       3.000      4.000
+     V162217               3.233      -0.266       1.000    4.95%       2.000      3.000      3.000
+            2830.000       1.068      -0.665       5.000    9.43%       4.000      4.000
+     V162218               2.125       0.020       0.000    4.03%       1.000      2.000      2.000
+            2830.000       0.866      -0.109       4.000    7.70%       2.000      3.000
+     V161270              10.879      -0.145       1.000    0.04%       9.000     10.000     11.000
+            2831.000       5.618      -0.021      16.000    2.37%      13.000     13.000
+     V161361X             16.314      -0.392       1.000    5.44%       9.000     14.000     17.000
+            2831.000      64.128      -0.927      28.000    3.89%      20.000     24.000
+     V161267              46.947      -0.071      -9.000    1.10%      31.000     43.000     50.000
+            2831.000     331.076      -0.436      90.000    0.64%      55.000     66.000
+     V161241               0.658      -0.664       0.000   34.48%       0.000      1.000      1.000
+            2831.000       0.225      -1.559       1.000   65.52%       1.000      1.000
+     FEM                   0.515      -0.059       0.000   47.47%       0.000      0.000      1.000
+            2831.000       0.250      -1.997       1.000   52.53%       1.000      1.000
+     BLACK                 0.112       2.456       0.000   90.43%       0.000      0.000      0.000
+            2831.000       0.100       4.031       1.000    9.57%       0.000      0.000
+     ASIAN                 0.027       5.784       0.000   96.96%       0.000      0.000      0.000
+            2831.000       0.027      31.457       1.000    3.04%       0.000      0.000
+     HISP                  0.113       2.442       0.000   90.53%       0.000      0.000      0.000
+            2831.000       0.100       3.962       1.000    9.47%       0.000      0.000
+     OTHERR                0.040       4.718       0.000   95.97%       0.000      0.000      0.000
+            2831.000       0.038      20.256       1.000    4.03%       0.000      0.000
+     BERNIE                0.096       2.738       0.000   90.18%       0.000      0.000      0.000
+            2831.000       0.087       5.498       1.000    9.82%       0.000      0.000
+     PERC_POL              5.452      -0.256       0.000    8.69%       3.000      5.000      6.000
+            2831.000       9.314      -0.893      10.000   12.79%       7.000      8.000
+     ID_IDEN7             20.108       1.499       0.000   19.18%       1.000      1.000      2.000
+            2831.000    1400.477       0.253      95.000   16.85%       2.000      3.000
+     WEAK                  0.298       0.884       0.000   70.79%       0.000      0.000      0.000
+            2831.000       0.209      -1.218       1.000   29.21%       0.000      1.000
+     STRONG                0.439       0.247       0.000   56.59%       0.000      0.000      0.000
+            2831.000       0.246      -1.939       1.000   43.41%       1.000      1.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                      119
+
+Chi-Square Test of Model Fit
+
+          Value                           1594.561*
+          Degrees of Freedom                   537
+          P-Value                           0.0000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.026
+          90 Percent C.I.                    0.025  0.028
+          Probability RMSEA <= .05           1.000
+
+CFI/TLI
+
+          CFI                                0.674
+          TLI                                0.629
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           3857.568
+          Degrees of Freedom                   612
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.138
+
+Optimum Function Value for Weighted Least-Squares Estimator
+
+          Value                     0.50397391D+00
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ KN       BY
+    V161513            1.000      0.000    999.000    999.000
+    V161514            0.742      0.138      5.382      0.000
+    V161515            1.261      0.240      5.261      0.000
+    V161516            1.115      0.225      4.943      0.000
+
+ EFFE     BY
+    V162215            1.000      0.000    999.000    999.000
+    V162216            1.084      0.069     15.631      0.000
+
+ EFFI     BY
+    V162217            1.000      0.000    999.000    999.000
+    V162218            1.196      0.101     11.816      0.000
+
+ POL_INT  BY
+    V162256            1.000      0.000    999.000    999.000
+    V162257            0.984      0.044     22.322      0.000
+
+ POP      BY
+    V162259            1.000      0.000    999.000    999.000
+    V162260            2.360      0.198     11.890      0.000
+    V162262            1.670      0.154     10.818      0.000
+    V162264            1.158      0.119      9.733      0.000
+    V162265            1.869      0.168     11.111      0.000
+    V162267            0.578      0.082      7.076      0.000
+
+ EXT      BY
+    SPENDING_E         1.000      0.000    999.000    999.000
+    DEFENCE_EX         0.778      0.069     11.214      0.000
+    MEDICAL_EX         1.033      0.092     11.187      0.000
+    GARANT_INC         1.066      0.089     11.966      0.000
+    BLACKS_EXT         1.084      0.087     12.532      0.000
+    ENVIR_EXTR         0.611      0.070      8.736      0.000
+    AFFIRM_EXT         0.712      0.089      8.021      0.000
+
+ EXT      ON
+    POP                0.225      0.073      3.090      0.002
+    EFFI               0.399      0.170      2.352      0.019
+    EFFE              -0.009      0.034     -0.273      0.785
+    POL_INT           -0.057      0.084     -0.677      0.499
+    KN                -0.048      0.061     -0.788      0.431
+
+ EXT      ON
+    WEAK              -0.038      0.044     -0.863      0.388
+    STRONG             0.157      0.042      3.770      0.000
+    V161241            0.069      0.035      1.977      0.048
+    PERC_POL           0.042      0.006      6.620      0.000
+    ID_IDEN7           0.000      0.000      0.397      0.691
+    BERNIE             0.018      0.058      0.318      0.751
+    V161270           -0.013      0.008     -1.621      0.105
+    V161361X           0.000      0.003     -0.129      0.898
+    V161267           -0.002      0.001     -2.342      0.019
+    FEM               -0.101      0.033     -3.099      0.002
+    BLACK              0.025      0.063      0.391      0.696
+    ASIAN             -0.075      0.082     -0.908      0.364
+    HISP               0.008      0.050      0.165      0.869
+    OTHERR             0.243      0.084      2.882      0.004
+
+ WAGNER_A ON
+    POP                0.145      1.397      0.104      0.918
+    EFFI               5.923      2.739      2.162      0.031
+    EFFE              -0.882      0.615     -1.434      0.151
+    POL_INT            0.794      1.364      0.582      0.560
+    KN                -0.380      1.108     -0.343      0.732
+
+ WAGNER_A ON
+    WEAK               0.832      0.768      1.084      0.278
+    STRONG             9.658      0.745     12.970      0.000
+    V161241           -1.323      0.521     -2.537      0.011
+    PERC_POL           1.051      0.095     11.082      0.000
+    ID_IDEN7           0.012      0.008      1.628      0.104
+    BERNIE            -2.157      0.995     -2.168      0.030
+    V161270            0.088      0.138      0.640      0.522
+    V161361X          -0.049      0.038     -1.268      0.205
+    V161267            0.068      0.015      4.505      0.000
+    FEM                0.689      0.515      1.336      0.182
+    BLACK              0.941      1.183      0.796      0.426
+    ASIAN             -2.615      1.518     -1.723      0.085
+    HISP               2.064      0.824      2.505      0.012
+    OTHERR             1.443      1.300      1.111      0.267
+
+ EFFE     WITH
+    KN                -0.010      0.019     -0.511      0.609
+
+ EFFI     WITH
+    KN                 0.111      0.022      5.059      0.000
+    EFFE               0.049      0.015      3.305      0.001
+
+ POL_INT  WITH
+    KN                 0.115      0.020      5.868      0.000
+    EFFE               0.053      0.015      3.654      0.000
+    EFFI               0.184      0.015     12.438      0.000
+
+ POP      WITH
+    KN                -0.008      0.009     -0.900      0.368
+    EFFE              -0.175      0.018     -9.839      0.000
+    EFFI              -0.013      0.006     -2.183      0.029
+    POL_INT           -0.013      0.006     -2.168      0.030
+
+ WAGNER_A WITH
+    EXT                0.655      0.169      3.868      0.000
+
+ V162259  WITH
+    V162267            0.199      0.022      8.895      0.000
+
+ V162260  WITH
+    V162264           -0.097      0.021     -4.534      0.000
+
+ V162262  WITH
+    V162265            0.043      0.021      2.039      0.041
+
+ Intercepts
+    SPENDING_E         1.350      0.177      7.617      0.000
+    DEFENCE_EX         1.543      0.168      9.200      0.000
+    MEDICAL_EX         1.536      0.165      9.338      0.000
+    GARANT_INC         1.570      0.148     10.604      0.000
+    BLACKS_EXT         1.914      0.180     10.626      0.000
+    ENVIR_EXTR         1.236      0.185      6.678      0.000
+    AFFIRM_EXT         1.106      0.173      6.376      0.000
+    WAGNER_AFF        15.665      1.934      8.100      0.000
+    V162259            2.928      0.161     18.161      0.000
+    V162260            3.116      0.168     18.567      0.000
+    V162262            2.579      0.155     16.618      0.000
+    V162264            2.938      0.174     16.896      0.000
+    V162265            3.244      0.138     23.579      0.000
+    V162267            2.789      0.182     15.348      0.000
+    V162256            0.965      0.111      8.662      0.000
+    V162257            1.068      0.106     10.055      0.000
+    V162215            1.964      0.171     11.512      0.000
+    V162216            1.978      0.211      9.387      0.000
+    V162217            2.337      0.159     14.677      0.000
+    V162218            1.363      0.144      9.437      0.000
+
+ Thresholds
+    V161513$1          1.665      0.240      6.934      0.000
+    V161514$1          1.526      0.215      7.111      0.000
+    V161515$1          1.049      0.269      3.903      0.000
+    V161516$1          0.750      0.259      2.899      0.004
+
+ Variances
+    KN                 0.313      0.085      3.675      0.000
+    EFFE               0.657      0.064     10.307      0.000
+    EFFI               0.165      0.021      7.990      0.000
+    POL_INT            0.367      0.022     16.333      0.000
+    POP                0.125      0.019      6.507      0.000
+
+ Residual Variances
+    SPENDING_E         0.771      0.040     19.240      0.000
+    DEFENCE_EX         0.864      0.041     20.924      0.000
+    MEDICAL_EX         0.887      0.043     20.584      0.000
+    GARANT_INC         0.753      0.037     20.577      0.000
+    BLACKS_EXT         0.869      0.043     20.239      0.000
+    ENVIR_EXTR         1.032      0.050     20.438      0.000
+    AFFIRM_EXT         1.418      0.103     13.808      0.000
+    WAGNER_AFF       134.147      4.779     28.071      0.000
+    V161513            1.000      0.000    999.000    999.000
+    V161514            1.000      0.000    999.000    999.000
+    V161515            1.000      0.000    999.000    999.000
+    V161516            1.000      0.000    999.000    999.000
+    V162259            0.987      0.039     25.133      0.000
+    V162260            0.466      0.031     14.924      0.000
+    V162262            0.787      0.030     26.205      0.000
+    V162264            1.112      0.044     25.426      0.000
+    V162265            0.611      0.028     21.547      0.000
+    V162267            1.264      0.050     25.367      0.000
+    V162256            0.214      0.015     14.640      0.000
+    V162257            0.178      0.013     13.184      0.000
+    V162215            0.492      0.032     15.222      0.000
+    V162216            0.713      0.036     19.974      0.000
+    V162217            0.812      0.030     27.303      0.000
+    V162218            0.543      0.025     21.895      0.000
+    EXT                0.282      0.036      7.814      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.259E-07
+       (ratio of smallest to largest eigenvalue)
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Sample proportions, estimated and conditional estimated probabilities
+  Item characteristic curves
+  Information curves
+
+     Beginning Time:  11:59:41
+        Ending Time:  11:59:43
+       Elapsed Time:  00:00:02
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

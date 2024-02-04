@@ -1,0 +1,1610 @@
+Mplus VERSION 8.4 (Mac)
+MUTHEN & MUTHEN
+02/03/2024  11:51 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  BASE 3;
+  DATA:
+  FILE = "invariance_politics.dat";
+
+  VARIABLE:
+  NAMES = PID_2_DEM V162256 V162257 V162215 V162216 V162217 V162218 V160201 V160102;
+   MISSING=.;
+   USEVARIABLES = PID_2_DEM
+  V162256 V162257 V162215
+  V162216 V162217 V162218
+  V160201 V160102 ;
+  CLUSTER = V160201;
+
+      GROUPING = PID_2_DEM (1=rep 2=dem);
+      WEIGHT=V160102;
+
+  ANALYSIS:
+  TYPE = COMPLEX;
+               ESTIMATOR IS MLR;
+               MODEL = CONFIGURAL METRIC SCALAR;
+
+  MODEL:
+
+
+    ! political interest
+    pol_int BY V162256;
+    pol_int BY V162257;
+
+    ! external efficacy
+    EFFE BY V162215;
+    EFFE BY V162216;
+
+    ! internal  efficacy
+
+    EFFI BY V162217;
+    EFFI BY V162218;
+    ! allow residual covariance
+    V162217  WITH V162216;
+    ! same variance to avoid convergence issues
+    V162215 (v1);
+    V162216 (v1);
+
+
+  OUTPUT:
+  STANDARDIZED;FSCOEFFICIENT;MODINDICES;
+  SAVEDATA:
+
+    FILE IS measurement_fscores.dat;
+    SAVE IS fscores;
+    FORMAT IS free;
+
+
+
+*** WARNING in OUTPUT command
+  MODINDICES option is not available when performing measurement invariance
+  testing with multiple models with the MODEL option of the ANALYSIS command.
+  Request for MODINDICES is ignored.
+*** WARNING in SAVEDATA command
+  Factor scores cannot be computed when performing measurement invariance testing
+  of multiple models using the MODEL option of the ANALYSIS command.
+  Request to save FSCORES is ignored.
+*** WARNING in OUTPUT command
+  STANDARDIZED (STD, STDY, STDYX) options are not available when performing measurement
+  invariance testing with multiple models with the MODEL option of the ANALYSIS command.
+  Request for STANDARDIZED (STD, STDY, STDYX) is ignored.
+*** WARNING in OUTPUT command
+  FSCOEFFICIENT option is not available when performing measurement invariance
+  testing with multiple models with the MODEL option of the ANALYSIS command.
+  Request for FSCOEFFICIENT is ignored.
+*** WARNING
+  Data set contains unknown or missing values for GROUPING,
+  PATTERN, COHORT, CLUSTER and/or STRATIFICATION variables.
+  Number of cases with unknown or missing values:  602
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  512
+   6 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+BASE 3;
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 2
+Number of observations
+   Group REP                                                  1480
+   Group DEM                                                  1676
+   Total sample size                                          3156
+
+Number of dependent variables                                    6
+Number of independent variables                                  0
+Number of continuous latent variables                            3
+
+Observed dependent variables
+
+  Continuous
+   V162256     V162257     V162215     V162216     V162217     V162218
+
+Continuous latent variables
+   POL_INT     EFFE        EFFI
+
+Variables with special functions
+
+  Grouping variable     PID_2_DE
+  Cluster variable      V160201
+  Weight variable       V160102
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  invariance_politics.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+   Group REP
+     Number of missing data patterns             7
+     Number of clusters                        132
+
+
+   Group DEM
+     Number of missing data patterns             8
+     Number of clusters                        132
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR REP
+
+
+           Covariance Coverage
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+ V162256        0.998
+ V162257        0.998         0.998
+ V162215        0.996         0.996         0.998
+ V162216        0.996         0.996         0.997         0.998
+ V162217        0.995         0.995         0.995         0.995         0.996
+ V162218        0.998         0.998         0.997         0.997         0.996
+
+
+           Covariance Coverage
+              V162218
+              ________
+ V162218        0.999
+
+
+     PROPORTION OF DATA PRESENT FOR DEM
+
+
+           Covariance Coverage
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+ V162256        0.999
+ V162257        0.998         0.998
+ V162215        0.997         0.996         0.998
+ V162216        0.996         0.995         0.997         0.997
+ V162217        0.997         0.996         0.998         0.997         0.998
+ V162218        0.997         0.996         0.998         0.997         0.998
+
+
+           Covariance Coverage
+              V162218
+              ________
+ V162218        0.998
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS FOR REP
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     V162256               1.888      -0.501       0.000    5.69%       1.000      2.000      2.000
+            1477.000       0.638      -0.038       3.000   22.68%       2.000      3.000
+     V162257               1.806      -0.214       0.000    4.13%       1.000      2.000      2.000
+            1477.000       0.604      -0.378       3.000   18.96%       2.000      2.000
+     V162215               2.468       0.501       1.000   19.23%       2.000      2.000      2.000
+            1477.000       1.233      -0.526       5.000    4.40%       3.000      4.000
+     V162216               2.777       0.199       1.000   14.62%       2.000      2.000      3.000
+            1477.000       1.543      -1.123       5.000    9.00%       3.000      4.000
+     V162217               3.215      -0.182       1.000    3.93%       2.000      3.000      3.000
+            1474.000       1.041      -0.718       5.000    9.23%       4.000      4.000
+     V162218               2.134      -0.002       0.000    4.33%       1.000      2.000      2.000
+            1478.000       0.882      -0.063       4.000    8.32%       2.000      3.000
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS FOR DEM
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     V162256               1.864      -0.452       0.000    6.63%       1.000      2.000      2.000
+            1674.000       0.729      -0.359       3.000   25.21%       2.000      3.000
+     V162257               1.842      -0.222       0.000    4.96%       1.000      2.000      2.000
+            1672.000       0.647      -0.520       3.000   21.77%       2.000      3.000
+     V162215               2.397       0.506       1.000   20.92%       1.000      2.000      2.000
+            1673.000       1.150      -0.508       5.000    3.17%       2.000      3.000
+     V162216               2.730       0.219       1.000   17.30%       2.000      2.000      2.000
+            1671.000       1.542      -1.094       5.000    8.44%       3.000      4.000
+     V162217               3.209      -0.273       1.000    5.92%       2.000      3.000      3.000
+            1673.000       1.100      -0.668       5.000    9.38%       4.000      4.000
+     V162218               2.087       0.047       0.000    4.36%       1.000      2.000      2.000
+            1673.000       0.867      -0.148       4.000    7.23%       2.000      3.000
+
+MODEL FIT INFORMATION
+
+Invariance Testing
+
+                   Number of                   Degrees of
+     Model        Parameters      Chi-Square    Freedom     P-Value
+
+     Configural        41            111.923        13       0.0000
+     Metric            38            117.810        16       0.0000
+     Scalar            35            122.037        19       0.0000
+
+                                               Degrees of
+     Models Compared              Chi-Square    Freedom     P-Value
+
+     Metric against Configural         2.062         3       0.5596
+     Scalar against Configural         7.429         6       0.2830
+     Scalar against Metric             5.028         3       0.1698
+
+
+MODEL FIT INFORMATION FOR THE CONFIGURAL MODEL
+
+Number of Free Parameters                       41
+
+Loglikelihood
+
+          H0 Value                      -24045.334
+          H0 Scaling Correction Factor      1.7142
+            for MLR
+          H1 Value                      -23955.428
+          H1 Scaling Correction Factor      1.6883
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   48172.668
+          Bayesian (BIC)                 48421.007
+          Sample-Size Adjusted BIC       48290.733
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                            111.923*
+          Degrees of Freedom                    13
+          P-Value                           0.0000
+          Scaling Correction Factor         1.6066
+            for MLR
+
+Chi-Square Contribution and P-Value From Each Group (degrees of freedom = 6)
+
+          REP                               48.159     0.000
+          DEM                               63.764     0.000
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.069
+          90 Percent C.I.                    0.058  0.082
+          Probability RMSEA <= .05           0.003
+
+CFI/TLI
+
+          CFI                                0.958
+          TLI                                0.903
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           2383.754
+          Degrees of Freedom                    30
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.044
+
+
+MODEL FIT INFORMATION FOR THE METRIC MODEL
+
+Number of Free Parameters                       38
+
+Loglikelihood
+
+          H0 Value                      -24046.674
+          H0 Scaling Correction Factor      1.7470
+            for MLR
+          H1 Value                      -23955.428
+          H1 Scaling Correction Factor      1.6883
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   48169.348
+          Bayesian (BIC)                 48399.516
+          Sample-Size Adjusted BIC       48278.774
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                            117.810*
+          Degrees of Freedom                    16
+          P-Value                           0.0000
+          Scaling Correction Factor         1.5490
+            for MLR
+
+Chi-Square Contribution From Each Group
+
+          REP                               50.773
+          DEM                               67.036
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.064
+          90 Percent C.I.                    0.053  0.074
+          Probability RMSEA <= .05           0.018
+
+CFI/TLI
+
+          CFI                                0.957
+          TLI                                0.919
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           2383.754
+          Degrees of Freedom                    30
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.045
+
+
+MODEL FIT INFORMATION FOR THE SCALAR MODEL
+
+Number of Free Parameters                       35
+
+Loglikelihood
+
+          H0 Value                      -24050.787
+          H0 Scaling Correction Factor      1.7565
+            for MLR
+          H1 Value                      -23955.428
+          H1 Scaling Correction Factor      1.6883
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   48171.574
+          Bayesian (BIC)                 48383.571
+          Sample-Size Adjusted BIC       48272.361
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                            122.037*
+          Degrees of Freedom                    19
+          P-Value                           0.0000
+          Scaling Correction Factor         1.5628
+            for MLR
+
+Chi-Square Contribution From Each Group
+
+          REP                               53.015
+          DEM                               69.022
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.059
+          90 Percent C.I.                    0.049  0.069
+          Probability RMSEA <= .05           0.071
+
+CFI/TLI
+
+          CFI                                0.956
+          TLI                                0.931
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           2383.754
+          Degrees of Freedom                    30
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.045
+
+
+
+MODEL RESULTS FOR THE CONFIGURAL MODEL
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ POL_INT  BY
+    V162256            1.000      0.000    999.000    999.000
+    V162257            0.992      0.048     20.751      0.000
+
+ EFFE     BY
+    V162215            1.000      0.000    999.000    999.000
+    V162216            1.204      0.058     20.752      0.000
+
+ EFFI     BY
+    V162217            1.000      0.000    999.000    999.000
+    V162218            1.492      0.147     10.118      0.000
+
+ EFFE     WITH
+    POL_INT            0.037      0.024      1.575      0.115
+
+ EFFI     WITH
+    POL_INT            0.237      0.025      9.556      0.000
+    EFFE               0.047      0.026      1.840      0.066
+
+ V162217  WITH
+    V162216            0.168      0.034      4.900      0.000
+
+ Means
+    POL_INT            0.000      0.000    999.000    999.000
+    EFFE               0.000      0.000    999.000    999.000
+    EFFI               0.000      0.000    999.000    999.000
+
+ Intercepts
+    V162256            1.888      0.027     70.892      0.000
+    V162257            1.806      0.024     76.099      0.000
+    V162215            2.469      0.038     65.577      0.000
+    V162216            2.776      0.041     68.097      0.000
+    V162217            3.215      0.033     96.189      0.000
+    V162218            2.133      0.031     68.329      0.000
+
+ Variances
+    POL_INT            0.430      0.033     13.006      0.000
+    EFFE               0.611      0.066      9.288      0.000
+    EFFI               0.212      0.034      6.283      0.000
+
+ Residual Variances
+    V162256            0.208      0.022      9.255      0.000
+    V162257            0.181      0.022      8.181      0.000
+    V162215            0.629      0.027     23.669      0.000
+    V162216            0.629      0.027     23.669      0.000
+    V162217            0.818      0.042     19.497      0.000
+    V162218            0.410      0.056      7.283      0.000
+
+Group DEM
+
+ POL_INT  BY
+    V162256            1.000      0.000    999.000    999.000
+    V162257            0.971      0.052     18.543      0.000
+
+ EFFE     BY
+    V162215            1.000      0.000    999.000    999.000
+    V162216            1.310      0.057     22.875      0.000
+
+ EFFI     BY
+    V162217            1.000      0.000    999.000    999.000
+    V162218            1.356      0.180      7.544      0.000
+
+ EFFE     WITH
+    POL_INT            0.101      0.020      5.183      0.000
+
+ EFFI     WITH
+    POL_INT            0.226      0.030      7.421      0.000
+    EFFE               0.025      0.020      1.236      0.217
+
+ V162217  WITH
+    V162216            0.219      0.040      5.482      0.000
+
+ Means
+    POL_INT            0.000      0.000    999.000    999.000
+    EFFE               0.000      0.000    999.000    999.000
+    EFFI               0.000      0.000    999.000    999.000
+
+ Intercepts
+    V162256            1.863      0.026     71.580      0.000
+    V162257            1.840      0.024     77.146      0.000
+    V162215            2.397      0.032     74.651      0.000
+    V162216            2.729      0.032     84.257      0.000
+    V162217            3.209      0.032    101.224      0.000
+    V162218            2.086      0.028     74.379      0.000
+
+ Variances
+    POL_INT            0.499      0.033     15.319      0.000
+    EFFE               0.503      0.049     10.285      0.000
+    EFFI               0.183      0.039      4.685      0.000
+
+ Residual Variances
+    V162256            0.230      0.027      8.633      0.000
+    V162257            0.176      0.031      5.697      0.000
+    V162215            0.629      0.027     23.669      0.000
+    V162216            0.629      0.027     23.669      0.000
+    V162217            0.908      0.047     19.384      0.000
+    V162218            0.531      0.051     10.393      0.000
+
+
+MODEL RESULTS FOR THE METRIC MODEL
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ POL_INT  BY
+    V162256            1.000      0.000    999.000    999.000
+    V162257            0.984      0.036     27.437      0.000
+
+ EFFE     BY
+    V162215            1.000      0.000    999.000    999.000
+    V162216            1.255      0.043     29.150      0.000
+
+ EFFI     BY
+    V162217            1.000      0.000    999.000    999.000
+    V162218            1.440      0.124     11.615      0.000
+
+ EFFE     WITH
+    POL_INT            0.038      0.023      1.670      0.095
+
+ EFFI     WITH
+    POL_INT            0.245      0.023     10.658      0.000
+    EFFE               0.050      0.025      2.026      0.043
+
+ V162217  WITH
+    V162216            0.168      0.036      4.694      0.000
+
+ Means
+    POL_INT            0.000      0.000    999.000    999.000
+    EFFE               0.000      0.000    999.000    999.000
+    EFFI               0.000      0.000    999.000    999.000
+
+ Intercepts
+    V162256            1.888      0.027     70.892      0.000
+    V162257            1.806      0.024     76.098      0.000
+    V162215            2.469      0.038     65.584      0.000
+    V162216            2.776      0.041     68.096      0.000
+    V162217            3.215      0.033     96.185      0.000
+    V162218            2.133      0.031     68.329      0.000
+
+ Variances
+    POL_INT            0.434      0.028     15.316      0.000
+    EFFE               0.581      0.054     10.697      0.000
+    EFFI               0.222      0.033      6.840      0.000
+
+ Residual Variances
+    V162256            0.206      0.020     10.132      0.000
+    V162257            0.183      0.019      9.395      0.000
+    V162215            0.630      0.027     23.706      0.000
+    V162216            0.630      0.027     23.706      0.000
+    V162217            0.814      0.041     19.754      0.000
+    V162218            0.418      0.053      7.957      0.000
+
+Group DEM
+
+ POL_INT  BY
+    V162256            1.000      0.000    999.000    999.000
+    V162257            0.984      0.036     27.437      0.000
+
+ EFFE     BY
+    V162215            1.000      0.000    999.000    999.000
+    V162216            1.255      0.043     29.150      0.000
+
+ EFFI     BY
+    V162217            1.000      0.000    999.000    999.000
+    V162218            1.440      0.124     11.615      0.000
+
+ EFFE     WITH
+    POL_INT            0.101      0.019      5.290      0.000
+
+ EFFI     WITH
+    POL_INT            0.214      0.021     10.150      0.000
+    EFFE               0.021      0.018      1.180      0.238
+
+ V162217  WITH
+    V162216            0.218      0.038      5.704      0.000
+
+ Means
+    POL_INT            0.000      0.000    999.000    999.000
+    EFFE               0.000      0.000    999.000    999.000
+    EFFI               0.000      0.000    999.000    999.000
+
+ Intercepts
+    V162256            1.863      0.026     71.579      0.000
+    V162257            1.840      0.024     77.142      0.000
+    V162215            2.397      0.032     74.651      0.000
+    V162216            2.729      0.032     84.252      0.000
+    V162217            3.209      0.032    101.226      0.000
+    V162218            2.086      0.028     74.372      0.000
+
+ Variances
+    POL_INT            0.492      0.028     17.831      0.000
+    EFFE               0.530      0.044     12.138      0.000
+    EFFI               0.170      0.028      5.975      0.000
+
+ Residual Variances
+    V162256            0.235      0.025      9.291      0.000
+    V162257            0.171      0.026      6.714      0.000
+    V162215            0.630      0.027     23.706      0.000
+    V162216            0.630      0.027     23.706      0.000
+    V162217            0.914      0.041     22.123      0.000
+    V162218            0.518      0.049     10.600      0.000
+
+
+MODEL RESULTS FOR THE SCALAR MODEL
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ POL_INT  BY
+    V162256            1.000      0.000    999.000    999.000
+    V162257            0.985      0.036     27.361      0.000
+
+ EFFE     BY
+    V162215            1.000      0.000    999.000    999.000
+    V162216            1.254      0.043     28.995      0.000
+
+ EFFI     BY
+    V162217            1.000      0.000    999.000    999.000
+    V162218            1.443      0.124     11.662      0.000
+
+ EFFE     WITH
+    POL_INT            0.038      0.023      1.667      0.096
+
+ EFFI     WITH
+    POL_INT            0.245      0.023     10.674      0.000
+    EFFE               0.050      0.025      2.021      0.043
+
+ V162217  WITH
+    V162216            0.168      0.036      4.689      0.000
+
+ Means
+    POL_INT            0.000      0.000    999.000    999.000
+    EFFE               0.000      0.000    999.000    999.000
+    EFFI               0.000      0.000    999.000    999.000
+
+ Intercepts
+    V162256            1.872      0.025     74.532      0.000
+    V162257            1.820      0.023     79.962      0.000
+    V162215            2.459      0.033     73.719      0.000
+    V162216            2.786      0.040     69.214      0.000
+    V162217            3.226      0.027    121.615      0.000
+    V162218            2.130      0.031     69.618      0.000
+
+ Variances
+    POL_INT            0.433      0.028     15.496      0.000
+    EFFE               0.582      0.055     10.664      0.000
+    EFFI               0.222      0.032      6.840      0.000
+
+ Residual Variances
+    V162256            0.207      0.020     10.130      0.000
+    V162257            0.183      0.019      9.404      0.000
+    V162215            0.630      0.027     23.707      0.000
+    V162216            0.630      0.027     23.707      0.000
+    V162217            0.815      0.041     19.656      0.000
+    V162218            0.417      0.052      7.951      0.000
+
+Group DEM
+
+ POL_INT  BY
+    V162256            1.000      0.000    999.000    999.000
+    V162257            0.985      0.036     27.361      0.000
+
+ EFFE     BY
+    V162215            1.000      0.000    999.000    999.000
+    V162216            1.254      0.043     28.995      0.000
+
+ EFFI     BY
+    V162217            1.000      0.000    999.000    999.000
+    V162218            1.443      0.124     11.662      0.000
+
+ EFFE     WITH
+    POL_INT            0.101      0.019      5.294      0.000
+
+ EFFI     WITH
+    POL_INT            0.213      0.021     10.122      0.000
+    EFFE               0.020      0.018      1.170      0.242
+
+ V162217  WITH
+    V162216            0.218      0.038      5.723      0.000
+
+ Means
+    POL_INT            0.008      0.034      0.232      0.816
+    EFFE              -0.053      0.039     -1.344      0.179
+    EFFI              -0.028      0.025     -1.113      0.266
+
+ Intercepts
+    V162256            1.872      0.025     74.532      0.000
+    V162257            1.820      0.023     79.962      0.000
+    V162215            2.459      0.033     73.719      0.000
+    V162216            2.786      0.040     69.214      0.000
+    V162217            3.226      0.027    121.615      0.000
+    V162218            2.130      0.031     69.618      0.000
+
+ Variances
+    POL_INT            0.492      0.028     17.649      0.000
+    EFFE               0.531      0.044     12.168      0.000
+    EFFI               0.169      0.028      6.001      0.000
+
+ Residual Variances
+    V162256            0.236      0.025      9.261      0.000
+    V162257            0.171      0.026      6.708      0.000
+    V162215            0.630      0.027     23.707      0.000
+    V162216            0.630      0.027     23.707      0.000
+    V162217            0.915      0.041     22.285      0.000
+    V162218            0.518      0.049     10.551      0.000
+
+
+QUALITY OF NUMERICAL RESULTS FOR THE CONFIGURAL MODEL
+
+     Condition Number for the Information Matrix              0.170E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+QUALITY OF NUMERICAL RESULTS FOR THE METRIC MODEL
+
+     Condition Number for the Information Matrix              0.363E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+QUALITY OF NUMERICAL RESULTS FOR THE SCALAR MODEL
+
+     Condition Number for the Information Matrix              0.360E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+TECHNICAL 1 OUTPUT FOR THE CONFIGURAL MODEL
+
+
+     PARAMETER SPECIFICATION FOR REP
+
+
+           NU
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+                  1             2             3             4             5
+
+
+           NU
+              V162218
+              ________
+                  6
+
+
+           LAMBDA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ V162256            0             0             0
+ V162257            7             0             0
+ V162215            0             0             0
+ V162216            0             8             0
+ V162217            0             0             0
+ V162218            0             0             9
+
+
+           THETA
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+ V162256           10
+ V162257            0            11
+ V162215            0             0            12
+ V162216            0             0             0            12
+ V162217            0             0             0            13            14
+ V162218            0             0             0             0             0
+
+
+           THETA
+              V162218
+              ________
+ V162218           15
+
+
+           ALPHA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+                  0             0             0
+
+
+           BETA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT            0             0             0
+ EFFE               0             0             0
+ EFFI               0             0             0
+
+
+           PSI
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT           16
+ EFFE              17            18
+ EFFI              19            20            21
+
+
+     PARAMETER SPECIFICATION FOR DEM
+
+
+           NU
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+                 22            23            24            25            26
+
+
+           NU
+              V162218
+              ________
+                 27
+
+
+           LAMBDA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ V162256            0             0             0
+ V162257           28             0             0
+ V162215            0             0             0
+ V162216            0            29             0
+ V162217            0             0             0
+ V162218            0             0            30
+
+
+           THETA
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+ V162256           31
+ V162257            0            32
+ V162215            0             0            12
+ V162216            0             0             0            12
+ V162217            0             0             0            33            34
+ V162218            0             0             0             0             0
+
+
+           THETA
+              V162218
+              ________
+ V162218           35
+
+
+           ALPHA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+                  0             0             0
+
+
+           BETA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT            0             0             0
+ EFFE               0             0             0
+ EFFI               0             0             0
+
+
+           PSI
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT           36
+ EFFE              37            38
+ EFFI              39            40            41
+
+
+     STARTING VALUES FOR REP
+
+
+           NU
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+                1.888         1.806         2.468         2.777         3.215
+
+
+           NU
+              V162218
+              ________
+                2.134
+
+
+           LAMBDA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ V162256        1.000         0.000         0.000
+ V162257        0.668         0.000         0.000
+ V162215        0.000         1.000         0.000
+ V162216        0.000         0.631         0.000
+ V162217        0.000         0.000         1.000
+ V162218        0.000         0.000         0.313
+
+
+           THETA
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+ V162256        0.319
+ V162257        0.000         0.302
+ V162215        0.000         0.000         0.616
+ V162216        0.000         0.000         0.000         0.771
+ V162217        0.000         0.000         0.000         0.000         0.521
+ V162218        0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              V162218
+              ________
+ V162218        0.441
+
+
+           ALPHA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           BETA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT        0.000         0.000         0.000
+ EFFE           0.000         0.000         0.000
+ EFFI           0.000         0.000         0.000
+
+
+           PSI
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT        0.050
+ EFFE           0.000         0.050
+ EFFI           0.000         0.000         0.050
+
+
+     STARTING VALUES FOR DEM
+
+
+           NU
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+                1.888         1.806         2.468         2.777         3.215
+
+
+           NU
+              V162218
+              ________
+                2.134
+
+
+           LAMBDA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ V162256        1.000         0.000         0.000
+ V162257        0.665         0.000         0.000
+ V162215        0.000         1.000         0.000
+ V162216        0.000         0.608         0.000
+ V162217        0.000         0.000         1.000
+ V162218        0.000         0.000         0.230
+
+
+           THETA
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+ V162256        0.319
+ V162257        0.000         0.302
+ V162215        0.000         0.000         0.616
+ V162216        0.000         0.000         0.000         0.771
+ V162217        0.000         0.000         0.000         0.000         0.521
+ V162218        0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              V162218
+              ________
+ V162218        0.441
+
+
+           ALPHA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           BETA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT        0.000         0.000         0.000
+ EFFE           0.000         0.000         0.000
+ EFFI           0.000         0.000         0.000
+
+
+           PSI
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT        0.050
+ EFFE           0.000         0.050
+ EFFI           0.000         0.000         0.050
+
+
+TECHNICAL 1 OUTPUT FOR THE METRIC MODEL
+
+
+     PARAMETER SPECIFICATION FOR REP
+
+
+           NU
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+                  1             2             3             4             5
+
+
+           NU
+              V162218
+              ________
+                  6
+
+
+           LAMBDA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ V162256            0             0             0
+ V162257            7             0             0
+ V162215            0             0             0
+ V162216            0             8             0
+ V162217            0             0             0
+ V162218            0             0             9
+
+
+           THETA
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+ V162256           10
+ V162257            0            11
+ V162215            0             0            12
+ V162216            0             0             0            12
+ V162217            0             0             0            13            14
+ V162218            0             0             0             0             0
+
+
+           THETA
+              V162218
+              ________
+ V162218           15
+
+
+           ALPHA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+                  0             0             0
+
+
+           BETA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT            0             0             0
+ EFFE               0             0             0
+ EFFI               0             0             0
+
+
+           PSI
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT           16
+ EFFE              17            18
+ EFFI              19            20            21
+
+
+     PARAMETER SPECIFICATION FOR DEM
+
+
+           NU
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+                 22            23            24            25            26
+
+
+           NU
+              V162218
+              ________
+                 27
+
+
+           LAMBDA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ V162256            0             0             0
+ V162257            7             0             0
+ V162215            0             0             0
+ V162216            0             8             0
+ V162217            0             0             0
+ V162218            0             0             9
+
+
+           THETA
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+ V162256           28
+ V162257            0            29
+ V162215            0             0            12
+ V162216            0             0             0            12
+ V162217            0             0             0            30            31
+ V162218            0             0             0             0             0
+
+
+           THETA
+              V162218
+              ________
+ V162218           32
+
+
+           ALPHA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+                  0             0             0
+
+
+           BETA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT            0             0             0
+ EFFE               0             0             0
+ EFFI               0             0             0
+
+
+           PSI
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT           33
+ EFFE              34            35
+ EFFI              36            37            38
+
+
+     STARTING VALUES FOR REP
+
+
+           NU
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+                1.888         1.806         2.468         2.777         3.215
+
+
+           NU
+              V162218
+              ________
+                2.134
+
+
+           LAMBDA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ V162256        1.000         0.000         0.000
+ V162257        0.668         0.000         0.000
+ V162215        0.000         1.000         0.000
+ V162216        0.000         0.631         0.000
+ V162217        0.000         0.000         1.000
+ V162218        0.000         0.000         0.313
+
+
+           THETA
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+ V162256        0.319
+ V162257        0.000         0.302
+ V162215        0.000         0.000         0.616
+ V162216        0.000         0.000         0.000         0.771
+ V162217        0.000         0.000         0.000         0.000         0.521
+ V162218        0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              V162218
+              ________
+ V162218        0.441
+
+
+           ALPHA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           BETA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT        0.000         0.000         0.000
+ EFFE           0.000         0.000         0.000
+ EFFI           0.000         0.000         0.000
+
+
+           PSI
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT        0.050
+ EFFE           0.000         0.050
+ EFFI           0.000         0.000         0.050
+
+
+     STARTING VALUES FOR DEM
+
+
+           NU
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+                1.888         1.806         2.468         2.777         3.215
+
+
+           NU
+              V162218
+              ________
+                2.134
+
+
+           LAMBDA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ V162256        1.000         0.000         0.000
+ V162257        0.665         0.000         0.000
+ V162215        0.000         1.000         0.000
+ V162216        0.000         0.608         0.000
+ V162217        0.000         0.000         1.000
+ V162218        0.000         0.000         0.230
+
+
+           THETA
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+ V162256        0.319
+ V162257        0.000         0.302
+ V162215        0.000         0.000         0.616
+ V162216        0.000         0.000         0.000         0.771
+ V162217        0.000         0.000         0.000         0.000         0.521
+ V162218        0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              V162218
+              ________
+ V162218        0.441
+
+
+           ALPHA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           BETA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT        0.000         0.000         0.000
+ EFFE           0.000         0.000         0.000
+ EFFI           0.000         0.000         0.000
+
+
+           PSI
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT        0.050
+ EFFE           0.000         0.050
+ EFFI           0.000         0.000         0.050
+
+
+TECHNICAL 1 OUTPUT FOR THE SCALAR MODEL
+
+
+     PARAMETER SPECIFICATION FOR REP
+
+
+           NU
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+                  1             2             3             4             5
+
+
+           NU
+              V162218
+              ________
+                  6
+
+
+           LAMBDA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ V162256            0             0             0
+ V162257            7             0             0
+ V162215            0             0             0
+ V162216            0             8             0
+ V162217            0             0             0
+ V162218            0             0             9
+
+
+           THETA
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+ V162256           10
+ V162257            0            11
+ V162215            0             0            12
+ V162216            0             0             0            12
+ V162217            0             0             0            13            14
+ V162218            0             0             0             0             0
+
+
+           THETA
+              V162218
+              ________
+ V162218           15
+
+
+           ALPHA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+                  0             0             0
+
+
+           BETA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT            0             0             0
+ EFFE               0             0             0
+ EFFI               0             0             0
+
+
+           PSI
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT           16
+ EFFE              17            18
+ EFFI              19            20            21
+
+
+     PARAMETER SPECIFICATION FOR DEM
+
+
+           NU
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+                  1             2             3             4             5
+
+
+           NU
+              V162218
+              ________
+                  6
+
+
+           LAMBDA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ V162256            0             0             0
+ V162257            7             0             0
+ V162215            0             0             0
+ V162216            0             8             0
+ V162217            0             0             0
+ V162218            0             0             9
+
+
+           THETA
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+ V162256           22
+ V162257            0            23
+ V162215            0             0            12
+ V162216            0             0             0            12
+ V162217            0             0             0            24            25
+ V162218            0             0             0             0             0
+
+
+           THETA
+              V162218
+              ________
+ V162218           26
+
+
+           ALPHA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+                 27            28            29
+
+
+           BETA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT            0             0             0
+ EFFE               0             0             0
+ EFFI               0             0             0
+
+
+           PSI
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT           30
+ EFFE              31            32
+ EFFI              33            34            35
+
+
+     STARTING VALUES FOR REP
+
+
+           NU
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+                1.888         1.806         2.468         2.777         3.215
+
+
+           NU
+              V162218
+              ________
+                2.134
+
+
+           LAMBDA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ V162256        1.000         0.000         0.000
+ V162257        0.668         0.000         0.000
+ V162215        0.000         1.000         0.000
+ V162216        0.000         0.631         0.000
+ V162217        0.000         0.000         1.000
+ V162218        0.000         0.000         0.313
+
+
+           THETA
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+ V162256        0.319
+ V162257        0.000         0.302
+ V162215        0.000         0.000         0.616
+ V162216        0.000         0.000         0.000         0.771
+ V162217        0.000         0.000         0.000         0.000         0.521
+ V162218        0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              V162218
+              ________
+ V162218        0.441
+
+
+           ALPHA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           BETA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT        0.000         0.000         0.000
+ EFFE           0.000         0.000         0.000
+ EFFI           0.000         0.000         0.000
+
+
+           PSI
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT        0.050
+ EFFE           0.000         0.050
+ EFFI           0.000         0.000         0.050
+
+
+     STARTING VALUES FOR DEM
+
+
+           NU
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+                1.888         1.806         2.468         2.777         3.215
+
+
+           NU
+              V162218
+              ________
+                2.134
+
+
+           LAMBDA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ V162256        1.000         0.000         0.000
+ V162257        0.665         0.000         0.000
+ V162215        0.000         1.000         0.000
+ V162216        0.000         0.608         0.000
+ V162217        0.000         0.000         1.000
+ V162218        0.000         0.000         0.230
+
+
+           THETA
+              V162256       V162257       V162215       V162216       V162217
+              ________      ________      ________      ________      ________
+ V162256        0.319
+ V162257        0.000         0.302
+ V162215        0.000         0.000         0.616
+ V162216        0.000         0.000         0.000         0.771
+ V162217        0.000         0.000         0.000         0.000         0.521
+ V162218        0.000         0.000         0.000         0.000         0.000
+
+
+           THETA
+              V162218
+              ________
+ V162218        0.441
+
+
+           ALPHA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+                0.000         0.000         0.000
+
+
+           BETA
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT        0.000         0.000         0.000
+ EFFE           0.000         0.000         0.000
+ EFFI           0.000         0.000         0.000
+
+
+           PSI
+              POL_INT       EFFE          EFFI
+              ________      ________      ________
+ POL_INT        0.050
+ EFFE           0.000         0.050
+ EFFI           0.000         0.000         0.050
+
+
+TECHNICAL 9 OUTPUT
+
+Error messages for the Configural Model:
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+Error messages for the Metric Model:
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+Error messages for the Scalar Model:
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+SAVEDATA INFORMATION
+
+
+  Save file
+    measurement_fscores.dat
+
+  Order of variables
+
+    V162256
+    V162257
+    V162215
+    V162216
+    V162217
+    V162218
+    V160102
+    PID_2_DEM
+    V160201
+
+  Save file format           Free
+
+  Save file record length    10000
+
+
+     Beginning Time:  23:51:23
+        Ending Time:  23:51:24
+       Elapsed Time:  00:00:01
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

@@ -1,0 +1,694 @@
+Mplus VERSION 8.4 (Mac)
+MUTHEN & MUTHEN
+02/03/2024  11:26 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  BASE 3;
+  DATA:
+  FILE = "cfa_measurament_populism.dat";
+
+  VARIABLE:
+  NAMES = V162259 V162260 V162262 V162264 V162265 V162267;
+   MISSING=.;
+   USEVARIABLES = V162259
+  V162260 V162262 V162264
+  V162265 V162267 ;
+  !CATEGORICAL = V161513 V161514 V161515 V161516;
+  !CLUSTER = V160201;
+  !WEIGHT=V160102;
+  ANALYSIS:
+  !TYPE = COMPLEX;
+               !PARAMETERIZATION=THETA;
+               PROCESSORS = 2;
+
+
+  MODEL:
+
+    pop BY V162259;
+    pop BY V162260;
+    pop BY V162262;
+    pop BY V162264;
+    pop BY V162265;
+    pop BY V162267;
+
+    V162259 WITH V162267;
+    V162260 WITH V162264;
+    V162262 WITH V162265;
+
+  OUTPUT:
+  STANDARDIZED; FSCOEFFICIENT; MODINDICES;
+
+
+
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  517
+   1 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+BASE 3;
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                        3151
+
+Number of dependent variables                                    6
+Number of independent variables                                  0
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Continuous
+   V162259     V162260     V162262     V162264     V162265     V162267
+
+Continuous latent variables
+   POP
+
+
+Estimator                                                       ML
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+
+Input data file(s)
+  cfa_measurament_populism.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+     Number of missing data patterns            18
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT
+
+
+           Covariance Coverage
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ V162259        0.995
+ V162260        0.994         0.998
+ V162262        0.994         0.997         0.998
+ V162264        0.993         0.995         0.995         0.997
+ V162265        0.994         0.997         0.997         0.996         0.998
+ V162267        0.991         0.993         0.993         0.993         0.994
+
+
+           Covariance Coverage
+              V162267
+              ________
+ V162267        0.994
+
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     V162259               1.883      -0.080       0.000   14.03%       1.000      2.000      2.000
+            3136.000       1.313      -0.914       4.000    6.25%       2.000      3.000
+     V162260               2.218      -0.201       0.000    5.56%       1.000      2.000      2.000
+            3146.000       1.252      -0.971       4.000   11.06%       3.000      3.000
+     V162262               2.180      -0.230       0.000    7.15%       1.000      2.000      2.000
+            3146.000       1.187      -0.688       4.000    9.98%       3.000      3.000
+     V162264               2.447      -0.410       0.000    5.76%       1.000      2.000      3.000
+            3140.000       1.334      -0.748       4.000   19.11%       3.000      3.000
+     V162265               2.529      -0.578       0.000    3.94%       1.000      3.000      3.000
+            3146.000       1.136      -0.443       4.000   15.96%       3.000      3.000
+     V162267               1.594       0.274       0.000   23.46%       0.000      1.000      2.000
+            3133.000       1.503      -0.953       4.000    6.99%       2.000      3.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       21
+
+Loglikelihood
+
+          H0 Value                      -27753.096
+          H1 Value                      -27717.909
+
+Information Criteria
+
+          Akaike (AIC)                   55548.193
+          Bayesian (BIC)                 55675.358
+          Sample-Size Adjusted BIC       55608.632
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                             70.375
+          Degrees of Freedom                     6
+          P-Value                           0.0000
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.058
+          90 Percent C.I.                    0.047  0.071
+          Probability RMSEA <= .05           0.118
+
+CFI/TLI
+
+          CFI                                0.976
+          TLI                                0.941
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                           2731.938
+          Degrees of Freedom                    15
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.024
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ POP      BY
+    V162259            1.000      0.000    999.000    999.000
+    V162260            2.000      0.129     15.506      0.000
+    V162262            1.338      0.080     16.703      0.000
+    V162264            1.189      0.093     12.746      0.000
+    V162265            1.473      0.085     17.427      0.000
+    V162267            0.553      0.056      9.902      0.000
+
+ V162259  WITH
+    V162267            0.285      0.024     11.738      0.000
+
+ V162260  WITH
+    V162264           -0.177      0.030     -5.869      0.000
+
+ V162262  WITH
+    V162265            0.060      0.025      2.435      0.015
+
+ Intercepts
+    V162259            1.882      0.020     92.026      0.000
+    V162260            2.218      0.020    111.246      0.000
+    V162262            2.180      0.019    112.270      0.000
+    V162264            2.447      0.021    118.747      0.000
+    V162265            2.529      0.019    133.127      0.000
+    V162267            1.594      0.022     72.769      0.000
+
+ Variances
+    POP                0.196      0.020      9.615      0.000
+
+ Residual Variances
+    V162259            1.116      0.030     37.057      0.000
+    V162260            0.467      0.044     10.679      0.000
+    V162262            0.835      0.031     27.108      0.000
+    V162264            1.056      0.035     29.964      0.000
+    V162265            0.710      0.028     25.265      0.000
+    V162267            1.443      0.037     39.072      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ POP      BY
+    V162259            0.387      0.018     20.971      0.000
+    V162260            0.792      0.022     35.606      0.000
+    V162262            0.544      0.021     25.359      0.000
+    V162264            0.456      0.024     19.291      0.000
+    V162265            0.612      0.019     31.992      0.000
+    V162267            0.200      0.020     10.124      0.000
+
+ V162259  WITH
+    V162267            0.224      0.018     12.790      0.000
+
+ V162260  WITH
+    V162264           -0.253      0.053     -4.743      0.000
+
+ V162262  WITH
+    V162265            0.078      0.030      2.580      0.010
+
+ Intercepts
+    V162259            1.643      0.027     60.016      0.000
+    V162260            1.983      0.031     64.604      0.000
+    V162262            2.001      0.031     64.800      0.000
+    V162264            2.119      0.032     65.903      0.000
+    V162265            2.373      0.035     68.164      0.000
+    V162267            1.300      0.024     53.573      0.000
+
+ Variances
+    POP                1.000      0.000    999.000    999.000
+
+ Residual Variances
+    V162259            0.850      0.014     59.639      0.000
+    V162260            0.373      0.035     10.583      0.000
+    V162262            0.704      0.023     30.126      0.000
+    V162264            0.792      0.022     36.703      0.000
+    V162265            0.625      0.023     26.656      0.000
+    V162267            0.960      0.008    121.603      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ POP      BY
+    V162259            0.387      0.018     20.971      0.000
+    V162260            0.792      0.022     35.606      0.000
+    V162262            0.544      0.021     25.359      0.000
+    V162264            0.456      0.024     19.291      0.000
+    V162265            0.612      0.019     31.992      0.000
+    V162267            0.200      0.020     10.124      0.000
+
+ V162259  WITH
+    V162267            0.224      0.018     12.790      0.000
+
+ V162260  WITH
+    V162264           -0.253      0.053     -4.743      0.000
+
+ V162262  WITH
+    V162265            0.078      0.030      2.580      0.010
+
+ Intercepts
+    V162259            1.643      0.027     60.016      0.000
+    V162260            1.983      0.031     64.604      0.000
+    V162262            2.001      0.031     64.800      0.000
+    V162264            2.119      0.032     65.903      0.000
+    V162265            2.373      0.035     68.164      0.000
+    V162267            1.300      0.024     53.573      0.000
+
+ Variances
+    POP                1.000      0.000    999.000    999.000
+
+ Residual Variances
+    V162259            0.850      0.014     59.639      0.000
+    V162260            0.373      0.035     10.583      0.000
+    V162262            0.704      0.023     30.126      0.000
+    V162264            0.792      0.022     36.703      0.000
+    V162265            0.625      0.023     26.656      0.000
+    V162267            0.960      0.008    121.603      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ POP      BY
+    V162259            0.443      0.023     19.230      0.000
+    V162260            0.886      0.029     30.630      0.000
+    V162262            0.593      0.026     22.717      0.000
+    V162264            0.527      0.029     17.964      0.000
+    V162265            0.653      0.024     27.375      0.000
+    V162267            0.245      0.025      9.890      0.000
+
+ V162259  WITH
+    V162267            0.285      0.024     11.738      0.000
+
+ V162260  WITH
+    V162264           -0.177      0.030     -5.869      0.000
+
+ V162262  WITH
+    V162265            0.060      0.025      2.435      0.015
+
+ Intercepts
+    V162259            1.882      0.020     92.026      0.000
+    V162260            2.218      0.020    111.246      0.000
+    V162262            2.180      0.019    112.270      0.000
+    V162264            2.447      0.021    118.747      0.000
+    V162265            2.529      0.019    133.127      0.000
+    V162267            1.594      0.022     72.769      0.000
+
+ Variances
+    POP                1.000      0.000    999.000    999.000
+
+ Residual Variances
+    V162259            1.116      0.030     37.057      0.000
+    V162260            0.467      0.044     10.679      0.000
+    V162262            0.835      0.031     27.108      0.000
+    V162264            1.056      0.035     29.964      0.000
+    V162265            0.710      0.028     25.265      0.000
+    V162267            1.443      0.037     39.072      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    V162259            0.150      0.014     10.486      0.000
+    V162260            0.627      0.035     17.803      0.000
+    V162262            0.296      0.023     12.679      0.000
+    V162264            0.208      0.022      9.646      0.000
+    V162265            0.375      0.023     15.996      0.000
+    V162267            0.040      0.008      5.062      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.135E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+MODEL MODIFICATION INDICES
+
+NOTE:  Modification indices for direct effects of observed dependent variables
+regressed on covariates may not be included.  To include these, request
+MODINDICES (ALL).
+
+Minimum M.I. value for printing the modification index    10.000
+
+                                   M.I.     E.P.C.  Std E.P.C.  StdYX E.P.C.
+
+WITH Statements
+
+V162262  WITH V162259             18.793     0.090      0.090        0.093
+V162265  WITH V162259             10.062    -0.069     -0.069       -0.077
+V162265  WITH V162260             11.716     0.116      0.116        0.201
+V162267  WITH V162262             11.516     0.069      0.069        0.063
+V162267  WITH V162264             11.328     0.080      0.080        0.065
+V162267  WITH V162265             20.274    -0.088     -0.088       -0.087
+
+
+SUMMARY OF FACTOR SCORES
+
+
+     FACTOR SCORE INFORMATION (COMPLETE-DATA PATTERN)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ POP            0.036         0.216         0.063         0.085         0.084
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162267
+              ________
+ POP            0.009
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.043
+
+
+     FACTOR SCORE INFORMATION (PATTERN 2)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162259       V162260       V162262       V162264       V162265
+              ________      ________      ________      ________      ________
+ POP            0.039         0.217         0.063         0.085         0.084
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.043
+
+
+     FACTOR SCORE INFORMATION (PATTERN 3)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162259       V162260       V162262       V162264
+              ________      ________      ________      ________
+ POP            0.044         0.245         0.078         0.096
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.049
+
+
+     FACTOR SCORE INFORMATION (PATTERN 4)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162259       V162260       V162262       V162265       V162267
+              ________      ________      ________      ________      ________
+ POP            0.043         0.220         0.075         0.100         0.011
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.051
+
+
+     FACTOR SCORE INFORMATION (PATTERN 5)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162259       V162260       V162262       V162265
+              ________      ________      ________      ________
+ POP            0.046         0.221         0.075         0.101
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.052
+
+
+     FACTOR SCORE INFORMATION (PATTERN 6)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162259       V162260       V162262
+              ________      ________      ________
+ POP            0.054         0.257         0.096
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.060
+
+
+     FACTOR SCORE INFORMATION (PATTERN 7)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162259       V162260       V162264       V162265       V162267
+              ________      ________      ________      ________      ________
+ POP            0.039         0.234         0.092         0.096         0.010
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.046
+
+
+     FACTOR SCORE INFORMATION (PATTERN 8)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162259       V162260       V162264       V162265
+              ________      ________      ________      ________
+ POP            0.042         0.235         0.092         0.097
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.047
+
+
+     FACTOR SCORE INFORMATION (PATTERN 9)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162259       V162262       V162264       V162265       V162267
+              ________      ________      ________      ________      ________
+ POP            0.069         0.120         0.092         0.160         0.018
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.082
+
+
+     FACTOR SCORE INFORMATION (PATTERN 10)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162259       V162264       V162265       V162267
+              ________      ________      ________      ________
+ POP            0.080         0.108         0.199         0.021
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.096
+
+
+     FACTOR SCORE INFORMATION (PATTERN 11)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162260       V162262       V162264       V162265       V162267
+              ________      ________      ________      ________      ________
+ POP            0.223         0.065         0.087         0.087         0.017
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.044
+
+
+     FACTOR SCORE INFORMATION (PATTERN 12)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162260       V162262       V162264       V162265
+              ________      ________      ________      ________
+ POP            0.225         0.065         0.088         0.087
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.045
+
+
+     FACTOR SCORE INFORMATION (PATTERN 13)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162260       V162262       V162264       V162267
+              ________      ________      ________      ________
+ POP            0.253         0.081         0.099         0.019
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.050
+
+
+     FACTOR SCORE INFORMATION (PATTERN 14)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162260       V162262       V162265       V162267
+              ________      ________      ________      ________
+ POP            0.229         0.078         0.104         0.020
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.053
+
+
+     FACTOR SCORE INFORMATION (PATTERN 15)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162260       V162262       V162265
+              ________      ________      ________
+ POP            0.232         0.079         0.105
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.054
+
+
+     FACTOR SCORE INFORMATION (PATTERN 16)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162260
+              ________
+ POP            0.314
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.073
+
+
+     FACTOR SCORE INFORMATION (PATTERN 17)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162262       V162265
+              ________      ________
+ POP            0.147         0.197
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.101
+
+
+     FACTOR SCORE INFORMATION (PATTERN 18)
+
+
+           FACTOR SCORE COEFFICIENTS
+              V162264       V162265       V162267
+              ________      ________      ________
+ POP            0.116         0.214         0.040
+
+
+           POSTERIOR COVARIANCE MATRIX FOR ESTIMATED FACTOR SCORES (SQUARED S.E.S ON THE DIAGONAL)
+              POP
+              ________
+ POP            0.103
+
+
+     Beginning Time:  23:26:46
+        Ending Time:  23:26:46
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

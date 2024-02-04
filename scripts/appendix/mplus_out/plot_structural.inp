@@ -1,0 +1,117 @@
+DATA:
+FILE = "plot_structural.dat";
+ 
+VARIABLE:
+NAMES = spending_extr defence_extr medical_extr garant_inc_extr blacks_extr
+     envir_extr affirm_extr wagner_aff V161513 V161514 V161515 V161516 V162259
+     V162260 V162262 V162264 V162265 V162267 V161270 V161361x V161267 V161241 FEM
+     BLACK ASIAN HISP OTHERR bernie perc_pol id_iden7 WEAK STRONG V162256 V162257
+     V162215 V162216 V162217 V162218 V160102 V160201; 
+ MISSING=.;
+ USEVARIABLES = spending_extr
+defence_extr medical_extr
+garant_inc_extr blacks_extr
+envir_extr affirm_extr
+wagner_aff V161513 V161514
+V161515 V161516 V162259
+V162260 V162262 V162264
+V162265 V162267 V161270
+V161361x V161267 V161241 FEM
+BLACK ASIAN HISP OTHERR
+bernie perc_pol id_iden7 WEAK
+STRONG V162256 V162257
+V162215 V162216 V162217
+V162218 V160102 V160201 ;
+CATEGORICAL = V161513 V161514 V161515 V161516;
+CLUSTER = V160201;
+WEIGHT=V160102;
+ANALYSIS:
+TYPE = COMPLEX;
+             PARAMETERIZATION=THETA;
+             PROCESSORS = 2;
+MODEL:
+
+
+  KN BY V161513;
+  KN BY V161514;
+  KN BY V161515;
+  KN BY V161516;
+
+  V161513@1;
+  V161514@1;
+  V161515@1;
+  V161516@1;
+
+  EFFE BY V162215;
+  EFFE BY V162216;
+
+  EFFI BY V162217;
+  EFFI BY V162218;
+
+  pol_int BY V162256;
+  pol_int BY V162257;
+
+  pop BY V162259;
+  pop BY V162260;
+  pop BY V162262;
+  pop BY V162264;
+  pop BY V162265;
+  pop BY V162267;
+
+  V162259 WITH V162267;
+  V162260 WITH V162264;
+  V162262 WITH V162265;
+
+  EXT BY spending_extr;
+  EXT BY defence_extr;
+  EXT BY medical_extr;
+  EXT BY garant_inc_extr;
+  EXT BY blacks_extr;
+  EXT BY envir_extr;
+  EXT BY affirm_extr;
+
+  EXT ON POP
+  WEAK
+  STRONG
+  EFFI
+  EFFE
+  V161241
+  pol_int
+  KN
+  perc_pol
+  id_iden7
+  bernie
+  V161270
+  V161361x
+  V161267
+  FEM
+  !!!! RACE !!!!
+  BLACK
+  ASIAN
+  HISP
+  OTHERR;
+
+  wagner_aff ON POP
+  WEAK
+  STRONG
+  EFFI
+  EFFE
+  V161241
+  pol_int
+  KN
+  perc_pol
+  id_iden7
+  bernie
+  V161270
+  V161361x
+  V161267
+  FEM
+  !!!! RACE !!!!
+  BLACK
+  ASIAN
+  HISP
+  OTHERR;
+
+  
+PLOT:
+TYPE = PLOT2;

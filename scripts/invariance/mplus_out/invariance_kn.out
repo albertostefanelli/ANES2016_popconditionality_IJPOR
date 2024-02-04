@@ -1,0 +1,578 @@
+Mplus VERSION 8.4 (Mac)
+MUTHEN & MUTHEN
+02/03/2024  11:35 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE:
+  BASE 3;
+  DATA:
+  FILE = "invariance_kn.dat";
+
+  VARIABLE:
+  NAMES = PID_2_DEM V161513 V161514 V161515 V161516 V160201 V160102;
+   MISSING=.;
+   USEVARIABLES = PID_2_DEM
+  V161513 V161514 V161515
+  V161516 V160201 V160102 ;
+  CATEGORICAL = V161513 V161514 V161515 V161516;,
+                     CLUSTER = V160201;
+
+      GROUPING = PID_2_DEM (1=rep 2=dem);
+      WEIGHT=V160102;
+
+  ANALYSIS:
+  TYPE = COMPLEX;
+               !ESTIMATOR IS MLR;
+               PARAMETERIZATION=THETA;
+               !MODEL = CONFIGURAL SCALAR;
+
+  MODEL:
+
+    model:
+    KN BY V161513;
+    KN BY V161514;
+    KN BY V161515;
+    KN BY V161516;
+
+    V161513@1;
+    V161514@1;
+    V161515@1;
+    V161516@1;
+
+
+  OUTPUT:
+  STANDARDIZED;FSCOEFFICIENT;MODINDICES;
+
+
+
+*** WARNING in OUTPUT command
+  FSCOEFFICIENT is not available for analysis with at least one categorical
+  dependent variable.  Request for FSCOEFFICIENT is ignored.
+*** WARNING
+  Data set contains cases with missing on all variables.
+  These cases were not included in the analysis.
+  Number of cases with missing on all variables:  63
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+
+BASE 3;
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 2
+Number of observations
+   Group REP                                                  1699
+   Group DEM                                                  1906
+   Total sample size                                          3605
+
+Number of dependent variables                                    4
+Number of independent variables                                  0
+Number of continuous latent variables                            1
+
+Observed dependent variables
+
+  Binary and ordered categorical (ordinal)
+   V161513     V161514     V161515     V161516
+
+Continuous latent variables
+   KN
+
+Variables with special functions
+
+  Grouping variable     PID_2_DE
+  Cluster variable      V160201
+  Weight variable       V160102
+
+Estimator                                                    WLSMV
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+Maximum number of iterations for H1                           2000
+Convergence criterion for H1                             0.100D-03
+Parameterization                                             THETA
+Link                                                        PROBIT
+
+Input data file(s)
+  invariance_kn.dat
+
+Input data format  FREE
+
+
+SUMMARY OF DATA
+
+   Group REP
+     Number of missing data patterns            10
+     Number of clusters                        132
+
+
+   Group DEM
+     Number of missing data patterns            13
+     Number of clusters                        132
+
+
+
+COVARIANCE COVERAGE OF DATA
+
+Minimum covariance coverage value   0.100
+
+
+     PROPORTION OF DATA PRESENT FOR REP
+
+
+           Covariance Coverage
+              V161513       V161514       V161515       V161516
+              ________      ________      ________      ________
+ V161513        0.976
+ V161514        0.969         0.991
+ V161515        0.968         0.973         0.979
+ V161516        0.966         0.971         0.975         0.977
+
+
+     PROPORTION OF DATA PRESENT FOR DEM
+
+
+           Covariance Coverage
+              V161513       V161514       V161515       V161516
+              ________      ________      ________      ________
+ V161513        0.971
+ V161514        0.964         0.991
+ V161515        0.964         0.970         0.977
+ V161516        0.964         0.970         0.973         0.976
+
+
+UNIVARIATE PROPORTIONS AND COUNTS FOR CATEGORICAL VARIABLES
+
+  Group REP
+    V161513
+      Category 1    0.573          953.098
+      Category 2    0.427          711.394
+    V161514
+      Category 1    0.726         1227.043
+      Category 2    0.274          463.116
+    V161515
+      Category 1    0.268          445.692
+      Category 2    0.732         1219.194
+    V161516
+      Category 1    0.332          552.070
+      Category 2    0.668         1111.595
+
+  Group DEM
+    V161513
+      Category 1    0.567         1052.339
+      Category 2    0.433          802.800
+    V161514
+      Category 1    0.717         1354.717
+      Category 2    0.283          535.094
+    V161515
+      Category 1    0.268          500.862
+      Category 2    0.732         1370.265
+    V161516
+      Category 1    0.306          572.516
+      Category 2    0.694         1298.989
+
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                       10
+
+Chi-Square Test of Model Fit
+
+          Value                             19.069*
+          Degrees of Freedom                    10
+          P-Value                           0.0394
+
+Chi-Square Contribution From Each Group
+
+          REP                                5.574
+          DEM                               13.496
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.022
+          90 Percent C.I.                    0.005  0.038
+          Probability RMSEA <= .05           0.999
+
+CFI/TLI
+
+          CFI                                0.980
+          TLI                                0.976
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            463.060
+          Degrees of Freedom                    12
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.038
+
+Optimum Function Value for Weighted Least-Squares Estimator
+
+          Value                     0.22770561D-02
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ KN       BY
+    V161513            1.000      0.000    999.000    999.000
+    V161514            0.741      0.132      5.617      0.000
+    V161515            1.451      0.221      6.566      0.000
+    V161516            1.486      0.259      5.733      0.000
+
+ Means
+    KN                 0.000      0.000    999.000    999.000
+
+ Thresholds
+    V161513$1          0.217      0.051      4.263      0.000
+    V161514$1          0.649      0.040     16.153      0.000
+    V161515$1         -0.787      0.066    -11.893      0.000
+    V161516$1         -0.607      0.062     -9.750      0.000
+
+ Variances
+    KN                 0.345      0.076      4.540      0.000
+
+ Residual Variances
+    V161513            1.000      0.000    999.000    999.000
+    V161514            1.000      0.000    999.000    999.000
+    V161515            1.000      0.000    999.000    999.000
+    V161516            1.000      0.000    999.000    999.000
+
+Group DEM
+
+ KN       BY
+    V161513            1.000      0.000    999.000    999.000
+    V161514            0.741      0.132      5.617      0.000
+    V161515            1.451      0.221      6.566      0.000
+    V161516            1.486      0.259      5.733      0.000
+
+ Means
+    KN                 0.027      0.042      0.635      0.525
+
+ Thresholds
+    V161513$1          0.217      0.051      4.263      0.000
+    V161514$1          0.649      0.040     16.153      0.000
+    V161515$1         -0.787      0.066    -11.893      0.000
+    V161516$1         -0.607      0.062     -9.750      0.000
+
+ Variances
+    KN                 0.317      0.071      4.492      0.000
+
+ Residual Variances
+    V161513            1.000      0.000    999.000    999.000
+    V161514            1.000      0.000    999.000    999.000
+    V161515            1.000      0.000    999.000    999.000
+    V161516            1.000      0.000    999.000    999.000
+
+
+IRT PARAMETERIZATION
+
+Group REP
+
+ Item Discriminations
+
+ KN       BY
+    V161513            0.587      0.065      9.081      0.000
+    V161514            0.435      0.060      7.199      0.000
+    V161515            0.852      0.111      7.696      0.000
+    V161516            0.873      0.106      8.226      0.000
+
+ Means
+    KN                 0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    V161513$1          0.370      0.089      4.180      0.000
+    V161514$1          1.492      0.197      7.565      0.000
+    V161515$1         -0.923      0.092    -10.036      0.000
+    V161516$1         -0.696      0.080     -8.728      0.000
+
+ Variances
+    KN                 1.000      0.000      0.000      1.000
+
+Group DEM
+
+ Item Discriminations
+
+ KN       BY
+    V161513            0.563      0.063      8.985      0.000
+    V161514            0.417      0.057      7.343      0.000
+    V161515            0.818      0.103      7.949      0.000
+    V161516            0.837      0.105      7.987      0.000
+
+ Means
+    KN                 0.000      0.000      0.000      1.000
+
+ Item Difficulties
+    V161513$1          0.339      0.079      4.282      0.000
+    V161514$1          1.508      0.194      7.756      0.000
+    V161515$1         -1.010      0.093    -10.907      0.000
+    V161516$1         -0.772      0.081     -9.583      0.000
+
+ Variances
+    KN                 1.000      0.000      0.000      1.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ KN       BY
+    V161513            0.506      0.041     12.213      0.000
+    V161514            0.399      0.047      8.561      0.000
+    V161515            0.649      0.049     13.289      0.000
+    V161516            0.658      0.045     14.493      0.000
+
+ Means
+    KN                 0.000      0.000    999.000    999.000
+
+ Thresholds
+    V161513$1          0.187      0.043      4.332      0.000
+    V161514$1          0.595      0.035     17.095      0.000
+    V161515$1         -0.599      0.039    -15.508      0.000
+    V161516$1         -0.457      0.041    -11.166      0.000
+
+ Variances
+    KN                 1.000      0.000    999.000    999.000
+
+ Residual Variances
+    V161513            0.744      0.042     17.704      0.000
+    V161514            0.841      0.037     22.632      0.000
+    V161515            0.579      0.063      9.143      0.000
+    V161516            0.568      0.060      9.512      0.000
+
+Group DEM
+
+ KN       BY
+    V161513            0.491      0.041     11.836      0.000
+    V161514            0.385      0.045      8.621      0.000
+    V161515            0.633      0.048     13.264      0.000
+    V161516            0.642      0.047     13.585      0.000
+
+ Means
+    KN                 0.047      0.073      0.644      0.520
+
+ Thresholds
+    V161513$1          0.189      0.043      4.373      0.000
+    V161514$1          0.599      0.034     17.469      0.000
+    V161515$1         -0.609      0.043    -14.325      0.000
+    V161516$1         -0.466      0.045    -10.310      0.000
+
+ Variances
+    KN                 1.000      0.000    999.000    999.000
+
+ Residual Variances
+    V161513            0.759      0.041     18.650      0.000
+    V161514            0.852      0.034     24.771      0.000
+    V161515            0.599      0.060      9.920      0.000
+    V161516            0.588      0.061      9.691      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ KN       BY
+    V161513            0.506      0.041     12.213      0.000
+    V161514            0.399      0.047      8.561      0.000
+    V161515            0.649      0.049     13.289      0.000
+    V161516            0.658      0.045     14.493      0.000
+
+ Means
+    KN                 0.000      0.000    999.000    999.000
+
+ Thresholds
+    V161513$1          0.187      0.043      4.332      0.000
+    V161514$1          0.595      0.035     17.095      0.000
+    V161515$1         -0.599      0.039    -15.508      0.000
+    V161516$1         -0.457      0.041    -11.166      0.000
+
+ Variances
+    KN                 1.000      0.000    999.000    999.000
+
+ Residual Variances
+    V161513            0.744      0.042     17.704      0.000
+    V161514            0.841      0.037     22.632      0.000
+    V161515            0.579      0.063      9.143      0.000
+    V161516            0.568      0.060      9.512      0.000
+
+Group DEM
+
+ KN       BY
+    V161513            0.491      0.041     11.836      0.000
+    V161514            0.385      0.045      8.621      0.000
+    V161515            0.633      0.048     13.264      0.000
+    V161516            0.642      0.047     13.585      0.000
+
+ Means
+    KN                 0.047      0.073      0.644      0.520
+
+ Thresholds
+    V161513$1          0.189      0.043      4.373      0.000
+    V161514$1          0.599      0.034     17.469      0.000
+    V161515$1         -0.609      0.043    -14.325      0.000
+    V161516$1         -0.466      0.045    -10.310      0.000
+
+ Variances
+    KN                 1.000      0.000    999.000    999.000
+
+ Residual Variances
+    V161513            0.759      0.041     18.650      0.000
+    V161514            0.852      0.034     24.771      0.000
+    V161515            0.599      0.060      9.920      0.000
+    V161516            0.588      0.061      9.691      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+Group REP
+
+ KN       BY
+    V161513            0.587      0.065      9.081      0.000
+    V161514            0.435      0.060      7.199      0.000
+    V161515            0.852      0.111      7.696      0.000
+    V161516            0.873      0.106      8.226      0.000
+
+ Means
+    KN                 0.000      0.000    999.000    999.000
+
+ Thresholds
+    V161513$1          0.217      0.051      4.263      0.000
+    V161514$1          0.649      0.040     16.153      0.000
+    V161515$1         -0.787      0.066    -11.893      0.000
+    V161516$1         -0.607      0.062     -9.750      0.000
+
+ Variances
+    KN                 1.000      0.000    999.000    999.000
+
+ Residual Variances
+    V161513            1.000      0.000    999.000    999.000
+    V161514            1.000      0.000    999.000    999.000
+    V161515            1.000      0.000    999.000    999.000
+    V161516            1.000      0.000    999.000    999.000
+
+Group DEM
+
+ KN       BY
+    V161513            0.563      0.063      8.985      0.000
+    V161514            0.417      0.057      7.343      0.000
+    V161515            0.818      0.103      7.949      0.000
+    V161516            0.837      0.105      7.987      0.000
+
+ Means
+    KN                 0.047      0.073      0.644      0.520
+
+ Thresholds
+    V161513$1          0.217      0.051      4.263      0.000
+    V161514$1          0.649      0.040     16.153      0.000
+    V161515$1         -0.787      0.066    -11.893      0.000
+    V161516$1         -0.607      0.062     -9.750      0.000
+
+ Variances
+    KN                 1.000      0.000    999.000    999.000
+
+ Residual Variances
+    V161513            1.000      0.000    999.000    999.000
+    V161514            1.000      0.000    999.000    999.000
+    V161515            1.000      0.000    999.000    999.000
+    V161516            1.000      0.000    999.000    999.000
+
+
+R-SQUARE
+
+Group REP
+
+    Observed                                        Two-Tailed     Scale
+    Variable        Estimate       S.E.  Est./S.E.    P-Value     Factors
+
+    V161513            0.256      0.042      6.106      0.000      0.862
+    V161514            0.159      0.037      4.281      0.000      0.917
+    V161515            0.421      0.063      6.644      0.000      0.761
+    V161516            0.432      0.060      7.247      0.000      0.753
+
+Group DEM
+
+    Observed                                        Two-Tailed     Scale
+    Variable        Estimate       S.E.  Est./S.E.    P-Value     Factors
+
+    V161513            0.241      0.041      5.918      0.000      0.871
+    V161514            0.148      0.034      4.310      0.000      0.923
+    V161515            0.401      0.060      6.632      0.000      0.774
+    V161516            0.412      0.061      6.792      0.000      0.767
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.330E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+MODEL MODIFICATION INDICES
+
+NOTE:  Modification indices for direct effects of observed dependent variables
+regressed on covariates and residual covariances among observed dependent
+variables may not be included.  To include these, request MODINDICES (ALL).
+
+Minimum M.I. value for printing the modification index    10.000
+
+                                   M.I.     E.P.C.  Std E.P.C.  StdYX E.P.C.
+Group REP
+
+
+No modification indices above the minimum value.
+
+Group DEM
+
+
+WITH Statements
+
+V161514  WITH V161513             10.545     0.215      0.215        0.215
+
+
+
+     Beginning Time:  23:35:14
+        Ending Time:  23:35:14
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen
