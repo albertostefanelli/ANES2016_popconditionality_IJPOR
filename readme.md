@@ -24,6 +24,3 @@ This repository hosts the replication materials for the paper titled ["The Condi
     - `F_`: Writes out Mplus syntax and fits the model using Mplus (requires Mplus license).
     - `R_`: Reads the .out Mplus files containing the results.
     - `FR_`: Writes syntax and reads .out Mplus files containing results; typically used for models fitted without Mplus (e.g., OLS models in the appendix).
-
-
-A
